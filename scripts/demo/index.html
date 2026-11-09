@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rules vs LLMs demo</title>
+<style>
+  :root { --bg:#0f1419; --panel:#151b23; --fg:#d6dde6; --muted:#8b98a8; --accent:#4fb3ff; --ok:#5fd38d; --bad:#ff7b72; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--fg);
+    font-family: "DejaVu Sans", "Segoe UI", sans-serif; }
+  header { padding:14px 22px 10px; border-bottom:1px solid #263040; }
+  header h1 { margin:0; font-size:20px; font-weight:600; }
+  header p { margin:4px 0 0; color:var(--muted); font-size:13px; }
+  #step { padding:12px 22px 8px; }
+  #title { font-size:18px; font-weight:600; color:var(--accent); }
+  #caption { font-size:14px; color:var(--fg); margin-top:4px; }
+  #term { margin:6px 22px 18px; padding:12px 14px; background:var(--panel); border:1px solid #263040; border-radius:6px;
+    height:calc(100vh - 190px); overflow-y:auto; white-space:pre-wrap; word-break:break-word;
+    font-family:"DejaVu Sans Mono", "Liberation Mono", monospace; font-size:12.5px; line-height:1.38; }
+  .cmd { color:var(--ok); } .prompt { color:var(--muted); } .exit0 { color:var(--ok); } .exitN { color:var(--bad); }
+  .hl { background:#2a3a1f; color:#e9ffd6; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Rules vs LLMs — Indian income-tax engine (FY 2024-25 &amp; FY 2025-26)</h1>
+  <p>Live recording of the project's real command-line tools; every line below is streamed from the running program.</p>
+</header>
+<div id="step"><div id="title">Loading…</div><div id="caption"></div></div>
+<div id="term"></div>
+<script>
+const term = document.getElementById('term');
+let STEPS = [];
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+function add(text, cls) {
+  const span = document.createElement('span');
+  if (cls) span.className = cls;
+  span.textContent = text + '\n';
+  term.appendChild(span);
+  term.scrollTop = term.scrollHeight;
+  return span;
+}
+const HIGHLIGHT = /(Section 80D\s+-Rs|TAX PAYABLE|RECOMMENDATION|Input rejected|passed|VERIFIED_MATCH|"passed"|checks passed|APPROVED|need a bit more)/;
+async function loadSteps() { STEPS = await (await fetch('/steps')).json(); document.getElementById('title').textContent = 'Ready'; }
+async function runStep(i) {
+  const s = STEPS[i];
+  document.getElementById('title').textContent = s.title;
+  document.getElementById('caption').textContent = s.caption;
+  term.textContent = '';
+  const line = add('', 'cmd');
+  const prompt = '$ ';
+  for (let k = 0; k <= s.command.length; k += 3) { line.textContent = prompt + s.command.slice(0, k) + '\n'; await sleep(12); }
+  line.textContent = prompt + s.command + '\n';
+  await sleep(400);
+  return new Promise(resolve => {
+    const es = new EventSource('/run/' + i);
+    es.onmessage = ev => { const t = JSON.parse(ev.data); add(t, HIGHLIGHT.test(t) ? 'hl' : null); };
+    es.addEventListener('done', ev => { es.close(); const c = parseInt(ev.data);
+      add('[exit code ' + c + ']', c === 0 ? 'exit0' : 'exitN'); resolve(c); });
+  });
+}
+function scrollTermTo(pattern) {
+  for (const el of term.children) { if (el.textContent.includes(pattern)) { term.scrollTop = el.offsetTop - term.offsetTop - 40; return true; } }
+  return false;
+}
+loadSteps();
+</script>
+</body>
+</html>

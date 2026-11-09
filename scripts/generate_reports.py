@@ -75,10 +75,23 @@ def results_a() -> str:
                      f"not measured | not measured | projected {money(a['projected_cost_per_1000_usd'])} | not measured |")
             continue
         det = a["determinism"]
-        L.append(f"| {labels[eng]} | | {pct(a['rupee_exact_accuracy'])} ({a['n_cases']}) | {pct(b['rupee_exact_accuracy'])} "
-                 f"({b['n_cases']}) | {det['deterministic_cases']}/{det['cases']} cases identical x{det['repeats']} | "
+        ref = lambda e: (f"; {e['refused_unsupported_input']} refused" if e.get("refused_unsupported_input") else "")  # noqa: E731
+        L.append(f"| {labels[eng]} | | {pct(a['rupee_exact_accuracy'])} ({a['n_cases']}{ref(a)}) | "
+                 f"{pct(b['rupee_exact_accuracy'])} ({b['n_cases']}{ref(b)}) | "
+                 f"{det['deterministic_cases']}/{det['cases']} cases identical x{det['repeats']} | "
                  f"{ms(a['latency']['median_ms'])} / {ms(a['latency']['p95_ms'])} | {money(a['cost_per_1000_usd'])} | "
                  f"{pct(a['traceability'])} |")
+    rc = {fy: bench["by_fy"][fy]["llm_compiled_engine"] for fy in bench["by_fy"]}
+    if any(e.get("refused_unsupported_input") for e in rc.values()):
+        man = load(ROOT / "project_a/compiled_rules/candidates/80d_per_person_manifest.json") or {}
+        cands = man.get("candidates", {})
+        L += ["", "**Engine C refusals.** The approved compiled artifacts predate the per-person 80D inputs, so they "
+              "refuse (loudly, `UnsupportedInput`) every case that uses them: "
+              + ", ".join(f"FY {fy}: {e['refused_unsupported_input']} refused, {pct(e['rupee_exact_on_answered'])} exact on "
+                          f"the rest" for fy, e in rc.items())
+              + ". Corrected candidates pass the full suites ("
+              + ", ".join(f"FY {fy}: {c['suite']['passed']}/{c['suite']['cases']}" for fy, c in cands.items())
+              + ") and await human approval (`project_a/compiled_rules/candidates/80d_per_person_manifest.json`)."]
     llm_mode = bench["llm"]["mode"]
     eb = {fy: bench["by_fy"][fy]["llm_query_engine"] for fy in bench["by_fy"]}
     if str(llm_mode).startswith("real") and all(e.get("rupee_exact_accuracy") is not None for e in eb.values()):
@@ -214,8 +227,16 @@ def results_a() -> str:
           "## 7. Interpretations and scope limits (documented, tested)", "",
           "* Salary income only; employer NPS (80CCD(2)), professional tax, LTA, let-out property, capital gains excluded.",
           "* 24(b) self-occupied cap Rs 2,00,000 assumes a post-1-4-1999 acquisition/construction loan (the Rs 30,000 case is not modelled).",
-          "* 80D: medical expenditure only for an *uninsured senior* group; preventive check-ups inside each group's cap and "
-          "Rs 5,000 in aggregate, allocated where headroom exists; premiums assumed paid by non-cash mode.",
+          "* 80D medical expenditure (clauses c/d, first proviso) is judged **per person**: it counts only for a senior "
+          "citizen with no insurance premium paid for that person (`medical_expenditure_self/spouse/parent_a/parent_b` + "
+          "`*_insured`). The legacy group amounts cannot say who is insured, so they keep the conservative rule (count only "
+          "when no premium is paid for anyone in the group); ambiguous combinations are rejected at input, never guessed. "
+          "The clause (a)/(b) limit is Rs 50,000 only where the premium is paid for an **insured senior citizen** of that "
+          "group (s.80D(4)), otherwise Rs 25,000: an uninsured senior does not raise the limit for an insured non-senior. "
+          "With group-only input nobody's status is known, so a group premium is read as covering every member (the same "
+          "assumption the medical rule makes). (a)+(c) and (b)+(d) <= Rs 50,000 (second proviso); preventive check-ups "
+          "inside (a)/(b) and Rs 5,000 in aggregate; premiums assumed paid by non-cash mode.",
+          "* Age is the age reached at any time during the previous year (by 31 March); valid range 18-120.",
           "* Senior/super-senior old-regime exemption and 87A only for residents. Tie between regimes -> new regime (default).",
           "* Rounding: total income (s.288A) and tax payable (s.288B) to the nearest Rs 10; intermediate values exact.",
           "", "## 8. Final design (Task A6)", "", "See `FINAL_DESIGN_A.md` (reproduced below).", "",
@@ -428,6 +449,12 @@ def results_b() -> str:
 
 
 # ----------------------------------------------------------------------------------------- matrix
+def _c_refusal_note(bench: dict) -> str:
+    n = sum(bench["by_fy"][fy]["llm_compiled_engine"].get("refused_unsupported_input") or 0 for fy in bench["by_fy"])
+    return (f" (the approved artifacts refuse {n} per-person 80D cases loudly; the corrected candidates pass every "
+            "case and await human approval)") if n else ""
+
+
 def _eb_summary(bench: dict) -> str:
     e = {fy: bench["by_fy"][fy]["llm_query_engine"] for fy in bench["by_fy"]}
     if any(x.get("rupee_exact_accuracy") is None for x in e.values()):
@@ -466,7 +493,8 @@ def decision_matrix() -> str:
          f"Engine B: {_eb_summary(bench)} | {money(ra['cost_per_1000_usd'])}/1k | "
          f"median {ms(ra['latency']['median_ms'])} | 100% | every line: clause + rule id + version |",
          f"| Independent verifier | catch a wrong ground truth | LLM-compiled artifact (Engine C) run as a shadow of A | Hybrid (LLM at build time, rule at run time) | "
-         f"0 mismatches vs A on the full suite and on {mig['differential_fuzz_fy2025_26']['profiles']:,} random FY25-26 profiles "
+         f"0 mismatches vs A on every suite case it answers{_c_refusal_note(bench)} and on "
+         f"{mig['differential_fuzz_fy2025_26']['profiles']:,} random FY25-26 profiles "
          f"({mig['differential_fuzz_fy2025_26']['mismatches']} mismatches); a second, independently derived encoding | {money(rc['cost_per_1000_usd'])}/1k | median {ms(rc['latency']['median_ms'])} | 100% | "
          "step id + clause + passage + artifact hash |",
          (f"| Query-time LLM (Engine B) | compute per request | Not used for numbers | LLM | {_eb_summary(bench)}; must be "
@@ -477,14 +505,16 @@ def decision_matrix() -> str:
           f"{money(rb['projected_cost_per_1000_usd'])}/1k vs {money(ra['cost_per_1000_usd'])}/1k for rules; must be shadow-checked anyway | "
           "projected only | not measured | not measured | citations only, cannot prove arithmetic |"),
          "| Rule storage | law changes yearly | one YAML per FY + fail-loud registry | Rule | year-blind fallback would be silently "
-         "wrong on 79% of FY25-26 cases; registry raised errors instead | — | — | 128/128 after migration | git diff of YAML |",
+         f"wrong on {pct(mig['silent_failure_probe']['silently_wrong_share'], 0)} of FY25-26 cases; registry raised errors "
+         f"instead | — | — | {mig['after_migration']['engines']['rules_engine']['rupee_exact']}/"
+         f"{mig['after_migration']['engines']['rules_engine']['of']} after migration | git diff of YAML |",
          f"| Plain-language extraction | text -> profile | deterministic extractor + validation (LLM extractor optional) | Rule (Hybrid-ready) | "
          f"dev {nl['counts'].get('correct', 0)}/50 in-sample; held-out first run 17/20 with 2 unsafe -> fixed to 0 unsafe; {_ex_summary()} | ~0 | <10 ms | see RESULTS_A s.4 | evidence span + status per field |",
          "| Clarification policy | missing/ambiguous info | rule-based ask-don't-guess (period, CTC, EMI, parents' age, conflicts) | Rule | "
          "0 unsafe outputs on 70 descriptions after fixes | ~0 | ~0 | — | question + reason logged |",
          "| Explanation text | why this tax | deterministic template over computation lines | Rule | cannot introduce numbers; 100% traceable | ~0 | ~0 | exact | clause per line |",
          "| Law-change ingestion | new Finance Act | LLM drafts compiled diff from official text; human review + test gate | Hybrid | "
-         "compiled migration: 2 reviewed diff items, 128/128; 4/4 seeded compile mistakes caught (3 by tests, 1 by validation) | one LLM call per year | — | gate blocks mismatches | prompt + artifact hash + reviewer |",
+         "compiled migration: 2 reviewed diff items, all FY25-26 cases at the time; 4/4 seeded compile mistakes caught (3 by tests, 1 by validation) | one LLM call per year | — | gate blocks mismatches | prompt + artifact hash + reviewer |",
          "| Source verification | official text changes / conflicts | snapshot + SHA-256 per source page | Rule | found 2 contradictions on official pages | ~0 | — | — | hash manifest |",
          "", "## Project B", "",
          "| Check | Problem | Selected approach | Class | Measured justification (F1 / clean FA) | Cost $/M rows | Latency ms/5k | Accuracy | Auditability |",

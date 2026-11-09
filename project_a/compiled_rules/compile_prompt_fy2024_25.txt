@@ -15,12 +15,17 @@ STEP = {"id": "<REGIME>.<NAME>", "output": "<variable_name>", "expr": "<expressi
 
 Expression language (Python expression syntax subset; NOTHING else is allowed):
 - numbers (use decimals such as 0.05, never percentages), strings only as slab-table names, True/False
-- variables: taxpayer inputs ['age', 'annual_rent_paid', 'basic_plus_da', 'gross_salary', 'health_insurance_parents', 'health_insurance_self_family', 'home_loan_interest_self_occupied', 'hra_received', 'is_resident', 'medical_expenditure_parents', 'medical_expenditure_self_family', 'metro_city', 'parents_are_senior', 'preventive_checkup_parents', 'preventive_checkup_self_family', 'section_80c', 'section_80ccd_1b', 'spouse_is_senior'] and outputs of EARLIER steps of the same regime
+- variables: taxpayer inputs ['age', 'annual_rent_paid', 'basic_plus_da', 'gross_salary', 'health_insurance_parents', 'health_insurance_self_family', 'home_loan_interest_self_occupied', 'hra_received', 'insured_senior_parents', 'insured_senior_self_family', 'is_resident', 'medical_expenditure_parent_a', 'medical_expenditure_parent_b', 'medical_expenditure_parents', 'medical_expenditure_self', 'medical_expenditure_self_family', 'medical_expenditure_spouse', 'metro_city', 'parent_a_insured', 'parent_a_is_senior', 'parent_b_insured', 'parent_b_is_senior', 'parents_are_senior', 'preventive_checkup_parents', 'preventive_checkup_self_family', 'section_80c', 'section_80ccd_1b', 'self_insured', 'spouse_insured', 'spouse_is_senior'] and outputs of EARLIER steps of the same regime
 - operators: + - * / < <= > >= == != and or not, and `a if condition else b`
 - functions: min(a, b, ...), max(a, b, ...), slab_tax(income, 'table_name'), round10(x)
   slab_tax applies progressive rates: table rows [lower, upper, rate]; upper null = no upper bound.
   round10 = Sections 288A/288B: drop paise, round to nearest 10 rupees (5 rounds up).
-All money inputs are annual rupees. Booleans: is_resident, metro_city, spouse_is_senior, parents_are_senior.
+All money inputs are annual rupees. Booleans: is_resident, metro_city, spouse_is_senior, parents_are_senior,
+self_insured, spouse_insured, parent_a_is_senior, parent_a_insured, parent_b_is_senior, parent_b_insured.
+80D medical expenditure is given per person (medical_expenditure_self/_spouse/_parent_a/_parent_b, with that person's
+seniority and *_insured flag) or, legacy, per group (medical_expenditure_self_family/_parents: no per-person detail).
+Derived booleans supplied by the runtime: insured_senior_self_family / insured_senior_parents = a health-insurance
+premium in that group is paid for a senior citizen (s.80D(4)); with group-only input a group premium covers everyone.
 Each regime MUST define, in this order of dependency, these outputs: ['total_income', 'tax_on_income', 'rebate_87a', 'surcharge', 'cess', 'total_tax', 'tax_payable'].
 total_income must be rounded with round10; tax_payable = round10(total_tax).
 Scope: salary income only (standard deduction, HRA exemption, 80C, 80CCD(1B), 80D incl. senior parents,

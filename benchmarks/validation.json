@@ -237,7 +237,7 @@
  },
  {
   "ok": true,
-  "check": "tax test cases >= 200 (found 307)"
+  "check": "tax test cases >= 200 (found 535)"
  },
  {
   "ok": true,
@@ -266,6 +266,10 @@
  {
   "ok": true,
   "check": "compiled artifact fy2025_26 approved"
+ },
+ {
+  "ok": true,
+  "check": "80D per-person candidates: static validation clean, full suite passing, fingerprint matching for ['2024-25', '2025-26']"
  },
  {
   "ok": true,
@@ -317,7 +321,7 @@
  },
  {
   "ok": true,
-  "check": "FINAL_DESIGN_A.md within two pages (~1144 words, limit 1,150)"
+  "check": "FINAL_DESIGN_A.md within two pages (~1147 words, limit 1,150)"
  },
  {
   "ok": true,

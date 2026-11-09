@@ -6,8 +6,8 @@
   "any_f1": 0.8045417680454177,
   "macro_f1_row_problems": 0.7255177229486842,
   "clean_row_false_alarm_rate": 0.07915,
-  "throughput_rows_per_s": 29662.086260765034,
-  "cost_per_million_rows_usd": 0.000468237087802558
+  "throughput_rows_per_s": 28810.43788592805,
+  "cost_per_million_rows_usd": 0.0004820783683983044
  },
  {
   "variant": "stat_ml_only",
@@ -16,8 +16,8 @@
   "any_f1": 0.9899333246175972,
   "macro_f1_row_problems": 0.9364853269205475,
   "clean_row_false_alarm_rate": 0.00125,
-  "throughput_rows_per_s": 14487.980047889656,
-  "cost_per_million_rows_usd": 0.0009586490900028517
+  "throughput_rows_per_s": 14112.663897748667,
+  "cost_per_million_rows_usd": 0.0009841436733361534
  },
  {
   "variant": "hybrid_winners",
@@ -26,7 +26,7 @@
   "any_f1": 0.9903217368558724,
   "macro_f1_row_problems": 0.9709279225944243,
   "clean_row_false_alarm_rate": 0.0012,
-  "throughput_rows_per_s": 17558.658461310162,
-  "cost_per_million_rows_usd": 0.0007909994330997741
+  "throughput_rows_per_s": 16702.248374509967,
+  "cost_per_million_rows_usd": 0.0008315580380235115
  }
 ]

@@ -10,11 +10,11 @@ produces a tax number.
 |---|---|---|---|---|
 | 1 | Text understanding | **Rule** (LLM optional, shadow only) | Regex/lexicon extractor -> fields with evidence and status (stated / zero / unknown / conflict). | 0 unsafe outputs on 70 descriptions after fixes; the held-out *first* run had 2 unsafe of 20, so this stays guarded by step 2. A raw Gemini extractor got 24/29 complete cases right and guessed instead of asking on 9/21: not shipped. |
 | 2 | Clarification + validation | **Rule** | Pydantic schema plus ask-don't-guess rules (period, CTC vs gross, EMI vs interest, parents' age, conflicting values, implausible amounts). A profile exists only when nothing is pending. | The assignment example asks 4 correct questions; no profile is produced for any clarify case. |
-| 3 | Tax engine | **Rule** | Engine A: Python over one versioned YAML per financial year; Decimal arithmetic; s.288A/288B rounding. | 100% rupee-exact on 179 + 128 cases; 10/10 deterministic; median 0.036 ms; about $5e-7 per 1,000 requests; 100% of lines cite clause + rule id + version. |
-| 4 | Shadow verifier | **Hybrid** (LLM at build time, rule at run time) | Engine C, the LLM-compiled artifact, runs on every request; any disagreement withholds the answer and pages the owner. | 0 mismatches vs A on the suite and on random profiles; 0.75 ms median. It is a second, independently derived encoding of the law. |
+| 3 | Tax engine | **Rule** | Engine A: Python over one versioned YAML per financial year; Decimal arithmetic; s.288A/288B rounding. | 100% rupee-exact on 293 + 242 cases; 10/10 deterministic; median 0.036 ms; about $5e-7 per 1,000 requests; 100% of lines cite clause + rule id + version. |
+| 4 | Shadow verifier | **Hybrid** (LLM at build time, rule at run time) | Engine C, the LLM-compiled artifact, runs on every request; any disagreement withholds the answer and pages the owner. | 0 mismatches vs A on every case it answers and on random profiles; ~0.8 ms median. Inputs it does not read make it refuse, not guess. |
 | 5 | Explanation | **Rule** (LLM rephrase optional) | Deterministic template over the computation lines; an optional LLM rewrite must reproduce every number exactly (regex check) or is discarded. | Cannot invent numbers; every line traceable. |
 | 6 | Law-change pipeline | **Hybrid** | Official-source snapshots with hashes -> tests for the new year first -> human edits YAML (A) + LLM drafts artifact (C) -> gates -> human sign-off -> activate by effective date. | FY 2025-26 migration: A = 3 rule values, 0 code files; C = 2 reviewed diff items; 8/9 seeded YAML mistakes caught (the 9th is behaviourally equivalent) and 4/4 compiled mistakes caught. |
-| 7 | Year routing | **Rule** | Financial year is explicit; the registry fails loudly for an unknown year. | Year-blind answering would be silently wrong on 79% of FY 2025-26 cases; all engines raised errors instead. |
+| 7 | Year routing | **Rule** | Financial year is explicit; the registry fails loudly for an unknown year. | Year-blind answering would be silently wrong on 84% (203/242) of FY 2025-26 cases; all engines raised errors instead. |
 
 **Not shipped: the query-time LLM as the calculator (Engine B).** Measured with real calls (gemini-3.5-flash-lite,
 40 sampled cases per year, 140 calls):
@@ -49,7 +49,7 @@ Assume a filing-season peak: 100,000 users x 5 computations in 30 days. That is 
 2. **Tests first.** From the Finance Bill and Act, add next year's constants to the independent oracle, write
    hand-worked cases with their arithmetic, and generate boundary cases for every changed threshold. In particular,
    cover both ends of any marginal-relief band: the "threshold updated in 1 of 3 places" mistake was caught by only
-   7 of 128 cases, all in that band.
+   7 of 242 cases, all in that band.
 3. **Two independent encodings.** An engineer edits a new YAML file (never overwrites a year). The LLM compiler
    produces a new artifact from the same official passages. The reviewer diff shows only what changed.
 4. **Gates before activation:**

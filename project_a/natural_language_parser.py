@@ -542,6 +542,20 @@ def parse(text: str, financial_year: str = "2024-25") -> ParseResult:
     fields["spouse_is_senior"] = (FieldValue(True, FieldStatus.STATED, sp.group(0)) if sp
                                   else FieldValue(False, FieldStatus.NOT_MENTIONED))
 
+    # 80D first proviso is per person: with a premium AND medical expenses in a senior group, the expenses count
+    # only if the person they were for is uninsured. A group amount cannot say who -> ask, never guess.
+    age_v = fields.get("age").value if fields.get("age") else None
+    self_group_senior = (isinstance(age_v, int) and age_v >= 60) or fields["spouse_is_senior"].value
+    if self_group_senior and fields["health_insurance_self_family"].value and \
+            fields["medical_expenditure_self_family"].value:
+        ask("medical_expenditure_self_family", "You mention health insurance and medical expenses for yourself/family. "
+            "For whom were the medical expenses, and is that person covered by the insurance? They are deductible only "
+            "for a senior citizen who is not insured.", "80D medical expenses need per-person insurance status")
+    if par_senior and fields["health_insurance_parents"].value and fields["medical_expenditure_parents"].value:
+        ask("medical_expenditure_parents", "You mention health insurance and medical expenses for your parents. Which "
+            "parent were the medical expenses for, and is that parent covered by the insurance? They are deductible "
+            "only for a senior parent who is not insured.", "80D medical expenses need per-person insurance status")
+
     # ---------------- city / HRA consistency ----------------
     city = next((c for c in sorted(METRO | NON_METRO, key=len, reverse=True) if re.search(rf"\b{c}\b", low)), None)
     if city:

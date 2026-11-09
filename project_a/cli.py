@@ -17,6 +17,8 @@ import json
 import sys
 from pathlib import Path
 
+from pydantic import ValidationError
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from project_a import llm_compiled_engine, llm_query_engine, rules_engine  # noqa: E402
@@ -44,7 +46,13 @@ def cmd_ask(a: argparse.Namespace) -> int:
 
 
 def cmd_calc(a: argparse.Namespace) -> int:
-    p = TaxpayerProfile(**json.loads(a.json))
+    try:
+        p = TaxpayerProfile(**json.loads(a.json))
+    except ValidationError as exc:  # ask, don't guess: explain what is missing instead of a traceback
+        print("Input rejected — please clarify:")
+        for e in exc.errors():
+            print(f"  - {e['msg'].removeprefix('Value error, ')}")
+        return 2
     for name in (ENGINES if a.engine == "all" else [a.engine]):
         try:
             print(explain(ENGINES[name](p)))

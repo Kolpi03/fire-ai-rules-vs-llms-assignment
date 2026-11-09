@@ -52,3 +52,24 @@ def test_migration_mutants_are_caught_except_equivalent():
     res = mutation_test()
     for name, m in res["mutants"].items():
         assert m["caught"] or name.startswith("EQUIVALENT"), name
+
+
+def test_differential_per_person_80d_candidate_vs_rules_vs_oracle():
+    """Random profiles with per-person 80D inputs: Engine A, the 80D candidate and the oracle agree."""
+    import json
+    import random
+
+    from project_a.differential import random_profile
+    from project_a.reference_oracle import expected
+    from .conftest import candidate_artifact
+    for fy in ("2024-25", "2025-26"):
+        art = candidate_artifact(fy)
+        if art is None:
+            continue
+        rng = random.Random(1234)
+        for _ in range(1500):
+            p = random_profile(rng, fy, per_person_80d=True)
+            a, c, o = rules_engine.compute(p), llm_compiled_engine.run_artifact(art, p), expected(p.model_dump(exclude_unset=True))
+            assert a.old.key_figures() == c.old.key_figures() and a.new.key_figures() == c.new.key_figures()
+            for reg in ("old", "new"):
+                assert int(getattr(a, reg).tax_payable) == o[reg]["tax_payable"], json.dumps(p.model_dump())

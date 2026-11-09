@@ -9,14 +9,14 @@
   "llm_output_tokens_per_row": 6
  },
  "measured": {
-  "hybrid_throughput_rows_per_s_single_thread": 17349.75021974514,
-  "hybrid_compute_usd_per_million_rows": 0.000800523852676705,
+  "hybrid_throughput_rows_per_s_single_thread": 16685.333245572427,
+  "hybrid_compute_usd_per_million_rows": 0.0008324010485421025,
   "clean_row_false_alarm_rate": 0.0008333333333333334,
   "stage_seconds_share": {
-   "stage0": 0.00014772785649935717,
-   "stage1": 0.10926762328768343,
-   "stage2": 0.2272042927728372,
-   "stage3": 0.66338035608298,
+   "stage0": 0.00013254614260501128,
+   "stage1": 0.09968617823747015,
+   "stage2": 0.21763763220195614,
+   "stage3": 0.6825436434179687,
    "stage4": 0.0
   },
   "sample_rows": 328529,
@@ -39,9 +39,9 @@
  "projection": {
   "avg_rows_per_s": 578.7037037037037,
   "peak_rows_per_s": 2314.814814814815,
-  "cpu_core_seconds_per_day": 8645.657608908414,
-  "cpu_cores_at_peak": 0.40026192633835256,
-  "compute_usd_per_day": 0.12007857790150576,
+  "cpu_core_seconds_per_day": 8989.931324254707,
+  "cpu_cores_at_peak": 0.4162005242710512,
+  "compute_usd_per_day": 0.12486015728131537,
   "llm_every_row_every_check_usd_per_day": 10940.023543689322,
   "llm_hybrid_stage4_rows_per_day": 5000.0,
   "llm_hybrid_stage4_usd_per_day": 0.445215,

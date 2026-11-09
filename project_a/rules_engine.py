@@ -31,7 +31,7 @@ import time
 from decimal import Decimal
 from typing import Any
 
-from project_a.models import (AgeBand, ComponentLine, EngineStatus, RegimeResult, TaxComputation,
+from project_a.models import (AgeBand, insured_senior_flags, ComponentLine, EngineStatus, RegimeResult, TaxComputation,
                               TaxpayerProfile)
 from project_a.rule_registry import RuleSet, get_rule_set
 
@@ -102,28 +102,43 @@ def _hra_exemption(p: TaxpayerProfile, cfg: dict, L: _Lines) -> Decimal:
 def _section_80d(p: TaxpayerProfile, dcfg: dict) -> tuple[Decimal, Decimal, str]:
     """Return (self/family deduction, parents deduction, explanation).
 
-    Interpretation (documented in RESULTS_A.md):
-    * Self/family cap = 25k, or 50k if the assessee or spouse is a senior citizen (s.80D(4)).
-    * Parents cap = 25k, or 50k if a parent is a senior citizen.
-    * Medical expenditure (clauses c/d) counts only for a senior-citizen group with NO insurance premium
-      paid for that group, inside the same 50k aggregate (second proviso).
-    * Preventive check-ups count inside each group's cap and are limited to 5k in aggregate (s.80D(2A)),
-      allocated to whichever group still has headroom (maximises the lawful deduction).
+    Interpretation (documented in RESULTS_A.md), applied identically to both groups:
+    * Clause (a)/(b) — premium + preventive check-up — is capped at 25k, or 50k if the premium is paid for an
+      INSURED SENIOR citizen of that group (s.80D(4) "insurance on the health of any person ... who is a senior
+      citizen"). An uninsured senior does not raise the cap for an insured non-senior.
+    * Clause (c)/(d) — medical expenditure — counts PER PERSON, only for a senior citizen with no premium paid
+      for that person (first proviso, "such person"). Legacy group amounts carry no per-person detail, so they
+      count only when no premium is paid for anyone in a senior group.
+    * (a)+(c) and (b)+(d) are each capped at 50k (second proviso).
+    * Preventive check-ups sit inside (a)/(b) and are limited to 5k in aggregate (s.80D(2A)), self/family first.
+    * Who is insured: stated per person when any ``*_insured`` flag of the group is given; otherwise a group
+      premium is taken to cover every member (see ``models.insured_senior_flags``).
     """
     self_senior = p.age_band != AgeBand.BELOW_60 or p.spouse_is_senior
-    cap_a = D(dcfg["self_family_cap_senior"] if self_senior else dcfg["self_family_cap"])
-    cap_b = D(dcfg["parents_cap_senior"] if p.parents_are_senior else dcfg["parents_cap"])
-    med_a = D(p.medical_expenditure_self_family) if (self_senior and p.health_insurance_self_family == 0) else ZERO
-    med_b = D(p.medical_expenditure_parents) if (p.parents_are_senior and p.health_insurance_parents == 0) else ZERO
-    base_a = min(D(p.health_insurance_self_family) + med_a, cap_a)
-    base_b = min(D(p.health_insurance_parents) + med_b, cap_b)
+    flags = insured_senior_flags(p)
+    cap_a = D(dcfg["self_family_cap_senior"] if flags["insured_senior_self_family"] else dcfg["self_family_cap"])
+    cap_b = D(dcfg["parents_cap_senior"] if flags["insured_senior_parents"] else dcfg["parents_cap"])
+    aggregate = D(dcfg["premium_plus_medical_aggregate_cap"])
+    # first proviso, per person: senior citizen AND no premium paid for that person
+    eligible_a = [(p.medical_expenditure_self, p.age_band != AgeBand.BELOW_60 and not p.self_insured),
+                  (p.medical_expenditure_spouse, p.spouse_is_senior and not p.spouse_insured),
+                  (p.medical_expenditure_self_family, self_senior and p.health_insurance_self_family == 0)]
+    eligible_b = [(p.medical_expenditure_parent_a, p.parent_a_is_senior and not p.parent_a_insured),
+                  (p.medical_expenditure_parent_b, p.parent_b_is_senior and not p.parent_b_insured),
+                  (p.medical_expenditure_parents, p.parents_are_senior and p.health_insurance_parents == 0)]
+    med_a = sum((D(amount) for amount, ok in eligible_a if ok), ZERO)
+    med_b = sum((D(amount) for amount, ok in eligible_b if ok), ZERO)
+    prem_a, prem_b = min(D(p.health_insurance_self_family), cap_a), min(D(p.health_insurance_parents), cap_b)
+    medd_a, medd_b = min(med_a, aggregate - prem_a), min(med_b, aggregate - prem_b)
+    head_a = max(ZERO, min(cap_a - prem_a, aggregate - prem_a - medd_a))
+    head_b = max(ZERO, min(cap_b - prem_b, aggregate - prem_b - medd_b))
     prev_cap = D(dcfg["preventive_checkup_aggregate_cap"])
-    alloc_a = min(D(p.preventive_checkup_self_family), cap_a - base_a, prev_cap)
-    alloc_b = min(D(p.preventive_checkup_parents), cap_b - base_b, prev_cap - alloc_a)
-    expl = (f"self/family: premium {p.health_insurance_self_family:,} + eligible medical {med_a:,.0f} "
-            f"+ preventive {alloc_a:,.0f} (cap {cap_a:,.0f}); parents: premium {p.health_insurance_parents:,} "
-            f"+ eligible medical {med_b:,.0f} + preventive {alloc_b:,.0f} (cap {cap_b:,.0f})")
-    return base_a + alloc_a, base_b + alloc_b, expl
+    alloc_a = min(D(p.preventive_checkup_self_family), head_a, prev_cap)
+    alloc_b = min(D(p.preventive_checkup_parents), head_b, prev_cap - alloc_a)
+    expl = (f"self/family: premium {prem_a:,.0f} (cap {cap_a:,.0f}) + eligible medical {medd_a:,.0f} + preventive "
+            f"{alloc_a:,.0f}; parents: premium {prem_b:,.0f} (cap {cap_b:,.0f}) + eligible medical {medd_b:,.0f} "
+            f"+ preventive {alloc_b:,.0f}; premium+medical <= {aggregate:,.0f} per group")
+    return prem_a + medd_a + alloc_a, prem_b + medd_b + alloc_b, expl
 
 
 def _surcharge(total_income: Decimal, tax: Decimal, scfg: dict, slabs: list, L: _Lines) -> Decimal:

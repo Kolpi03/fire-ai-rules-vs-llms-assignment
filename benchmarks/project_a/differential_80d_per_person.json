@@ -1,0 +1,43 @@
+{
+ "profiles_per_run": 20000,
+ "runs": {
+  "2024-25 group-only": {
+   "seed": 7,
+   "engineA_vs_candidate_mismatches": 0,
+   "engineA_vs_oracle_mismatches": 0,
+   "seconds": 22.6
+  },
+  "2024-25 per-person": {
+   "seed": 11,
+   "engineA_vs_candidate_mismatches": 0,
+   "engineA_vs_oracle_mismatches": 0,
+   "seconds": 22.8
+  },
+  "2025-26 group-only": {
+   "seed": 7,
+   "engineA_vs_candidate_mismatches": 0,
+   "engineA_vs_oracle_mismatches": 0,
+   "seconds": 23.1
+  },
+  "2025-26 per-person": {
+   "seed": 11,
+   "engineA_vs_candidate_mismatches": 0,
+   "engineA_vs_oracle_mismatches": 0,
+   "seconds": 23.6
+  }
+ },
+ "branch_coverage": {
+  "2024-25 per-person": {
+   "mixed senior/non-senior parents with a premium": 5028,
+   "non-senior spouse's medical (must not count)": 7916,
+   "premium > 25,000, senior present but no insured senior (limit 25,000)": 1806,
+   "uninsured senior spouse's medical while a premium is paid in the group": 494
+  },
+  "2025-26 per-person": {
+   "mixed senior/non-senior parents with a premium": 5028,
+   "non-senior spouse's medical (must not count)": 7916,
+   "premium > 25,000, senior present but no insured senior (limit 25,000)": 1806,
+   "uninsured senior spouse's medical while a premium is paid in the group": 494
+  }
+ }
+}

@@ -67,6 +67,17 @@ def main() -> int:
         art = json.loads((ROOT / f"project_a/compiled_rules/fy{fy}.compiled.json").read_text())
         check(art.get("review", {}).get("status") == "approved", f"compiled artifact fy{fy} approved")
 
+    man = ROOT / "project_a/compiled_rules/candidates/80d_per_person_manifest.json"
+    if man.exists():
+        import sys as _sys
+        _sys.path.insert(0, str(ROOT))
+        from project_a.rule_compiler import sha256_of
+        cands = json.loads(man.read_text())["candidates"]
+        good = [fy for fy, i in cands.items()
+                if (ROOT / i["path"]).exists() and not i["static_validation_problems"] and i["suite"]["failed"] == 0
+                and sha256_of(json.loads((ROOT / i["path"]).read_text())) == i["fingerprint_sha256"]]
+        check(len(good) == 2, f"80D per-person candidates: static validation clean, full suite passing, fingerprint "
+                              f"matching for {good}")
     ba = ROOT / "benchmarks/project_a/benchmark_results.json"
     if ba.exists():
         b = json.loads(ba.read_text())

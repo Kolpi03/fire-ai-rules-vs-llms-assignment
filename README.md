@@ -23,14 +23,17 @@ generated from `benchmarks/**.json` by `scripts/generate_reports.py`.
 > The **30 official-calculator cases** were entered on the Income Tax Department's public calculator: 30/30 match in
 > both regimes (screenshots in `evidence/official_calculator/`).
 
+**Demo video:** [`evidence/demo/assignment_demo.mp4`](evidence/demo/assignment_demo.mp4) — 2 min 12 s, silent, the
+real command-line application recorded in a browser terminal with Playwright (`scripts/demo/`).
+
 ## Results at a glance
 
 | | Result | Source |
 |---|---|---|
-| Engine A (rules) / C (LLM-compiled) | 100% rupee-exact on 179 + 128 cases, deterministic, ~0.04 / 0.75 ms | `benchmarks/project_a/benchmark_results.json` |
+| Engine A (rules) / C (LLM-compiled) | A: 100% rupee-exact on 293 + 242 cases. C: 100% on 293 + 242 cases (80D fixes approved by Kolpi03 on 2026-11-09). Deterministic, ~0.04 / 0.8 ms | `benchmarks/project_a/benchmark_results.json`, `project_a/compiled_rules/candidates/80d_per_person_manifest.json` |
 | Engine B (LLM at query time) | 25% / 30% rupee-exact (40 cases/year), deterministic on 1/6 cases, median 3.9 s, ~$3.5 per 1k | same |
 | Official calculator | 30/30 cases match in both regimes | `project_a/data/official_calculator_results.json` |
-| Law change (FY 2025-26) | year-blind answers silently wrong on 101/128 cases; 8/9 rule and 4/4 compiled mutants caught | `benchmarks/project_a/migration_report.json` |
+| Law change (FY 2025-26) | year-blind answers silently wrong on 203/242 cases; 8/9 rule and 4/4 compiled mutants caught | `benchmarks/project_a/migration_report.json` |
 | Hybrid data-quality pipeline | row-level P 0.996 / R 0.988 / F1 0.992; ~16-17k rows/s on one thread | `benchmarks/project_b/hybrid_results.json` |
 | LLM detectors / stage 4 | never beat the chosen detector beyond sampling error; 10^3.8-10^7.5x the cost; stage 4 vetoes lost 85 true detections vs 5 false alarms removed | `benchmarks/project_b/detector_results.json` |
 
@@ -50,7 +53,7 @@ project_a/
   llm_query_engine.py        Engine B: retrieve passages -> Gemini -> schema/arithmetic/citation/shadow checks
   natural_language_parser.py text -> profile or clarifying questions; nl_evaluation.py scores it
   tax_explainer.py, cli.py, benchmark.py, law_change_migration.py, test_case_generator.py, differential.py
-  data/                      307 tax cases, 50 + 20 plain-language cases, 30-case official-calculator worksheet
+  data/                      535 tax cases, 50 + 20 plain-language cases, 30-case official-calculator worksheet
 project_b/
   data_loader.py             Socrata API download (day-cluster sample, cached, retries), typed Parquet
   profiler.py                Task B1 real-issue profile -> data/reports/profile.{json,csv,md}
@@ -153,6 +156,10 @@ python scripts/validate_submission.py # structural/honesty checks: sizes, 36 res
 * NYC full-year `missing_latitude` count: exact only if all 12 monthly API queries succeed
   (`scripts/fetch_missing_latitude.py`, resumable); otherwise recorded as unavailable, never estimated.
 * Tax scope: salary only. No 80CCD(2), professional tax, let-out property, or 24(b) Rs 30,000 case.
+* 80D: medical expenditure is judged per person (senior citizen with no insurance on that person), and the
+  Rs 50,000 premium limit applies only where the premium is paid for an insured senior (s.80D(4)). Group-only
+  inputs (what the plain-language parser produces) read a group premium as covering every member, which can
+  overstate the limit when only a non-senior is insured. Applied in Engines A and C (approved) and the oracle.
 * Parser: rule-based. The held-out first run was 17/20 with 2 unsafe outputs (since fixed). Unseen phrasings will
   cause more over-asking.
 * Project B clean batches are filtered real data, so their false-alarm rates are lower than on raw data. Raw-data

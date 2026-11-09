@@ -84,17 +84,47 @@ def age_band(age: int) -> str:
     return "super_senior_80_plus" if age >= 80 else "senior_60_79" if age >= 60 else "below_60"
 
 
+def _group_80d(premium: int, preventive_claim: int, persons: list[tuple[int, bool, bool]], legacy_medical: int,
+               legacy_senior: bool, per_person_insurance: bool) -> tuple[int, int, int]:
+    """One 80D group -> (premium part, medical part, room left for preventive check-up).
+
+    persons: (medical amount, is senior, has insurance) for each named person of the group.
+    s.80D(4): clause (a)/(b) limit is 50,000 only if an INSURED person of the group is a senior citizen.
+    Without per-person insurance data a group premium is read as covering everyone in the group.
+    """
+    if per_person_insurance:
+        insured_senior = any(senior and insured for _, senior, insured in persons)
+    else:
+        insured_senior = premium > 0 and legacy_senior
+    limit_ab = 50000 if insured_senior else 25000
+    premium_part = min(premium, limit_ab)
+    medical = 0
+    for amount, senior, insured in persons:          # first proviso, person by person
+        if senior and not insured:
+            medical += amount
+    if legacy_senior and premium == 0:               # group amount: only if nobody in the group is insured
+        medical += legacy_medical
+    medical_part = min(medical, 50000 - premium_part)          # second proviso: (a)+(c) <= 50,000
+    room = max(0, min(limit_ab - premium_part, 50000 - premium_part - medical_part))
+    return premium_part, medical_part, min(preventive_claim, room)
+
+
 def deduction_80d(p: dict) -> int:
-    senior_self = p.get("age", 30) >= 60 or p.get("spouse_is_senior", False)
-    senior_par = p.get("parents_are_senior", False)
-    cap_a, cap_b = (50000 if senior_self else 25000), (50000 if senior_par else 25000)
-    ins_a, ins_b = p.get("health_insurance_self_family", 0), p.get("health_insurance_parents", 0)
-    med_a = p.get("medical_expenditure_self_family", 0) if (senior_self and ins_a == 0) else 0
-    med_b = p.get("medical_expenditure_parents", 0) if (senior_par and ins_b == 0) else 0
-    base_a, base_b = min(ins_a + med_a, cap_a), min(ins_b + med_b, cap_b)
-    usable_prev = (min(p.get("preventive_checkup_self_family", 0), cap_a - base_a)
-                   + min(p.get("preventive_checkup_parents", 0), cap_b - base_b))
-    return base_a + base_b + min(5000, usable_prev)
+    """``p`` is the raw input: a key that is present was stated by the user (decides per-person mode)."""
+    g = p.get
+    age_senior = g("age", 30) >= 60
+    a = _group_80d(g("health_insurance_self_family", 0), g("preventive_checkup_self_family", 0),
+                   [(g("medical_expenditure_self", 0), age_senior, g("self_insured", False)),
+                    (g("medical_expenditure_spouse", 0), g("spouse_is_senior", False), g("spouse_insured", False))],
+                   g("medical_expenditure_self_family", 0), age_senior or g("spouse_is_senior", False),
+                   "self_insured" in p or "spouse_insured" in p)
+    b = _group_80d(g("health_insurance_parents", 0), g("preventive_checkup_parents", 0),
+                   [(g("medical_expenditure_parent_a", 0), g("parent_a_is_senior", False), g("parent_a_insured", False)),
+                    (g("medical_expenditure_parent_b", 0), g("parent_b_is_senior", False), g("parent_b_insured", False))],
+                   g("medical_expenditure_parents", 0), g("parents_are_senior", False),
+                   "parent_a_insured" in p or "parent_b_insured" in p)
+    # s.80D(2A): preventive check-ups 5,000 in aggregate across both groups (room computed per group above)
+    return a[0] + a[1] + b[0] + b[1] + min(5000, a[2] + b[2])
 
 
 def regime_figures(p: dict, regime: str) -> dict[str, int | str]:

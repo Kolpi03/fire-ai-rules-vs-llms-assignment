@@ -109,7 +109,32 @@ def test_validator_catches_unknown_names_and_missing_outputs():
 
 
 def test_compiled_matches_rules_on_suite(tax_cases):
+    """Approved artifact: identical to Engine A on every case it answers; it must refuse every case that STATES a
+    field it never reads (even with a default-looking value such as spouse_insured=False). Never a wrong answer."""
+    from .conftest import run_approved_or_refusal
+    refused = 0
     for c in tax_cases:
         p = TaxpayerProfile(**c["input"])
-        a, b = rules_engine.compute(p), llm_compiled_engine.compute(p)
+        a, b = rules_engine.compute(p), run_approved_or_refusal(p)
+        if b == "refused":
+            refused += 1
+            continue
+        assert a.old.key_figures() == b.old.key_figures() and a.new.key_figures() == b.new.key_figures(), c["case_id"]
+    # refusals are allowed only for cases that state a field the approved artifact never reads
+    expected_refusals = 0
+    for c in tax_cases:
+        used = llm_compiled_engine.referenced_names(llm_compiled_engine.load_artifact(c["input"]["financial_year"]))
+        expected_refusals += any(k not in used for k in c["input"] if k != "financial_year")
+    assert refused == expected_refusals
+
+
+def test_candidate_matches_rules_on_full_suite(tax_cases):
+    """80D per-person candidates: identical to Engine A on EVERY case of their year, no refusals."""
+    from .conftest import candidate_artifact
+    for c in tax_cases:
+        p = TaxpayerProfile(**c["input"])
+        art = candidate_artifact(p.financial_year)
+        if art is None:
+            pytest.skip("no candidate")
+        a, b = rules_engine.compute(p), llm_compiled_engine.run_artifact(art, p)
         assert a.old.key_figures() == b.old.key_figures() and a.new.key_figures() == b.new.key_figures(), c["case_id"]

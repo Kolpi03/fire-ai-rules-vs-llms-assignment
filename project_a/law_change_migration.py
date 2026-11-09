@@ -72,8 +72,13 @@ def probe_fy(fy: str) -> dict[str, Any]:
         try:
             ok = 0
             status = None
+            refused = 0
             for c in cases:
-                r = fn(TaxpayerProfile(**c["input"]))
+                try:
+                    r = fn(TaxpayerProfile(**c["input"]))
+                except llm_compiled_engine.UnsupportedInput:
+                    refused += 1  # loud refusal: the approved artifact predates the per-person 80D inputs
+                    continue
                 status = r.status
                 if r.status == EngineStatus.UNAVAILABLE:
                     break
@@ -81,7 +86,8 @@ def probe_fy(fy: str) -> dict[str, Any]:
             if status == EngineStatus.UNAVAILABLE:
                 out[name] = {"outcome": "unavailable (no GEMINI_API_KEY)"}
             else:
-                out[name] = {"outcome": "answered", "rupee_exact": ok, "of": len(cases), "accuracy": ok / len(cases)}
+                out[name] = {"outcome": "answered", "rupee_exact": ok, "of": len(cases), "accuracy": ok / len(cases),
+                             **({"refused_unsupported_input": refused} if refused else {})}
         except Exception as exc:  # noqa: BLE001 - we are measuring exactly this
             out[name] = {"outcome": "loud_error", "error_type": type(exc).__name__, "error": str(exc)[:200]}
     return {"fy": fy, "n_cases": len(cases), "engines": out}
@@ -184,17 +190,24 @@ def _compiled_mutants() -> dict[str, Callable[[dict], None]]:
 
 def compiled_mutation_test() -> dict[str, Any]:
     from project_a.rule_compiler import validate_artifact, verify_against_suite
-    base = llm_compiled_engine.load_artifact("2025-26")
+    # Mutate the artifact that is meant to answer every case: the pending 80D per-person candidate if it exists
+    # (the approved artifact refuses the per-person cases, which would make every mutant look "caught").
+    cand = BENCH_A.parent.parent / "project_a/compiled_rules/candidates/fy2025_26_80d_per_person.candidate.json"
+    base = json.loads(cand.read_text()) if cand.exists() else llm_compiled_engine.load_artifact("2025-26")
+    baseline = verify_against_suite(base, "2025-26")["failed"]
     out = {}
     for name, mutate in _compiled_mutants().items():
         art = copy.deepcopy(base)
         mutate(art)
         problems = validate_artifact(art, "2025-26")
         ver = verify_against_suite(art, "2025-26")
+        caught_by_suite = ver["failed"] > baseline
         out[name] = {"static_validation_problems": len(problems), "failing_cases": ver["failed"],
-                     "of": ver["cases"], "caught": bool(problems) or ver["failed"] > 0,
-                     "caught_by": "static validation" if problems else ("test suite" if ver["failed"] else "NOTHING")}
-    return {"n_mutants": len(out), "caught": sum(v["caught"] for v in out.values()), "mutants": out}
+                     "of": ver["cases"], "caught": bool(problems) or caught_by_suite,
+                     "caught_by": "static validation" if problems else ("test suite" if caught_by_suite else "NOTHING")}
+    return {"n_mutants": len(out), "caught": sum(v["caught"] for v in out.values()), "mutants": out,
+            "mutated_artifact": "80D per-person candidate" if cand.exists() else "approved artifact",
+            "baseline_failures": baseline}
 
 
 def build_report(save: bool = True) -> dict[str, Any]:

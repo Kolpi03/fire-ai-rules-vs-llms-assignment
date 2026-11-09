@@ -163,62 +163,94 @@
      "id": "OLD.80D.SELF_SENIOR",
      "output": "self_family_senior",
      "expr": "age >= 60 or spouse_is_senior",
-     "clause": "Section 80D(4)",
+     "clause": "Section 80D(4) (senior in group)",
      "passage_id": "P25-80D",
      "line": null
     },
     {
      "id": "OLD.80D.CAP_A",
      "output": "cap_80d_self",
-     "expr": "50000 if self_family_senior else 25000",
-     "clause": "Section 80D(2)(a), (4)",
+     "expr": "50000 if insured_senior_self_family else 25000",
+     "clause": "Section 80D(2)(a), (4): 50,000 only for insurance on the health of a senior citizen",
      "passage_id": "P25-80D",
      "line": null
     },
     {
      "id": "OLD.80D.CAP_B",
      "output": "cap_80d_parents",
-     "expr": "50000 if parents_are_senior else 25000",
-     "clause": "Section 80D(2)(b), (4)",
+     "expr": "50000 if insured_senior_parents else 25000",
+     "clause": "Section 80D(2)(b), (4): 50,000 only for insurance on the health of a senior citizen",
      "passage_id": "P25-80D",
      "line": null
     },
     {
      "id": "OLD.80D.MED_A",
      "output": "med_self_allowed",
-     "expr": "medical_expenditure_self_family if (self_family_senior and health_insurance_self_family == 0) else 0",
-     "clause": "Section 80D(2)(c) and first proviso",
+     "expr": "(medical_expenditure_self if (age >= 60 and not self_insured) else 0) + (medical_expenditure_spouse if (spouse_is_senior and not spouse_insured) else 0) + (medical_expenditure_self_family if (self_family_senior and health_insurance_self_family == 0) else 0)",
+     "clause": "Section 80D(2)(c), first proviso (per person: senior citizen, no insurance on such person)",
      "passage_id": "P25-80D",
      "line": null
     },
     {
      "id": "OLD.80D.MED_B",
      "output": "med_parents_allowed",
-     "expr": "medical_expenditure_parents if (parents_are_senior and health_insurance_parents == 0) else 0",
-     "clause": "Section 80D(2)(d) and first proviso",
+     "expr": "(medical_expenditure_parent_a if (parent_a_is_senior and not parent_a_insured) else 0) + (medical_expenditure_parent_b if (parent_b_is_senior and not parent_b_insured) else 0) + (medical_expenditure_parents if (parents_are_senior and health_insurance_parents == 0) else 0)",
+     "clause": "Section 80D(2)(d), first proviso (per person: senior parent, no insurance on such person)",
      "passage_id": "P25-80D",
      "line": null
     },
     {
-     "id": "OLD.80D.BASE_A",
-     "output": "base_80d_self",
-     "expr": "min(health_insurance_self_family + med_self_allowed, cap_80d_self)",
-     "clause": "Section 80D(2)(a),(c), second proviso",
+     "id": "OLD.80D.PREM_A",
+     "output": "prem_80d_self",
+     "expr": "min(health_insurance_self_family, cap_80d_self)",
+     "clause": "Section 80D(2)(a), (4)",
      "passage_id": "P25-80D",
      "line": null
     },
     {
-     "id": "OLD.80D.BASE_B",
-     "output": "base_80d_parents",
-     "expr": "min(health_insurance_parents + med_parents_allowed, cap_80d_parents)",
-     "clause": "Section 80D(2)(b),(d), second proviso",
+     "id": "OLD.80D.PREM_B",
+     "output": "prem_80d_parents",
+     "expr": "min(health_insurance_parents, cap_80d_parents)",
+     "clause": "Section 80D(2)(b), (4)",
+     "passage_id": "P25-80D",
+     "line": null
+    },
+    {
+     "id": "OLD.80D.MEDDED_A",
+     "output": "med_80d_self",
+     "expr": "min(med_self_allowed, 50000 - prem_80d_self)",
+     "clause": "Section 80D(2)(c), second proviso ((a)+(c) <= 50,000)",
+     "passage_id": "P25-80D",
+     "line": null
+    },
+    {
+     "id": "OLD.80D.MEDDED_B",
+     "output": "med_80d_parents",
+     "expr": "min(med_parents_allowed, 50000 - prem_80d_parents)",
+     "clause": "Section 80D(2)(d), second proviso ((b)+(d) <= 50,000)",
+     "passage_id": "P25-80D",
+     "line": null
+    },
+    {
+     "id": "OLD.80D.ROOM_A",
+     "output": "room_80d_self",
+     "expr": "max(0, min(cap_80d_self - prem_80d_self, 50000 - prem_80d_self - med_80d_self))",
+     "clause": "Section 80D(2)(a) limit and second proviso (room left for preventive check-up)",
+     "passage_id": "P25-80D",
+     "line": null
+    },
+    {
+     "id": "OLD.80D.ROOM_B",
+     "output": "room_80d_parents",
+     "expr": "max(0, min(cap_80d_parents - prem_80d_parents, 50000 - prem_80d_parents - med_80d_parents))",
+     "clause": "Section 80D(2)(b) limit and second proviso (room left for preventive check-up)",
      "passage_id": "P25-80D",
      "line": null
     },
     {
      "id": "OLD.80D.PREV_A",
      "output": "prev_self",
-     "expr": "min(preventive_checkup_self_family, cap_80d_self - base_80d_self, 5000)",
+     "expr": "min(preventive_checkup_self_family, room_80d_self, 5000)",
      "clause": "Section 80D(2)(a), (2A)",
      "passage_id": "P25-80D",
      "line": null
@@ -226,7 +258,7 @@
     {
      "id": "OLD.80D.PREV_B",
      "output": "prev_parents",
-     "expr": "min(preventive_checkup_parents, cap_80d_parents - base_80d_parents, 5000 - prev_self)",
+     "expr": "min(preventive_checkup_parents, room_80d_parents, 5000 - prev_self)",
      "clause": "Section 80D(2)(b), (2A)",
      "passage_id": "P25-80D",
      "line": null
@@ -234,7 +266,7 @@
     {
      "id": "OLD.80D",
      "output": "ded_80d",
-     "expr": "base_80d_self + prev_self + base_80d_parents + prev_parents",
+     "expr": "prem_80d_self + med_80d_self + prev_self + prem_80d_parents + med_80d_parents + prev_parents",
      "clause": "Section 80D",
      "passage_id": "P25-80D",
      "line": "Section 80D"
@@ -452,25 +484,24 @@
   "passage_id": "P25-NEW-SLABS"
  },
  "compiler": {
-  "model": "claude-opus-5-5 (Claude Code, development session)",
-  "mode": "llm_authored_without_gemini",
-  "note": "Regenerated for FY 2025-26 from compile_prompt_fy2025_26.txt (no GEMINI_API_KEY available).",
-  "prompt_file": "compile_prompt_fy2025_26.txt"
+  "model": "claude-opus-5-5 (Claude Code)",
+  "mode": "llm_authored_reviewed_diff",
+  "note": "Corrections requested in the human reviews of 2026-11-09: (1) medical expenditure under s.80D(2)(c)/(d) is judged per person (first proviso, 'such person'); (2) the 50,000 premium limit of s.80D(4) applies only where the premium is paid for an insured senior citizen. Only the Section 80D block of the old regime differs from the previously approved artifact. Not compiled by Gemini: the free-tier daily quota was exhausted on 2026-11-09 and earlier Gemini compiles failed the test gate.",
+  "prompt_file": "compile_prompt_fy2025_26.txt",
+  "based_on_sha256": "5af97b26f2192a452260da745a8098818a9709dfff2694262a33e32c87cc7937"
  },
  "review": {
   "status": "approved",
-  "reviewer": "automated gate (validate + full FY suite + 20k-profile differential vs Engine A); human sign-off pending by submitter",
-  "reviewed_on": "2026-11-08",
+  "reviewer": "Kolpi03",
+  "reviewed_on": "2026-11-09",
   "notes": [
-   "Reviewer diff vs FY2024-25 artifact: new_115bac table and NEW.87A expression only",
-   "Review finding: 87A threshold literal appears 3x in NEW.87A; partial edits are a silent-failure risk (see mutation test)",
-   "20,000 random profiles: 0 mismatches vs rules_engine (scratch fuzz run, 2026-11-08)"
+   "Human review 2026-11-09: Section 80D first proviso per person and s.80D(4) Rs 50,000 limit only for an insured senior; candidate fingerprint verified against 80d_per_person_manifest.json"
   ],
   "verification": {
-   "cases": 128,
-   "passed": 128,
+   "cases": 242,
+   "passed": 242,
    "failed": 0
   },
-  "artifact_sha256": "5af97b26f2192a452260da745a8098818a9709dfff2694262a33e32c87cc7937"
+  "artifact_sha256": "6547bf863960b7ff0bdab3f4777a8bd8e49f6721a8c5437e78f65c59dbd9d4dd"
  }
 }

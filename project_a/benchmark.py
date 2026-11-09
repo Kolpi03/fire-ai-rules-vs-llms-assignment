@@ -91,17 +91,25 @@ def _latency_stats(ms: list[float]) -> dict[str, float]:
 def _deterministic_engine_report(name: str, fn: Callable[[TaxpayerProfile], TaxComputation], fy: str,
                                  cases: list[dict], cfg: dict, valid_ids: set[str],
                                  component_map: dict[str, str] | None) -> dict[str, Any]:
+    from project_a.llm_compiled_engine import UnsupportedInput
     profiles = [TaxpayerProfile(**c["input"]) for c in cases]
     exact = comp = trace = 0
-    failures = []
+    failures, refused = [], []
     for c, p in zip(cases, profiles):
-        r = fn(p)
+        try:
+            r = fn(p)
+        except UnsupportedInput:
+            # loud refusal (artifact predates a schema extension): counted as NOT exact, listed separately
+            refused.append(c["case_id"])
+            continue
         if is_exact(r, c["expected"]):
             exact += 1
         else:
             failures.append(c["case_id"])
         comp += components_ok(r, c["expected"])
         trace += traceable(r, valid_ids, component_map)
+    supported = [p for c, p in zip(cases, profiles) if c["case_id"] not in set(refused)]
+    profiles = supported
     # latency: several full passes, per-request timing; CPU time for cost
     lat: list[float] = []
     cpu0 = time.process_time()
@@ -118,7 +126,9 @@ def _deterministic_engine_report(name: str, fn: Callable[[TaxpayerProfile], TaxC
     price_cpu_hour = settings()["llm"]["compute_usd_per_cpu_hour"]
     return {"engine": name, "fy": fy, "status": "measured", "n_cases": len(cases),
             "rupee_exact_accuracy": exact / len(cases), "component_accuracy": comp / len(cases),
-            "failed_cases": failures[:20], "traceability": trace / len(cases),
+            "failed_cases": failures[:20], "traceability": trace / max(len(cases) - len(refused), 1),
+            "refused_unsupported_input": len(refused), "refused_cases": refused[:20],
+            "rupee_exact_on_answered": exact / max(len(cases) - len(refused), 1),
             "determinism": {"cases": len(sample), "repeats": cfg["determinism_repeats"], "deterministic_cases": det},
             "latency": _latency_stats(lat),
             "cost_per_1000_usd": cpu_per_req * 1000 / 3600 * price_cpu_hour,

@@ -6,6 +6,7 @@
 |---|---|---|
 | **Claude Code (Claude Opus 5.5, Anthropic)** — coding agent in the terminal | Reading the assignment PDF; finding and snapshotting the official Income Tax Department pages; writing all Python code, YAML rule sets, tests, the 50 + 20 plain-language cases, the hand-worked tax cases, report generator and design documents; running every test and benchmark; acting as the **one-off rule compiler** for Engine C (see below). | It did not produce any number in the reports by hand: every metric is generated from JSON written by the benchmarks. |
 | **Gemini (Google), `gemini-3.5-flash-lite`, free tier** | The system under test: Engine B (query-time LLM, 140 calls), the raw field extractor (50 calls), the 12 LLM detectors and the hybrid's stage 4. Integrated via `common/llm_client.py` (timeouts, retry/backoff, pacing, JSON-shape validation, token/cost logging, response cache). | Engine C recompilation was not re-run with Gemini (see below). `gemini-2.5-flash` returned 404 for new keys and `gemini-3.8-flash` timed out, hence the model choice. |
+| **Playwright** (driven by Claude Code) | Recording the silent demo video of the real command-line application in a browser terminal (`scripts/demo/`). | No UI or result was invented: the page streams the real program output. |
 | **Claude in Chrome** (browser extension, driven by Claude Code) | Entering the 30 worksheet cases on the official Income Tax Department calculator in the user's own Chrome (public page, no login, no CAPTCHA), reading the result lines and saving one screenshot per case and regime. | It did not compute anything: every official figure is what the portal displayed (`evidence/official_calculator/`). |
 | Web search / fetch | Locating official incometaxindia.gov.in / incometax.gov.in pages and the Gemini pricing page. | No third-party tax calculator or blog was used as a legal source. |
 | Python libraries | pandas, scikit-learn, pandera, rapidfuzz, phonenumbers, pydantic | — |
@@ -94,6 +95,16 @@ and real-data inspection. The submitter is responsible for understanding and def
     half-way. **Caught by** the step taking minutes instead of seconds. The run was stopped before it could overwrite
     the stored report. **Fixed**: no pipeline step makes new LLM calls unless `LLM_REMEASURE=1` (or
     `MIGRATION_LLM_PROBE=1`); stored real measurements are reused and cited with their date.
+
+16. **Section 80D medical expenditure was judged per group, not per person** (found in the human review of the
+    compiled rules, 2026-11-09). All three implementations and the oracle allowed a senior's medical bills only if
+    no premium was paid for *anyone* in the group, although the first proviso says "such person". Because the oracle
+    shared the same reading, every test agreed with the bug. **Caught by** a person reading the compiled rules against
+    the statute. **Fixed** with per-person inputs (validated: ambiguous or double-counted inputs are rejected), new
+    hand-derived tests, 6 mutation tests and 80,000 random profiles; the corrected compiled rules were approved by
+    the submitter (Kolpi03) after review.
+    The same review then flagged that the Rs 50,000 limit of s.80D(4) was also raised by *any* senior in the group,
+    including an uninsured one; it now requires an insured senior (5 more mutation tests, 48 more cases).
 
 ## What I would not trust the AI with without more evidence
 * FY 2025-26 against the official calculator (only FY 2024-25 was compared), and HRA / 80D sub-limit logic, which the portal takes as entered amounts.

@@ -225,6 +225,197 @@ def boundary_cases() -> list[dict]:
     return cases
 
 
+# ------------------------------------------------------------------------------------------------------------
+# Extended old-regime boundaries, generated for BOTH financial years (FY 2025-26 had none of its own before),
+# and Section 80D per-person cases (first proviso judged per person). ``hand_80d`` values are derived by hand
+# in the description, independently of the oracle and of both engines.
+# ------------------------------------------------------------------------------------------------------------
+def extended_cases() -> list[dict]:
+    cases: list[dict] = []
+    for fy in FYS:
+        tag = fy.replace("-", "")
+        X = f"BND-{tag}-X"
+
+        def add(cid: str, cat: str, desc: str, inp: dict, **extra: Any) -> None:
+            cases.append(_case(f"{X}-{cid}", cat, desc, {"financial_year": fy, **inp}, **extra))
+
+        base = {"age": 35, "gross_salary": 1800000}
+        # A. deduction caps: just below / at / above
+        for fld, cap, extra_inp in (("section_80c", 150000, {}), ("section_80ccd_1b", 50000, {}),
+                                    ("home_loan_interest_self_occupied", 200000, {}),
+                                    ("health_insurance_self_family", 25000, {}),
+                                    ("health_insurance_parents", 25000, {}),
+                                    ("health_insurance_self_family", 50000, {"age": 62}),
+                                    ("health_insurance_self_family", 50000, {"spouse_is_senior": True}),
+                                    ("health_insurance_parents", 50000, {"parents_are_senior": True})):
+            for d in (-10, 0, 10):
+                label = "-".join([fld, str(cap)] + [k for k in extra_inp])
+                add(f"CAP-{label}{d:+d}", "boundary_deduction_cap", f"{fld} at cap {cap:,} {d:+d} {extra_inp}",
+                    {**base, **extra_inp, fld: cap + d}, threshold=f"cap {fld}")
+        for d in (-10, 0, 10):  # preventive check-up aggregate 5,000: one group, and split across groups
+            add(f"PREV-SELF{d:+d}", "boundary_deduction_cap", "80D preventive (self only) 5,000",
+                {**base, "preventive_checkup_self_family": 5000 + d}, threshold="80D preventive")
+            add(f"PREV-SPLIT{d:+d}", "boundary_deduction_cap", "80D preventive split 3,000 + 2,000",
+                {**base, "preventive_checkup_self_family": 3000, "preventive_checkup_parents": 2000 + d},
+                threshold="80D preventive")
+            add(f"PREV-INSIDE-CAP{d:+d}", "boundary_deduction_cap", "preventive inside the 25,000 group cap",
+                {**base, "health_insurance_self_family": 21000 + d, "preventive_checkup_self_family": 5000},
+                threshold="80D preventive")
+        # deductions constrained by gross total income (s.80A(2)): GTI = gross - 50,000 vs deductions 2,25,000
+        for d in (-10, 0, 10):
+            add(f"VIA-GTI{d:+d}", "boundary_deduction_cap", "Chapter VI-A total vs gross total income",
+                {"age": 35, "gross_salary": 275000 + d, "section_80c": 150000, "section_80ccd_1b": 50000,
+                 "health_insurance_self_family": 25000}, threshold="80A(2)")
+        add("VIA-AFTER-HP-LOSS", "boundary_deduction_cap", "home-loan loss leaves little GTI for 80C",
+            {"age": 35, "gross_salary": 300000, "home_loan_interest_self_occupied": 200000, "section_80c": 150000},
+            threshold="80A(2)")
+        add("ALL-CAPS-EXCEEDED", "boundary_deduction_cap", "every deduction above its cap at once",
+            {"age": 35, "gross_salary": 2500000, "section_80c": 300000, "section_80ccd_1b": 90000,
+             "health_insurance_self_family": 40000, "health_insurance_parents": 70000, "parents_are_senior": True,
+             "preventive_checkup_self_family": 9000, "home_loan_interest_self_occupied": 350000},
+            threshold="all caps")
+        # B. HRA limbs (salary for HRA = basic + DA). gross 14,00,000
+        hra = {"age": 32, "gross_salary": 1400000}
+        for name, h in (
+                ("A-smallest", dict(basic_plus_da=600000, hra_received=200000, annual_rent_paid=500000, metro_city=True)),
+                ("B-smallest", dict(basic_plus_da=600000, hra_received=300000, annual_rent_paid=150000, metro_city=True)),
+                ("C-metro-smallest", dict(basic_plus_da=400000, hra_received=300000, annual_rent_paid=500000, metro_city=True)),
+                ("C-nonmetro-smallest", dict(basic_plus_da=400000, hra_received=300000, annual_rent_paid=500000)),
+                ("no-rent", dict(basic_plus_da=600000, hra_received=200000, annual_rent_paid=0)),
+                ("no-hra-received", dict(basic_plus_da=600000, hra_received=0, annual_rent_paid=500000)),
+                ("rent-below-10pct", dict(basic_plus_da=600000, hra_received=200000, annual_rent_paid=50000)),
+                ("rent-exactly-10pct", dict(basic_plus_da=600000, hra_received=200000, annual_rent_paid=60000)),
+                ("rent-10pct-minus-10", dict(basic_plus_da=600000, hra_received=200000, annual_rent_paid=59990)),
+                ("rent-10pct-plus-10", dict(basic_plus_da=600000, hra_received=200000, annual_rent_paid=60010))):
+            add(f"HRA-{name}", "boundary_hra", f"HRA {name}", {**hra, **h}, threshold="HRA")
+        for d in (-10, 0, 10):  # limb ties: (a) vs (b), (b) vs metro (c), (a) vs non-metro (c)
+            add(f"HRA-A-vs-B{d:+d}", "boundary_hra", "HRA received vs rent-10% (2,00,000)",
+                {**hra, "basic_plus_da": 600000, "annual_rent_paid": 260000, "hra_received": 200000 + d, "metro_city": True},
+                threshold="HRA")
+            add(f"HRA-B-vs-Cmetro{d:+d}", "boundary_hra", "rent-10% vs 50% of salary (3,00,000)",
+                {**hra, "basic_plus_da": 600000, "hra_received": 400000, "annual_rent_paid": 360000 + d, "metro_city": True},
+                threshold="HRA")
+            add(f"HRA-A-vs-Cnonmetro{d:+d}", "boundary_hra", "HRA received vs 40% of salary (2,40,000)",
+                {**hra, "basic_plus_da": 600000, "hra_received": 240000 + d, "annual_rent_paid": 900000},
+                threshold="HRA")
+        # C. age bands (age reached during the previous year), resident and non-resident
+        for age in (59, 60, 79, 80):
+            for res in (True, False):
+                for gross in (360000, 860000):
+                    add(f"AGE-{age}-{'RES' if res else 'NONRES'}-{gross}", "boundary_age",
+                        f"age {age}, {'resident' if res else 'non-resident'}, gross {gross:,}",
+                        {"age": age, "is_resident": res, "gross_salary": gross}, threshold="age band")
+        # D. Section 80D per person (first proviso). Old regime only; new regime must be unaffected.
+        g = {"gross_salary": 1800000}
+        pp = [
+            ("CHILD-INS-SPOUSE-SENIOR-UNINS-29990", {"age": 45, "spouse_is_senior": True,
+             "health_insurance_self_family": 20000, "self_insured": False, "spouse_insured": False,
+             "medical_expenditure_spouse": 29990}, 49990,
+             "cap 50,000 (spouse senior); premium 20,000 (child) + spouse medical 29,990 = 49,990"),
+            ("CHILD-INS-SPOUSE-SENIOR-UNINS-30000", {"age": 45, "spouse_is_senior": True,
+             "health_insurance_self_family": 20000, "self_insured": False, "spouse_insured": False,
+             "medical_expenditure_spouse": 30000}, 50000, "20,000 + 30,000 = 50,000 = cap"),
+            ("CHILD-INS-SPOUSE-SENIOR-UNINS-40000", {"age": 45, "spouse_is_senior": True,
+             "health_insurance_self_family": 20000, "self_insured": False, "spouse_insured": False,
+             "medical_expenditure_spouse": 40000}, 50000, "20,000 + 40,000 = 60,000 -> capped at 50,000"),
+            ("SENIOR-INS-NONSENIOR-SPOUSE-UNINS", {"age": 65, "health_insurance_self_family": 30000,
+             "self_insured": True, "spouse_insured": False, "medical_expenditure_spouse": 20000}, 30000,
+             "spouse not senior -> medical not eligible; premium 30,000 (cap 50,000)"),
+            ("SENIOR-UNINS-NO-PREMIUM-49990", {"age": 70, "medical_expenditure_self": 49990}, 49990,
+             "uninsured senior, no premium: medical 49,990"),
+            ("SENIOR-UNINS-NO-PREMIUM-50000", {"age": 70, "medical_expenditure_self": 50000}, 50000, "medical 50,000"),
+            ("SENIOR-UNINS-NO-PREMIUM-50010", {"age": 70, "medical_expenditure_self": 50010}, 50000,
+             "medical 50,010 -> capped at 50,000"),
+            ("SENIOR-INSURED-OWN-MEDICAL", {"age": 70, "health_insurance_self_family": 18000, "self_insured": True,
+             "medical_expenditure_self": 30000}, 18000, "insured senior: own medical not eligible; premium 18,000"),
+            ("MULTI-SENIORS-MIXED", {"age": 66, "spouse_is_senior": True, "health_insurance_self_family": 30000,
+             "self_insured": True, "spouse_insured": False, "medical_expenditure_spouse": 15000,
+             "parents_are_senior": True, "health_insurance_parents": 25000, "parent_a_is_senior": True,
+             "parent_a_insured": True, "parent_b_is_senior": True, "parent_b_insured": False,
+             "medical_expenditure_parent_b": 30000}, 95000,
+             "self/family 30,000 + spouse medical 15,000 = 45,000 (cap 50,000); parents 25,000 + parent B medical "
+             "30,000 = 55,000 -> 50,000; total 95,000"),
+            ("PARENT-SENIOR-UNINSURED", {"parents_are_senior": True, "parent_a_is_senior": True,
+             "medical_expenditure_parent_a": 35000, "age": 35}, 35000, "uninsured senior parent, medical 35,000"),
+            ("PARENT-SENIOR-INSURED", {"parents_are_senior": True, "parent_a_is_senior": True, "age": 35,
+             "health_insurance_parents": 20000, "parent_a_insured": True, "medical_expenditure_parent_a": 30000},
+             20000, "insured senior parent: medical not eligible; premium 20,000"),
+            ("NONSENIOR-OWN-MEDICAL", {"age": 40, "medical_expenditure_self": 30000}, 0,
+             "non-senior assessee: medical not eligible"),
+            ("NONSENIOR-PARENT-MEDICAL", {"age": 40, "parent_a_is_senior": False,
+             "medical_expenditure_parent_a": 20000}, 0, "non-senior parent: medical not eligible"),
+            ("COMBINED-ALL", {"age": 61, "spouse_is_senior": True, "health_insurance_self_family": 10000,
+             "self_insured": False, "spouse_insured": True, "medical_expenditure_self": 35000,
+             "medical_expenditure_spouse": 20000, "preventive_checkup_self_family": 4000,
+             "parents_are_senior": True, "parent_a_is_senior": True, "parent_b_is_senior": False,
+             "medical_expenditure_parent_a": 48000, "preventive_checkup_parents": 3000}, 98000,
+             "self/family: premium 10,000 + own medical 35,000 (spouse insured -> her 20,000 not eligible) = 45,000; "
+             "preventive 4,000 fits under cap 50,000 -> 49,000. parents: parent A medical 48,000; preventive "
+             "min(3,000, cap headroom 2,000, 5,000-4,000=1,000) = 1,000 -> 49,000. total 98,000"),
+        ]
+        pp += [
+            ("LEGACY-GROUP-SENIOR-NO-PREMIUM", {"age": 70, "medical_expenditure_self_family": 40000}, 40000,
+             "group amount, senior group, no premium for anyone: medical 40,000 counts"),
+            ("LEGACY-GROUP-PREMIUM-PAID", {"age": 70, "health_insurance_self_family": 15000,
+             "medical_expenditure_self_family": 40000}, 15000,
+             "group amount with a premium in the group: who is insured is unknown, so the conservative rule "
+             "applies (medical not counted); premium 15,000"),
+            ("LEGACY-PARENTS-NO-PREMIUM", {"age": 35, "parents_are_senior": True, "medical_expenditure_parents": 45000},
+             45000, "parents' group amount, senior parents, no premium: 45,000"),
+        ]
+        # s.80D(4) strict: the 50,000 premium limit needs an INSURED SENIOR in the group
+        kid = {"age": 45, "spouse_is_senior": True, "self_insured": False, "spouse_insured": False}
+        for d, hand in ((-10, 24990), (0, 25000), (10, 25000)):
+            pp.append((f"STRICT-CHILD-INS-SPOUSE-SENIOR-UNINS-PREM{25000 + d}", {**kid,
+                       "health_insurance_self_family": 25000 + d}, hand,
+                       "only a non-senior child is insured: limit 25,000; the uninsured senior spouse does not raise it"))
+            pp.append((f"STRICT-INSURED-SENIOR-SPOUSE-PREM{50000 + d}", {"age": 45, "spouse_is_senior": True,
+                       "self_insured": False, "spouse_insured": True, "health_insurance_self_family": 50000 + d},
+                       hand + 25000, "insured senior spouse: limit 50,000"))
+            pp.append((f"STRICT-INSURED-SENIOR-SELF-PREM{50000 + d}", {"age": 65, "self_insured": True,
+                       "health_insurance_self_family": 50000 + d}, hand + 25000, "insured senior assessee: limit 50,000"))
+            pp.append((f"STRICT-SPOUSE-UNINS-MED{25000 + d}-CHILD-INS", {**kid, "health_insurance_self_family": 30000,
+                       "medical_expenditure_spouse": 25000 + d}, hand + 25000,
+                       "child premium 30,000 -> 25,000 (limit); spouse medical up to 50,000 - 25,000 = 25,000"))
+            pp.append((f"STRICT-PARENTS-NONSENIOR-INS-PREM{25000 + d}", {"parents_are_senior": True,
+                       "parent_a_is_senior": False, "parent_a_insured": True, "parent_b_is_senior": True,
+                       "parent_b_insured": False, "health_insurance_parents": 25000 + d}, hand,
+                       "only the non-senior parent is insured: limit 25,000"))
+            pp.append((f"STRICT-PARENTS-SENIOR-INS-PREM{50000 + d}", {"parents_are_senior": True,
+                       "parent_a_is_senior": True, "parent_a_insured": True, "parent_b_is_senior": False,
+                       "parent_b_insured": False, "medical_expenditure_parent_b": 10000,
+                       "health_insurance_parents": 50000 + d}, hand + 25000,
+                       "insured senior parent: limit 50,000; non-senior parent's medical not eligible"))
+        pp += [
+            ("STRICT-CHILD-INS-SPOUSE-SENIOR-UNINS-PREM40000", {**kid, "health_insurance_self_family": 40000}, 25000,
+             "child premium 40,000 capped at 25,000 (no insured senior)"),
+            ("STRICT-PARENTS-MIXED", {"parents_are_senior": True, "parent_a_is_senior": False, "parent_a_insured": True,
+             "parent_b_is_senior": True, "parent_b_insured": False, "medical_expenditure_parent_b": 20000,
+             "health_insurance_parents": 30000}, 45000,
+             "parents premium 30,000 -> 25,000 (insured parent not senior) + senior parent's medical 20,000 = 45,000"),
+            ("STRICT-MULTI-INSURED-UNINSURED", {"age": 66, "spouse_is_senior": True, "self_insured": True,
+             "spouse_insured": False, "health_insurance_self_family": 45000, "medical_expenditure_spouse": 10000,
+             "preventive_checkup_self_family": 3000, "parents_are_senior": True, "parent_a_is_senior": False,
+             "parent_a_insured": True, "parent_b_is_senior": True, "parent_b_insured": False,
+             "health_insurance_parents": 20000, "medical_expenditure_parent_b": 30000,
+             "preventive_checkup_parents": 4000}, 100000,
+             "self/family: limit 50,000 (insured senior self); 45,000 + spouse medical min(10,000, 5,000) = 50,000, "
+             "no room for preventive. parents: limit 25,000 (insured parent not senior); 20,000 + medical "
+             "min(30,000, 30,000) = 50,000, no room for preventive. total 1,00,000"),
+            ("STRICT-PREVENTIVE-UNDER-25K-LIMIT", {**kid, "health_insurance_self_family": 22000,
+             "preventive_checkup_self_family": 5000}, 25000, "limit 25,000: 22,000 + preventive 3,000"),
+            ("STRICT-PREVENTIVE-INSURED-SENIOR", {"age": 65, "self_insured": True, "health_insurance_self_family": 46000,
+             "preventive_checkup_self_family": 5000}, 50000, "limit 50,000: 46,000 + preventive 4,000"),
+            ("STRICT-PREMIUM-PLUS-MEDICAL-50000", {"age": 65, "spouse_is_senior": True, "self_insured": True,
+             "spouse_insured": False, "health_insurance_self_family": 30000, "medical_expenditure_spouse": 30000}, 50000,
+             "30,000 + spouse medical min(30,000, 50,000 - 30,000) = 50,000 (second proviso)"),
+        ]
+        for cid, inp, hand, why in pp:
+            add(f"80D-PP-{cid}", "boundary_80d_per_person", why, {**g, **inp}, threshold="80D per person",
+                hand_80d=hand)
+    return cases
+
+
 def realistic_cases(n: int, seed: int) -> list[dict]:
     rng = random.Random(seed)
     cities_metro = [True, False]
@@ -287,7 +478,7 @@ def official_worksheet(cases: list[dict], n: int = 30) -> list[dict]:
 
 
 def generate(seed: int = 20231, n_realistic: int = 60) -> dict[str, Any]:
-    cases = hand_worked_cases() + boundary_cases() + realistic_cases(n_realistic, seed)
+    cases = hand_worked_cases() + boundary_cases() + extended_cases() + realistic_cases(n_realistic, seed)
     ids = [c["case_id"] for c in cases]
     assert len(ids) == len(set(ids)), "duplicate case ids"
     PA_DATA.mkdir(parents=True, exist_ok=True)

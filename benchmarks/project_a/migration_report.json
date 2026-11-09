@@ -120,18 +120,18 @@
  },
  "after_migration": {
   "fy": "2025-26",
-  "n_cases": 128,
+  "n_cases": 242,
   "engines": {
    "rules_engine": {
     "outcome": "answered",
-    "rupee_exact": 128,
-    "of": 128,
+    "rupee_exact": 242,
+    "of": 242,
     "accuracy": 1.0
    },
    "llm_compiled_engine": {
     "outcome": "answered",
-    "rupee_exact": 128,
-    "of": 128,
+    "rupee_exact": 242,
+    "of": 242,
     "accuracy": 1.0
    },
    "llm_query_engine": {
@@ -140,24 +140,25 @@
     "of": 40,
     "accuracy": 0.3,
     "model": "gemini-3.5-flash-lite",
-    "source": "benchmarks/project_a/benchmark_results.json (real Gemini calls on a random sample of this FY's cases); set MIGRATION_LLM_PROBE=1 for a full per-case probe"
+    "source": "benchmarks/project_a/benchmark_results.json (real Gemini calls on a random sample of this FY's cases); set MIGRATION_LLM_PROBE=1 for a full per-case probe",
+    "reused_from_stored_report": true
    }
   }
  },
  "fy2024_25_still_correct": {
   "fy": "2024-25",
-  "n_cases": 179,
+  "n_cases": 293,
   "engines": {
    "rules_engine": {
     "outcome": "answered",
-    "rupee_exact": 179,
-    "of": 179,
+    "rupee_exact": 293,
+    "of": 293,
     "accuracy": 1.0
    },
    "llm_compiled_engine": {
     "outcome": "answered",
-    "rupee_exact": 179,
-    "of": 179,
+    "rupee_exact": 293,
+    "of": 293,
     "accuracy": 1.0
    },
    "llm_query_engine": {
@@ -166,15 +167,16 @@
     "of": 40,
     "accuracy": 0.25,
     "model": "gemini-3.5-flash-lite",
-    "source": "benchmarks/project_a/benchmark_results.json (real Gemini calls on a random sample of this FY's cases); set MIGRATION_LLM_PROBE=1 for a full per-case probe"
+    "source": "benchmarks/project_a/benchmark_results.json (real Gemini calls on a random sample of this FY's cases); set MIGRATION_LLM_PROBE=1 for a full per-case probe",
+    "reused_from_stored_report": true
    }
   }
  },
  "silent_failure_probe": {
-  "n_cases": 128,
-  "silently_wrong": 101,
-  "silently_wrong_share": 0.7890625,
-  "wrong_regime_recommendation": 7,
+  "n_cases": 242,
+  "silently_wrong": 203,
+  "silently_wrong_share": 0.8388429752066116,
+  "wrong_regime_recommendation": 8,
   "errors_raised": 0,
   "examples": [
    {
@@ -209,48 +211,48 @@
   "caught": 8,
   "mutants": {
    "slabs updated, 87A limit/max left at FY24-25 values": {
-    "failing_cases": 29,
-    "of": 128,
+    "failing_cases": 33,
+    "of": 242,
     "caught": true
    },
    "87A limit raised to 12L but max rebate left at 25,000": {
     "failing_cases": 16,
-    "of": 128,
+    "of": 242,
     "caught": true
    },
    "87A max raised to 60,000 but limit left at 7L": {
-    "failing_cases": 29,
-    "of": 128,
+    "failing_cases": 33,
+    "of": 242,
     "caught": true
    },
    "87A marginal relief dropped": {
     "failing_cases": 7,
-    "of": 128,
+    "of": 242,
     "caught": true
    },
    "new 25% slab (20-24L) omitted (30% from 20L)": {
-    "failing_cases": 61,
-    "of": 128,
+    "failing_cases": 62,
+    "of": 242,
     "caught": true
    },
    "slab boundary typo 16L -> 15L": {
-    "failing_cases": 68,
-    "of": 128,
+    "failing_cases": 143,
+    "of": 242,
     "caught": true
    },
    "EQUIVALENT MUTANT: old-regime 87A max changed to 60,000 (old tax at TI<=5L never exceeds 12,500)": {
     "failing_cases": 0,
-    "of": 128,
+    "of": 242,
     "caught": false
    },
    "old-regime 87A limit wrongly raised to 7L (new-regime change applied to old regime)": {
     "failing_cases": 8,
-    "of": 128,
+    "of": 242,
     "caught": true
    },
    "standard deduction (new) reverted to 50,000": {
-    "failing_cases": 84,
-    "of": 128,
+    "failing_cases": 182,
+    "of": 242,
     "caught": true
    }
   }
@@ -262,32 +264,34 @@
    "87A threshold updated in 1 of 3 places": {
     "static_validation_problems": 0,
     "failing_cases": 7,
-    "of": 128,
+    "of": 242,
     "caught": true,
     "caught_by": "test suite"
    },
    "87A max rebate left at 25,000": {
     "static_validation_problems": 0,
     "failing_cases": 16,
-    "of": 128,
+    "of": 242,
     "caught": true,
     "caught_by": "test suite"
    },
    "slab table not recompiled": {
     "static_validation_problems": 0,
-    "failing_cases": 76,
-    "of": 128,
+    "failing_cases": 174,
+    "of": 242,
     "caught": true,
     "caught_by": "test suite"
    },
    "passage citations left pointing at FY 2024-25 text": {
     "static_validation_problems": 13,
     "failing_cases": 0,
-    "of": 128,
+    "of": 242,
     "caught": true,
     "caught_by": "static validation"
    }
-  }
+  },
+  "mutated_artifact": "80D per-person candidate",
+  "baseline_failures": 0
  },
  "differential_fuzz_fy2025_26": {
   "fy": "2025-26",

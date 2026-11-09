@@ -9,6 +9,8 @@ Runtime guarantees
 * Refuses to run an artifact whose ``review.status`` is not ``approved`` (unless explicitly allowed
   for verification of candidates).
 * Refuses a financial year with no artifact (no fallback to another year — fail loud).
+* Refuses an input that states (or sets to a non-default value) a field the artifact never reads (``UnsupportedInput``): an artifact
+  compiled before a schema extension must not silently ignore the new information.
 * Each explanation line carries the step's clause, step id (as rule_id) and the artifact hash
   prefix as the rule version, so every rupee traces to an approved, hash-identified rule.
 """
@@ -21,7 +23,8 @@ from functools import lru_cache
 from typing import Any
 
 from project_a import rule_dsl
-from project_a.models import ComponentLine, EngineStatus, RegimeResult, TaxComputation, TaxpayerProfile
+from project_a.models import (ComponentLine, EngineStatus, RegimeResult, TaxComputation, TaxpayerProfile,
+                             insured_senior_flags)
 from project_a.rule_compiler import artifact_path
 from project_a.rule_registry import RuleSetNotFound
 
@@ -31,6 +34,31 @@ D = Decimal
 
 class UnapprovedArtifact(RuntimeError):
     pass
+
+
+class UnsupportedInput(ValueError):
+    """The profile sets an input field that the artifact never reads; answering would silently ignore it."""
+
+
+@lru_cache(maxsize=64)
+def _names_in(exprs: tuple[str, ...]) -> frozenset[str]:
+    return frozenset(n for e in exprs for n in rule_dsl.names_used(e))
+
+
+def referenced_names(art: dict[str, Any]) -> frozenset[str]:
+    return _names_in(tuple(st["expr"] for reg in art["regimes"].values() for st in reg["steps"]))
+
+
+def check_supported(art: dict[str, Any], p: TaxpayerProfile) -> None:
+    used = referenced_names(art)
+    # a field the user STATED carries information even when its value equals the default (e.g. spouse_insured=False
+    # switches 80D to per-person insurance), so refuse on any stated or non-default field the artifact never reads
+    ignored = sorted(f for f, info in TaxpayerProfile.model_fields.items()
+                     if f != "financial_year" and f not in used
+                     and (f in p.model_fields_set or getattr(p, f) != info.default))
+    if ignored:
+        raise UnsupportedInput(f"compiled artifact for FY {art.get('financial_year')} does not read {ignored}; "
+                               "it needs recompiling and re-approval before it can answer this profile")
 
 
 @lru_cache(maxsize=None)
@@ -65,7 +93,9 @@ def run_artifact(art: dict[str, Any], p: TaxpayerProfile) -> TaxComputation:
     t0 = time.perf_counter()
     if art.get("financial_year") != p.financial_year:
         raise RuleSetNotFound(f"artifact is for {art.get('financial_year')}, request is {p.financial_year}")
-    env0 = p.model_dump(exclude={"financial_year"})
+    check_supported(art, p)
+    # profile fields + derived 80D(4) inputs (whether a premium in a group is paid for an insured senior)
+    env0 = {**p.model_dump(exclude={"financial_year"}), **insured_senior_flags(p)}
     version = (art.get("review", {}).get("artifact_sha256") or "unreviewed")[:12]
     old = _run_regime(art, "old", env0, version)
     new = _run_regime(art, "new", env0, version)

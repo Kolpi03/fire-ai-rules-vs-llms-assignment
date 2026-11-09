@@ -1,0 +1,84 @@
+{
+ "purpose": "Section 80D: first proviso per person and s.80D(4) limit per insured senior (human reviews 2026-11-09)",
+ "status": "APPROVED by Kolpi03 on 2026-11-09 (python -m project_a.cli compile approve); approved artifacts are byte-for-byte the candidates below",
+ "candidates": {
+  "2024-25": {
+   "path": "project_a/compiled_rules/candidates/fy2024_25_80d_per_person.candidate.json",
+   "fingerprint_sha256": "1d4f44a21c91d409ae653ba8f99d40434c782b5f06f82b679f64fed49d1ac4ee",
+   "static_validation_problems": [],
+   "suite": {
+    "cases": 293,
+    "passed": 293,
+    "failed": 0
+   },
+   "first_failures": [],
+   "diff_vs_approved": [
+    "OLD.80D: 'base_80d_self + prev_self + base_80d_parents + prev_parents' -> 'prem_80d_self + med_80d_self + prev_self + prem_80d_parents + med_80d_parents + prev_parents'",
+    "OLD.80D.BASE_A: 'min(health_insurance_self_family + med_self_allowed, cap_80d_self)' -> None",
+    "OLD.80D.BASE_B: 'min(health_insurance_parents + med_parents_allowed, cap_80d_parents)' -> None",
+    "OLD.80D.CAP_A: '50000 if self_family_senior else 25000' -> '50000 if insured_senior_self_family else 25000'",
+    "OLD.80D.CAP_B: '50000 if parents_are_senior else 25000' -> '50000 if insured_senior_parents else 25000'",
+    "OLD.80D.MEDDED_A: None -> 'min(med_self_allowed, 50000 - prem_80d_self)'",
+    "OLD.80D.MEDDED_B: None -> 'min(med_parents_allowed, 50000 - prem_80d_parents)'",
+    "OLD.80D.MED_A: 'medical_expenditure_self_family if (self_family_senior and health_insurance_self_family == 0) else 0' -> '(medical_expenditure_self if (age >= 60 and not self_insured) else 0) + (medical_expenditure_spouse if (spouse_is_senior and not spouse_insured) else 0) + (medical_expenditure_self_family if (self_family_senior and health_insurance_self_family == 0) else 0)'",
+    "OLD.80D.MED_B: 'medical_expenditure_parents if (parents_are_senior and health_insurance_parents == 0) else 0' -> '(medical_expenditure_parent_a if (parent_a_is_senior and not parent_a_insured) else 0) + (medical_expenditure_parent_b if (parent_b_is_senior and not parent_b_insured) else 0) + (medical_expenditure_parents if (parents_are_senior and health_insurance_parents == 0) else 0)'",
+    "OLD.80D.PREM_A: None -> 'min(health_insurance_self_family, cap_80d_self)'",
+    "OLD.80D.PREM_B: None -> 'min(health_insurance_parents, cap_80d_parents)'",
+    "OLD.80D.PREV_A: 'min(preventive_checkup_self_family, cap_80d_self - base_80d_self, 5000)' -> 'min(preventive_checkup_self_family, room_80d_self, 5000)'",
+    "OLD.80D.PREV_B: 'min(preventive_checkup_parents, cap_80d_parents - base_80d_parents, 5000 - prev_self)' -> 'min(preventive_checkup_parents, room_80d_parents, 5000 - prev_self)'",
+    "OLD.80D.ROOM_A: None -> 'max(0, min(cap_80d_self - prem_80d_self, 50000 - prem_80d_self - med_80d_self))'",
+    "OLD.80D.ROOM_B: None -> 'max(0, min(cap_80d_parents - prem_80d_parents, 50000 - prem_80d_parents - med_80d_parents))'"
+   ],
+   "approval": {
+    "approved_artifact": "project_a/compiled_rules/fy2024_25.compiled.json",
+    "reviewer": "Kolpi03",
+    "reviewed_on": "2026-11-09",
+    "artifact_sha256": "1d4f44a21c91d409ae653ba8f99d40434c782b5f06f82b679f64fed49d1ac4ee",
+    "verification": {
+     "cases": 293,
+     "passed": 293,
+     "failed": 0
+    }
+   }
+  },
+  "2025-26": {
+   "path": "project_a/compiled_rules/candidates/fy2025_26_80d_per_person.candidate.json",
+   "fingerprint_sha256": "6547bf863960b7ff0bdab3f4777a8bd8e49f6721a8c5437e78f65c59dbd9d4dd",
+   "static_validation_problems": [],
+   "suite": {
+    "cases": 242,
+    "passed": 242,
+    "failed": 0
+   },
+   "first_failures": [],
+   "diff_vs_approved": [
+    "OLD.80D: 'base_80d_self + prev_self + base_80d_parents + prev_parents' -> 'prem_80d_self + med_80d_self + prev_self + prem_80d_parents + med_80d_parents + prev_parents'",
+    "OLD.80D.BASE_A: 'min(health_insurance_self_family + med_self_allowed, cap_80d_self)' -> None",
+    "OLD.80D.BASE_B: 'min(health_insurance_parents + med_parents_allowed, cap_80d_parents)' -> None",
+    "OLD.80D.CAP_A: '50000 if self_family_senior else 25000' -> '50000 if insured_senior_self_family else 25000'",
+    "OLD.80D.CAP_B: '50000 if parents_are_senior else 25000' -> '50000 if insured_senior_parents else 25000'",
+    "OLD.80D.MEDDED_A: None -> 'min(med_self_allowed, 50000 - prem_80d_self)'",
+    "OLD.80D.MEDDED_B: None -> 'min(med_parents_allowed, 50000 - prem_80d_parents)'",
+    "OLD.80D.MED_A: 'medical_expenditure_self_family if (self_family_senior and health_insurance_self_family == 0) else 0' -> '(medical_expenditure_self if (age >= 60 and not self_insured) else 0) + (medical_expenditure_spouse if (spouse_is_senior and not spouse_insured) else 0) + (medical_expenditure_self_family if (self_family_senior and health_insurance_self_family == 0) else 0)'",
+    "OLD.80D.MED_B: 'medical_expenditure_parents if (parents_are_senior and health_insurance_parents == 0) else 0' -> '(medical_expenditure_parent_a if (parent_a_is_senior and not parent_a_insured) else 0) + (medical_expenditure_parent_b if (parent_b_is_senior and not parent_b_insured) else 0) + (medical_expenditure_parents if (parents_are_senior and health_insurance_parents == 0) else 0)'",
+    "OLD.80D.PREM_A: None -> 'min(health_insurance_self_family, cap_80d_self)'",
+    "OLD.80D.PREM_B: None -> 'min(health_insurance_parents, cap_80d_parents)'",
+    "OLD.80D.PREV_A: 'min(preventive_checkup_self_family, cap_80d_self - base_80d_self, 5000)' -> 'min(preventive_checkup_self_family, room_80d_self, 5000)'",
+    "OLD.80D.PREV_B: 'min(preventive_checkup_parents, cap_80d_parents - base_80d_parents, 5000 - prev_self)' -> 'min(preventive_checkup_parents, room_80d_parents, 5000 - prev_self)'",
+    "OLD.80D.ROOM_A: None -> 'max(0, min(cap_80d_self - prem_80d_self, 50000 - prem_80d_self - med_80d_self))'",
+    "OLD.80D.ROOM_B: None -> 'max(0, min(cap_80d_parents - prem_80d_parents, 50000 - prem_80d_parents - med_80d_parents))'"
+   ],
+   "approval": {
+    "approved_artifact": "project_a/compiled_rules/fy2025_26.compiled.json",
+    "reviewer": "Kolpi03",
+    "reviewed_on": "2026-11-09",
+    "artifact_sha256": "6547bf863960b7ff0bdab3f4777a8bd8e49f6721a8c5437e78f65c59dbd9d4dd",
+    "verification": {
+     "cases": 242,
+     "passed": 242,
+     "failed": 0
+    }
+   }
+  }
+ }
+}

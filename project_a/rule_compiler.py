@@ -30,9 +30,9 @@ import yaml
 from common.llm_client import get_client
 from common.paths import PA_COMPILED, PA_DATA, PA_RULE_TEXTS
 from project_a import rule_dsl
-from project_a.models import TaxpayerProfile
+from project_a.models import DERIVED_80D_INPUTS, TaxpayerProfile
 
-INPUT_FIELDS = sorted(TaxpayerProfile.model_fields.keys() - {"financial_year"})
+INPUT_FIELDS = sorted((TaxpayerProfile.model_fields.keys() - {"financial_year"}) | set(DERIVED_80D_INPUTS))
 REQUIRED_OUTPUTS = ["total_income", "tax_on_income", "rebate_87a", "surcharge", "cess", "total_tax", "tax_payable"]
 
 DSL_SPEC = f"""
@@ -57,7 +57,12 @@ Expression language (Python expression syntax subset; NOTHING else is allowed):
 - functions: min(a, b, ...), max(a, b, ...), slab_tax(income, 'table_name'), round10(x)
   slab_tax applies progressive rates: table rows [lower, upper, rate]; upper null = no upper bound.
   round10 = Sections 288A/288B: drop paise, round to nearest 10 rupees (5 rounds up).
-All money inputs are annual rupees. Booleans: is_resident, metro_city, spouse_is_senior, parents_are_senior.
+All money inputs are annual rupees. Booleans: is_resident, metro_city, spouse_is_senior, parents_are_senior,
+self_insured, spouse_insured, parent_a_is_senior, parent_a_insured, parent_b_is_senior, parent_b_insured.
+80D medical expenditure is given per person (medical_expenditure_self/_spouse/_parent_a/_parent_b, with that person's
+seniority and *_insured flag) or, legacy, per group (medical_expenditure_self_family/_parents: no per-person detail).
+Derived booleans supplied by the runtime: insured_senior_self_family / insured_senior_parents = a health-insurance
+premium in that group is paid for a senior citizen (s.80D(4)); with group-only input a group premium covers everyone.
 Each regime MUST define, in this order of dependency, these outputs: {REQUIRED_OUTPUTS}.
 total_income must be rounded with round10; tax_payable = round10(total_tax).
 Scope: salary income only (standard deduction, HRA exemption, 80C, 80CCD(1B), 80D incl. senior parents,

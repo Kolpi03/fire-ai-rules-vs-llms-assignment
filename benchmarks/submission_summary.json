@@ -1,6 +1,6 @@
 {
- "finished_at": "2026-11-09 22:36:03",
- "total_seconds": 89.4,
+ "finished_at": "2026-11-09 23:33:44",
+ "total_seconds": 105.4,
  "quick_mode": false,
  "skip_download": true,
  "start_step": 1,
@@ -8,7 +8,7 @@
   {
    "step": "1 environment check",
    "status": "ok",
-   "seconds": 1.6,
+   "seconds": 1.5,
    "detail": {
     "python": "3.13.9",
     "disk_free_gb": 47.1,
@@ -24,7 +24,7 @@
   {
    "step": "2 official tax source snapshots",
    "status": "ok",
-   "seconds": 8.6,
+   "seconds": 7.3,
    "detail": {
     "ok": 9,
     "total": 10
@@ -33,19 +33,20 @@
   {
    "step": "3 generate Project A test suite",
    "status": "ok",
-   "seconds": 0.0,
+   "seconds": 0.1,
    "detail": {
-    "n_cases": 307,
+    "n_cases": 535,
     "by_category": {
      "hand_worked": 16,
      "boundary_slab": 81,
      "boundary_rebate": 26,
      "boundary_surcharge": 80,
-     "boundary_deduction_cap": 29,
-     "boundary_hra": 6,
-     "boundary_age": 4,
+     "boundary_deduction_cap": 105,
+     "boundary_hra": 44,
+     "boundary_age": 36,
      "boundary_rounding": 3,
      "boundary_std_deduction": 2,
+     "boundary_80d_per_person": 82,
      "realistic": 60
     },
     "worksheet_rows": 30
@@ -54,23 +55,23 @@
   {
    "step": "4 Project A tests",
    "status": "ok",
-   "seconds": 2.9,
+   "seconds": 14.9,
    "detail": {
-    "summary": "612 passed in 2.62s"
+    "summary": "1912 passed in 14.56s"
    }
   },
   {
    "step": "5 Project A benchmark",
    "status": "ok",
-   "seconds": 1.3,
+   "seconds": 2.4,
    "detail": {
-    "generated_at": "2026-11-09 22:34:47"
+    "generated_at": "2026-11-09 23:32:22"
    }
   },
   {
    "step": "6 Task A5 migration report",
    "status": "ok",
-   "seconds": 5.3,
+   "seconds": 7.0,
    "detail": {
     "ok": true
    }
@@ -78,7 +79,7 @@
   {
    "step": "7 NYC 311 data (download if not cached)",
    "status": "ok",
-   "seconds": 4.3,
+   "seconds": 4.1,
    "detail": {
     "processed": "project_b/data/processed/nyc311_2023_sample.parquet"
    }
@@ -94,24 +95,24 @@
   {
    "step": "9 Project B tests",
    "status": "ok",
-   "seconds": 6.3,
+   "seconds": 6.6,
    "detail": {
-    "summary": "69 passed in 5.26s"
+    "summary": "69 passed in 5.45s"
    }
   },
   {
    "step": "10 Project B detector benchmark",
    "status": "ok",
-   "seconds": 27.7,
+   "seconds": 29.5,
    "detail": {
     "rows": 36,
-    "runtime_s": 18.4
+    "runtime_s": 19.6
    }
   },
   {
    "step": "11 Project B hybrid pipeline",
    "status": "ok",
-   "seconds": 19.6,
+   "seconds": 20.2,
    "detail": {
     "any_f1": 0.9919571045576407
    }
@@ -127,7 +128,7 @@
   {
    "step": "13 validate submission",
    "status": "ok",
-   "seconds": 0.0,
+   "seconds": 0.1,
    "detail": {
     "ok": true
    }

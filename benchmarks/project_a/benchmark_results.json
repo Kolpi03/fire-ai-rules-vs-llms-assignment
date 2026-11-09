@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-09 22:34:47",
+ "generated_at": "2026-11-09 23:32:22",
  "llm": {
   "gemini_api_key_present": true,
   "sdk_installed": true,
@@ -12,47 +12,53 @@
     "engine": "rules_engine",
     "fy": "2024-25",
     "status": "measured",
-    "n_cases": 179,
+    "n_cases": 293,
     "rupee_exact_accuracy": 1.0,
     "component_accuracy": 1.0,
     "failed_cases": [],
     "traceability": 1.0,
+    "refused_unsupported_input": 0,
+    "refused_cases": [],
+    "rupee_exact_on_answered": 1.0,
     "determinism": {
      "cases": 10,
      "repeats": 10,
      "deterministic_cases": 10
     },
     "latency": {
-     "avg_ms": 0.0404153072780582,
-     "median_ms": 0.03798200032179011,
-     "p95_ms": 0.05344099918147549,
-     "n": 537
+     "avg_ms": 0.04161931056957001,
+     "median_ms": 0.0401639990741387,
+     "p95_ms": 0.05555299867410213,
+     "n": 879
     },
-    "cost_per_1000_usd": 5.625367008069609e-07,
-    "cost_basis": "measured CPU 0.041 ms/request x $0.05/CPU-hour"
+    "cost_per_1000_usd": 5.794446972569854e-07,
+    "cost_basis": "measured CPU 0.042 ms/request x $0.05/CPU-hour"
    },
    "llm_compiled_engine": {
     "engine": "llm_compiled_engine",
     "fy": "2024-25",
     "status": "measured",
-    "n_cases": 179,
+    "n_cases": 293,
     "rupee_exact_accuracy": 1.0,
     "component_accuracy": 1.0,
     "failed_cases": [],
     "traceability": 1.0,
+    "refused_unsupported_input": 0,
+    "refused_cases": [],
+    "rupee_exact_on_answered": 1.0,
     "determinism": {
      "cases": 10,
      "repeats": 10,
      "deterministic_cases": 10
     },
     "latency": {
-     "avg_ms": 0.7761991936836349,
-     "median_ms": 0.7552810002380284,
-     "p95_ms": 0.8838939993438544,
-     "n": 537
+     "avg_ms": 0.9803263492855036,
+     "median_ms": 0.8813439999357797,
+     "p95_ms": 1.009161000183667,
+     "n": 879
     },
-    "cost_per_1000_usd": 1.0782456160769703e-05,
-    "cost_basis": "measured CPU 0.776 ms/request x $0.05/CPU-hour"
+    "cost_per_1000_usd": 1.3605180381746931e-05,
+    "cost_basis": "measured CPU 0.980 ms/request x $0.05/CPU-hour"
    },
    "llm_query_engine": {
     "engine": "llm_query_engine",
@@ -91,47 +97,53 @@
     "engine": "rules_engine",
     "fy": "2025-26",
     "status": "measured",
-    "n_cases": 128,
+    "n_cases": 242,
     "rupee_exact_accuracy": 1.0,
     "component_accuracy": 1.0,
     "failed_cases": [],
     "traceability": 1.0,
+    "refused_unsupported_input": 0,
+    "refused_cases": [],
+    "rupee_exact_on_answered": 1.0,
     "determinism": {
      "cases": 10,
      "repeats": 10,
      "deterministic_cases": 10
     },
     "latency": {
-     "avg_ms": 0.04267211978733106,
-     "median_ms": 0.04149349979343242,
-     "p95_ms": 0.055604999943170696,
-     "n": 384
+     "avg_ms": 0.041634549559718584,
+     "median_ms": 0.03956300042773364,
+     "p95_ms": 0.05612399945675861,
+     "n": 726
     },
-    "cost_per_1000_usd": 5.941140769675993e-07,
-    "cost_basis": "measured CPU 0.043 ms/request x $0.05/CPU-hour"
+    "cost_per_1000_usd": 5.796374158249219e-07,
+    "cost_basis": "measured CPU 0.042 ms/request x $0.05/CPU-hour"
    },
    "llm_compiled_engine": {
     "engine": "llm_compiled_engine",
     "fy": "2025-26",
     "status": "measured",
-    "n_cases": 128,
+    "n_cases": 242,
     "rupee_exact_accuracy": 1.0,
     "component_accuracy": 1.0,
     "failed_cases": [],
     "traceability": 1.0,
+    "refused_unsupported_input": 0,
+    "refused_cases": [],
+    "rupee_exact_on_answered": 1.0,
     "determinism": {
      "cases": 10,
      "repeats": 10,
      "deterministic_cases": 10
     },
     "latency": {
-     "avg_ms": 0.8026242083379506,
-     "median_ms": 0.7528665000791079,
-     "p95_ms": 1.1138099998788675,
-     "n": 384
+     "avg_ms": 0.9162067313614102,
+     "median_ms": 0.8880299992597429,
+     "p95_ms": 1.0175260013056686,
+     "n": 726
     },
-    "cost_per_1000_usd": 1.114606394675926e-05,
-    "cost_basis": "measured CPU 0.803 ms/request x $0.05/CPU-hour"
+    "cost_per_1000_usd": 1.2727543407560456e-05,
+    "cost_basis": "measured CPU 0.916 ms/request x $0.05/CPU-hour"
    },
    "llm_query_engine": {
     "engine": "llm_query_engine",

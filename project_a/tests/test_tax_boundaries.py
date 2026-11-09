@@ -6,15 +6,26 @@ import pytest
 from project_a import llm_compiled_engine, rules_engine
 from project_a.models import TaxpayerProfile
 
-from .conftest import cases_by
+from .conftest import candidate_artifact, cases_by, run_approved_or_refusal
 
 BOUNDARY = cases_by("boundary")
 
 
-@pytest.mark.parametrize("engine", [rules_engine.compute, llm_compiled_engine.compute], ids=["rules", "compiled"])
+def _candidate(p: TaxpayerProfile):
+    art = candidate_artifact(p.financial_year)
+    if art is None:
+        pytest.skip("no 80D per-person candidate artifact")
+    return llm_compiled_engine.run_artifact(art, p)
+
+
+@pytest.mark.parametrize("engine", [rules_engine.compute, run_approved_or_refusal, _candidate],
+                         ids=["rules", "compiled-approved", "compiled-candidate"])
 @pytest.mark.parametrize("case", BOUNDARY, ids=[c["case_id"] for c in BOUNDARY])
 def test_boundary(engine, case):
     r = engine(TaxpayerProfile(**case["input"]))
+    if r == "refused":  # approved artifact predates the per-person 80D inputs: a loud refusal, never a wrong answer
+        assert case["category"] == "boundary_80d_per_person" and "-80D-PP-" in case["case_id"], case["case_id"]
+        return
     for reg in ("old", "new"):
         got, exp = getattr(r, reg), case["expected"][reg]
         assert int(got.total_income) == exp["total_income"]

@@ -73,7 +73,10 @@ regimes:
         parents_cap: 25000
         parents_cap_senior: 50000
         preventive_checkup_aggregate_cap: 5000
-        clause: "Section 80D(2),(2A),(4)"
+        premium_plus_medical_aggregate_cap: 50000   # second proviso: (a)+(c), (b)+(d)
+        # self_family_cap_senior / parents_cap_senior apply only when the premium is paid for an INSURED
+        # senior citizen of the group (s.80D(4)); otherwise the 25,000 caps apply.
+        clause: "Section 80D(2),(2A),(4), first and second provisos"
         rule_id: OLD.80D
         source_id: ITD-80D
     rebate_87a:
