@@ -42,6 +42,6 @@ COMPLETE · INCOMPLETE · BLOCKED — EXTERNAL DEPENDENCY · FAILED · NOT APPLI
 | D4 | Python 3.10+, clean structure, tests | COMPLETE | Python 3.13.9; 681 tests pass (612 Project A + 69 Project B; integration: hybrid pipeline, run_all; regression: `test_regression.py`; mutation tests in the A5 report) | — |
 | D5 | LLM budget: Gemini free tier | COMPLETE | All calls on the free tier ($0 spent); list-price costs reported | — |
 | D6 | Official sources only | COMPLETE | `project_a/rule_texts/_snapshots/manifest.json` (SHA-256 per page) | — |
-| D7 | Private GitHub repo | FINAL_GIT_STATUS | FINAL_GIT_EVIDENCE | Share with the hiring team (GitHub → Settings → Collaborators) |
+| D7 | Private GitHub repo | COMPLETE | https://github.com/Kolpi03/fire-ai-rules-vs-llms-assignment — owner Kolpi03, PRIVATE, branch `main`, initial commit 60c4e33 (196 files; `.env` absent) | Share with the hiring team (GitHub → Settings → Collaborators) |
 | D8 | Secrets never committed | COMPLETE | `.env` git-ignored; scan of every file for the actual key and common token patterns: 0 hits | — |
 | D9 | Validator | COMPLETE | `scripts/validate_submission.py`: 85/85 checks pass | — |
