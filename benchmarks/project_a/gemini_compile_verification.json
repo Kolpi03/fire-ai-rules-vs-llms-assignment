@@ -1,0 +1,145 @@
+{
+ "what": "Engine C recompiled with Gemini (python -m project_a.cli compile run), verified against the full test suite; NOT approved",
+ "model": "gemini-3.5-flash-lite",
+ "date": "2026-11-09",
+ "results": {
+  "2024-25": {
+   "candidate": "project_a/compiled_rules/candidates/fy2024_25_20261109_214239.json",
+   "cases": 179,
+   "cases_passing_both_regimes": 116,
+   "regime_level_failures": 78,
+   "first_failures": [
+    {
+     "case_id": "HW-02",
+     "regime": "new",
+     "expected": 10400,
+     "got": 11440
+    },
+    {
+     "case_id": "HW-08",
+     "regime": "old",
+     "expected": 1401400,
+     "got": 1513510
+    },
+    {
+     "case_id": "HW-08",
+     "regime": "new",
+     "expected": 1248000,
+     "got": 1364790
+    },
+    {
+     "case_id": "HW-12",
+     "regime": "new",
+     "expected": 130000,
+     "got": 119600
+    },
+    {
+     "case_id": "HW-13",
+     "regime": "old",
+     "expected": 13000,
+     "got": 10400
+    },
+    {
+     "case_id": "BND-202425-NEW-700000+10",
+     "regime": "new",
+     "expected": 10,
+     "got": 20790
+    },
+    {
+     "case_id": "BND-202425-87A-NEW-700010",
+     "regime": "new",
+     "expected": 10,
+     "got": 20790
+    },
+    {
+     "case_id": "BND-202425-87A-NEW-722210",
+     "regime": "new",
+     "expected": 23100,
+     "got": 10
+    },
+    {
+     "case_id": "BND-202425-87A-NEW-722220",
+     "regime": "new",
+     "expected": 23110,
+     "got": 0
+    },
+    {
+     "case_id": "BND-202425-SC-NEW-5000000-10",
+     "regime": "old",
+     "expected": 1390990,
+     "got": 1510080
+    }
+   ],
+   "approval_gate": "blocked (approve() refuses any artifact with suite failures)"
+  },
+  "2025-26": {
+   "candidate": "project_a/compiled_rules/candidates/fy2025_26_20261109_214250.json",
+   "cases": 128,
+   "cases_passing_both_regimes": 90,
+   "regime_level_failures": 50,
+   "first_failures": [
+    {
+     "case_id": "HW-15",
+     "regime": "new",
+     "expected": 52000,
+     "got": 18200
+    },
+    {
+     "case_id": "BND-202526-NEW-1200000+10",
+     "regime": "new",
+     "expected": 10,
+     "got": 62390
+    },
+    {
+     "case_id": "BND-202526-87A-NEW-1200010",
+     "regime": "new",
+     "expected": 10,
+     "got": 62390
+    },
+    {
+     "case_id": "BND-202526-87A-NEW-1250000",
+     "regime": "new",
+     "expected": 52000,
+     "got": 18200
+    },
+    {
+     "case_id": "BND-202526-87A-NEW-1270570",
+     "regime": "new",
+     "expected": 73390,
+     "got": 73410
+    },
+    {
+     "case_id": "BND-202526-87A-NEW-1270580",
+     "regime": "new",
+     "expected": 73400,
+     "got": 73410
+    },
+    {
+     "case_id": "BND-202526-SC-NEW-5000000-10",
+     "regime": "old",
+     "expected": 1390990,
+     "got": 1510080
+    },
+    {
+     "case_id": "BND-202526-SC-NEW-5000000+0",
+     "regime": "old",
+     "expected": 1391000,
+     "got": 1510080
+    },
+    {
+     "case_id": "BND-202526-SC-OLD-5000000+10",
+     "regime": "old",
+     "expected": 1365010,
+     "got": 1501500
+    },
+    {
+     "case_id": "BND-202526-SC-NEW-5000000+10",
+     "regime": "old",
+     "expected": 1391010,
+     "got": 1510080
+    }
+   ],
+   "approval_gate": "blocked (approve() refuses any artifact with suite failures)"
+  }
+ }
+}

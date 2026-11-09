@@ -1,0 +1,71 @@
+# Global settings. Secrets never live here: GEMINI_API_KEY comes from the environment / .env.
+
+seed: 20231
+
+llm:
+  provider: gemini
+  # gemini-2.5-flash returned 404 'no longer available to new users' on 2026-11-09; gemini-3.8-flash returned
+  # 504 DEADLINE_EXCEEDED on a 10-token prompt. gemini-3.5-flash-lite answered in ~2 s and has a published price.
+  default_model: gemini-3.5-flash-lite   # overridden by GEMINI_MODEL env var
+  timeout_seconds: 60
+  max_retries: 4
+  backoff_base_seconds: 2.0
+  min_interval_seconds: 4.5               # free-tier pacing (~13 requests/minute)
+  temperature: 0.0
+  # Paid-tier list prices used ONLY for cost projection (free tier costs $0 but is rate limited).
+  # Source: https://ai.google.dev/gemini-api/docs/pricing (checked 2026-11-08; 3.x rows from
+  # https://aistudio.google.com/docs/pricing, checked 2026-11-09).
+  pricing_usd_per_million_tokens:
+    gemini-2.5-flash: {input: 0.30, output: 2.50}
+    gemini-2.5-flash-lite: {input: 0.10, output: 0.40}
+    gemini-3-flash-preview: {input: 0.50, output: 3.00}
+    gemini-3.5-flash-lite: {input: 0.30, output: 2.50}
+    gemini-3.8-flash: {input: 0.75, output: 3.75}       # promotional price through 2026-12-31
+  # When the API is unavailable, prompt tokens are estimated as chars / 4 (documented approximation).
+  chars_per_token_estimate: 4.0
+  # Rough compute cost of running a deterministic engine on a laptop, for cost-per-1k comparisons:
+  # an on-demand 2 vCPU instance at ~$0.10/hour.
+  compute_usd_per_cpu_hour: 0.05
+
+nyc311:
+  dataset_id: erm2-nwe9                   # "311 Service Requests from 2020 to Present"
+  base_url: https://data.cityofnewyork.us
+  year: 2023
+  # Day-cluster sample: every `day_step`-th day of 2023 starting at `day_offset` (all rows of those days).
+  # Filtering only on created_date keeps the Socrata query on an indexed column.
+  day_step: 10
+  day_offset: 3
+  page_size: 50000
+  request_timeout_seconds: 180
+  columns:
+    - unique_key
+    - created_date
+    - closed_date
+    - agency
+    - agency_name
+    - complaint_type
+    - descriptor
+    - location_type
+    - incident_zip
+    - incident_address
+    - street_name
+    - city
+    - status
+    - due_date
+    - resolution_description
+    - resolution_action_updated_date
+    - community_board
+    - borough
+    - x_coordinate_state_plane
+    - y_coordinate_state_plane
+    - open_data_channel_type
+    - latitude
+    - longitude
+
+project_b:
+  batch_size: 5000
+  n_eval_batches: 8                       # corrupted batches per problem type
+  n_clean_batches: 8                      # clean batches for false-alarm measurement
+  reference_months: [1, 2, 3, 4, 5, 6, 7, 8, 9]   # detectors are fit on these months
+  evaluation_months: [10, 11, 12]                 # batches are drawn from these months
+  llm_rows_per_problem: 40                # LLM review budget per problem type per run

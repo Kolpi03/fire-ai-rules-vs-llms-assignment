@@ -1,0 +1,15 @@
+{
+ "source": "logs/llm.jsonl (window of the Engine B benchmark run, 2026-11-09 20:49-21:05)",
+ "model": [
+  "gemini-3.5-flash-lite"
+ ],
+ "successful_calls": 140,
+ "failed_attempts_retried": {
+  "503": 6
+ },
+ "input_tokens": 289421,
+ "output_tokens_incl_thinking": 165681,
+ "cost_usd_at_list_price": 0.501,
+ "actual_spend_usd_free_tier": 0.0,
+ "median_latency_ms": 3884.1591839996
+}

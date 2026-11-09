@@ -1,0 +1,146 @@
+# Hand-coded rule set (Engine A configuration) — FY 2024-25 / AY 2025-26.
+# Every number here carries the clause it implements and the official source it was read from
+# (source ids are defined in project_a/tax_sources.py; text snapshots in project_a/rule_texts/_snapshots).
+# Amounts are in rupees; rates are decimal strings so they load as exact Decimals.
+
+rule_set_id: IN-SALARY-FY2024-25
+rule_set_version: "1.0.0"
+financial_year: "2024-25"
+assessment_year: "2025-26"
+effective_from: "2024-04-01"
+effective_to: "2025-03-31"
+legal_basis:
+  - "Income-tax Act, 1961 as amended by Finance Act 2024 and Finance (No.2) Act 2024"
+sources_verified_on: "2026-11-08"
+
+rounding:
+  total_income: {method: nearest_10_half_up_paise_ignored, clause: "Section 288A", rule_id: ROUND.288A}
+  tax_payable: {method: nearest_10_half_up_paise_ignored, clause: "Section 288B", rule_id: ROUND.288B}
+
+cess:
+  rate: "0.04"
+  clause: "Finance (No.2) Act 2024, s.2(11) — Health and Education Cess"
+  rule_id: CESS.HEC
+  source_id: ITD-COMPUTATION-INDIVIDUAL
+
+regimes:
+  old:
+    label: "Old regime (normal provisions)"
+    slabs:
+      clause: "Finance (No.2) Act 2024, First Schedule, Part III, Para A"
+      rule_id: OLD.SLABS
+      source_id: ITD-COMPUTATION-INDIVIDUAL
+      # Senior/super-senior exemption limits apply only to RESIDENT individuals.
+      by_age_band:
+        below_60:      [[0, 250000, "0"], [250000, 500000, "0.05"], [500000, 1000000, "0.20"], [1000000, null, "0.30"]]
+        senior_60_79:  [[0, 300000, "0"], [300000, 500000, "0.05"], [500000, 1000000, "0.20"], [1000000, null, "0.30"]]
+        super_senior_80_plus: [[0, 500000, "0"], [500000, 1000000, "0.20"], [1000000, null, "0.30"]]
+    standard_deduction:
+      amount: 50000
+      clause: "Section 16(ia)"
+      rule_id: OLD.STD_DED
+      source_id: ITD-DEDUCTIONS-ALLOWABLE
+    hra_exemption:
+      allowed: true
+      metro_cities: [Delhi, Mumbai, Kolkata, Chennai]
+      metro_pct: "0.50"
+      non_metro_pct: "0.40"
+      rent_excess_over_salary_pct: "0.10"
+      clause: "Section 10(13A) r/w Rule 2A"
+      rule_id: OLD.HRA
+      source_id: ITD-HRA-FAQ
+    home_loan_interest_self_occupied:
+      allowed: true
+      cap: 200000
+      clause: "Section 24(b) r/w Section 71(3A)"
+      rule_id: OLD.24B
+      source_id: ITD-DEDUCTIONS-ALLOWABLE
+    deductions:
+      section_80c:
+        cap: 150000
+        clause: "Section 80C r/w 80CCE"
+        rule_id: OLD.80C
+        source_id: ITD-DEDUCTIONS-ALLOWABLE
+      section_80ccd_1b:
+        cap: 50000
+        clause: "Section 80CCD(1B)"
+        rule_id: OLD.80CCD1B
+        source_id: ITD-80CCD
+      section_80d:
+        self_family_cap: 25000
+        self_family_cap_senior: 50000
+        parents_cap: 25000
+        parents_cap_senior: 50000
+        preventive_checkup_aggregate_cap: 5000
+        clause: "Section 80D(2),(2A),(4)"
+        rule_id: OLD.80D
+        source_id: ITD-80D
+    rebate_87a:
+      income_limit: 500000
+      max_rebate: 12500
+      marginal_relief: false
+      resident_only: true
+      clause: "Section 87A"
+      rule_id: OLD.87A
+      source_id: ITD-87A-FA2024-NO2
+    surcharge:
+      clause: "Finance (No.2) Act 2024, First Schedule, Part I — surcharge with marginal relief"
+      rule_id: OLD.SURCHARGE
+      source_id: ITD-COMPUTATION-INDIVIDUAL
+      bands:   # rate applies when total income is MORE THAN `above`
+        - {above: 5000000, rate: "0.10"}
+        - {above: 10000000, rate: "0.15"}
+        - {above: 20000000, rate: "0.25"}
+        - {above: 50000000, rate: "0.37"}
+
+  new:
+    label: "New regime (Section 115BAC(1A))"
+    slabs:
+      clause: "Section 115BAC(1A) as amended by Finance (No.2) Act 2024"
+      rule_id: NEW.SLABS
+      source_id: ITD-COMPUTATION-INDIVIDUAL
+      by_age_band:
+        all: [[0, 300000, "0"], [300000, 700000, "0.05"], [700000, 1000000, "0.10"], [1000000, 1200000, "0.15"],
+              [1200000, 1500000, "0.20"], [1500000, null, "0.30"]]
+    standard_deduction:
+      amount: 75000
+      clause: "Section 16(ia) r/w Section 115BAC(1A)(ii)"
+      rule_id: NEW.STD_DED
+      source_id: ITD-DEDUCTIONS-ALLOWABLE
+    hra_exemption:
+      allowed: false
+      clause: "Section 115BAC(2) — exemption u/s 10(13A) not allowed"
+      rule_id: NEW.NO_HRA
+      source_id: ITD-REGIME-FAQ
+    home_loan_interest_self_occupied:
+      allowed: false
+      cap: 0
+      clause: "Section 115BAC(2) — 24(b) for self-occupied property not allowed"
+      rule_id: NEW.NO_24B
+      source_id: ITD-REGIME-FAQ
+    deductions:
+      chapter_via_allowed: false
+      clause: "Section 115BAC(2) — Chapter VI-A deductions (80C, 80CCD(1B), 80D) not allowed"
+      rule_id: NEW.NO_VIA
+      source_id: ITD-REGIME-FAQ
+    rebate_87a:
+      income_limit: 700000
+      max_rebate: 25000
+      marginal_relief: true
+      resident_only: true
+      clause: "Section 87A, first proviso (a) and (b)"
+      rule_id: NEW.87A
+      source_id: ITD-87A-FA2024-NO2
+    surcharge:
+      clause: "Finance (No.2) Act 2024, First Schedule — surcharge capped at 25% for 115BAC; marginal relief"
+      rule_id: NEW.SURCHARGE
+      source_id: ITD-COMPUTATION-INDIVIDUAL
+      bands:
+        - {above: 5000000, rate: "0.10"}
+        - {above: 10000000, rate: "0.15"}
+        - {above: 20000000, rate: "0.25"}
+
+regime_choice:
+  tie_breaker: new
+  clause: "Section 115BAC(1A) — new regime is the default; old regime only if opted out"
+  rule_id: CHOICE.REGIME

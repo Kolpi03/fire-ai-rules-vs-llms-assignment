@@ -1,0 +1,24 @@
+{
+ "under_asked": 1,
+ "over_asked": 10,
+ "unsafe": 7,
+ "correct": 32
+} accuracy=64.00%
+NL-01 assignment_example under_asked missing questions ['hra_received']; asked ['age', 'annual_rent_paid', 'health_insurance_self_family']
+NL-02 english_complete over_asked asked ['age']
+NL-03 hinglish_complete over_asked asked ['gross_salary']
+NL-04 english_monthly_amounts unsafe field diffs (got, want): {'section_80c': (0, 150000)}
+NL-05 contradictory unsafe produced a profile instead of asking
+NL-09 senior_citizen unsafe field diffs (got, want): {'section_80c': (0, 100000)}
+NL-10 super_senior over_asked asked ['gross_salary']
+NL-11 english_parents unsafe field diffs (got, want): {'health_insurance_parents': (32060, 32000)}
+NL-14 english_home_loan over_asked asked ['gross_salary']
+NL-18 english_hra_complete over_asked asked ['basic_plus_da', 'hra_received']
+NL-23 english_high_income unsafe field diffs (got, want): {'section_80c': (0, 150000)}
+NL-27 english_preventive unsafe field diffs (got, want): {'section_80c': (0, 80000)}
+NL-28 english_parent_medical over_asked asked ['age']
+NL-30 english_gurgaon over_asked asked ['basic_plus_da']
+NL-33 typos over_asked asked ['age', 'gross_salary']
+NL-34 english_verbose over_asked asked ['annual_rent_paid', 'basic_plus_da', 'gross_salary', 'hra_received']
+NL-35 hinglish_parents unsafe field diffs (got, want): {'section_80c': (0, 150000)}
+NL-48 form_like over_asked asked ['age', 'health_insurance_parents']

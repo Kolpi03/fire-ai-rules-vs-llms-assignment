@@ -1,0 +1,4 @@
+HO-09 no_punctuation unsafe field diffs (got, want): {'health_insurance_self_family': (0, 25000), 'health_insurance_parents': (75000, 50000)}
+HO-14 english_monthly_sentence over_asked asked ['annual_rent_paid', 'hra_received']
+HO-17 english_80d_split unsafe field diffs (got, want): {'health_insurance_self_family': (55000, 25000), 'health_insurance_parents': (0, 30000)}
+HOLDOUT FIRST RUN (2026-11-08): {'correct': 17, 'unsafe': 2, 'over_asked': 1} accuracy=85%

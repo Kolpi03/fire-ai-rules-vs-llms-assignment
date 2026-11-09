@@ -1,0 +1,801 @@
+{
+ "sample_rows": 328529,
+ "sampled_days": 37,
+ "design_days": 37,
+ "full_year_rows": 3224723,
+ "methodology": "Task B1: profile the RAW 2023 NYC 311 sample for data-quality problems that already exist.\n\nMethodology\n-----------\n* Population: the day-cluster sample (every 10th day of 2023, all rows of each sampled day; see\n  data_loader). Counts are exact for the sample; percentages are of sample rows. A full-year projection\n  (share x 3,224,723 rows) is given separately and labelled as an estimate. Where the SoQL aggregate\n  endpoint answered, an exact full-year count is reported next to it.\n* Checks are deterministic and listed in ``CHECKS`` with their definition, so every count is\n  reproducible; examples are the first 5 matching rows (unique_key + the relevant fields).\n* Free-text PII examples are masked before being written to the report.\n",
+ "issues": [
+  {
+   "issue": "due_date_mostly_null",
+   "issue_type": "completeness",
+   "definition": "due_date null (column effectively deprecated)",
+   "affected_rows": 327210,
+   "pct_of_sample": 0.9959851337324863,
+   "projected_full_year_rows": 3211776,
+   "examples": [
+    {
+     "unique_key": "56419637",
+     "agency": "NYPD",
+     "complaint_type": "Noise - Residential"
+    },
+    {
+     "unique_key": "56419644",
+     "agency": "NYPD",
+     "complaint_type": "Noise - Commercial"
+    },
+    {
+     "unique_key": "56419659",
+     "agency": "NYPD",
+     "complaint_type": "Noise - Residential"
+    },
+    {
+     "unique_key": "56419667",
+     "agency": "NYPD",
+     "complaint_type": "Noise - Commercial"
+    },
+    {
+     "unique_key": "56419701",
+     "agency": "NYPD",
+     "complaint_type": "Noise - Residential"
+    }
+   ]
+  },
+  {
+   "issue": "near_duplicate_requests",
+   "issue_type": "uniqueness",
+   "definition": "same complaint_type + incident_address within 60 minutes of an earlier request",
+   "affected_rows": 40413,
+   "pct_of_sample": 0.12301197154589093,
+   "projected_full_year_rows": 396680,
+   "examples": [
+    {
+     "unique_key": "56419953",
+     "created_date": "2023-01-03T01:18:23.000",
+     "complaint_type": "Noise - Residential",
+     "incident_address": "97-19 LEFFERTS BOULEVARD"
+    },
+    {
+     "unique_key": "56419954",
+     "created_date": "2023-01-03T01:51:37.000",
+     "complaint_type": "Noise - Commercial",
+     "incident_address": "44 EMPIRE BOULEVARD"
+    },
+    {
+     "unique_key": "56420246",
+     "created_date": "2023-01-03T00:54:11.000",
+     "complaint_type": "Noise - Commercial",
+     "incident_address": "37 VICTORY BOULEVARD"
+    },
+    {
+     "unique_key": "56420262",
+     "created_date": "2023-01-03T00:46:25.000",
+     "complaint_type": "Noise - Commercial",
+     "incident_address": "37 VICTORY BOULEVARD"
+    },
+    {
+     "unique_key": "56420580",
+     "created_date": "2023-01-03T01:27:46.000",
+     "complaint_type": "Noise - Residential",
+     "incident_address": "1 BEACH  105 STREET"
+    }
+   ]
+  },
+  {
+   "issue": "mojibake_in_text",
+   "issue_type": "encoding",
+   "definition": "UTF-8 bytes decoded as Latin-1 in resolution text (e.g. 'Transportation\u00e2s')",
+   "affected_rows": 7878,
+   "pct_of_sample": 0.023979618237659386,
+   "projected_full_year_rows": 77328,
+   "examples": [
+    {
+     "unique_key": "56425307",
+     "resolution_description": "Service Request status for this request is available on the Department of Transportation\u00e2\u0080\u0099s website. Please click the \u00e2\u0080\u009cLearn More\u00e2\u0080\u009d link below."
+    },
+    {
+     "unique_key": "56426211",
+     "resolution_description": "Service Request status for this request is available on the Department of Transportation\u00e2\u0080\u0099s website. Please click the \u00e2\u0080\u009cLearn More\u00e2\u0080\u009d link below."
+    },
+    {
+     "unique_key": "56426248",
+     "resolution_description": "Service Request status for this request is available on the Department of Transportation\u00e2\u0080\u0099s website. Please click the \u00e2\u0080\u009cLearn More\u00e2\u0080\u009d link below."
+    },
+    {
+     "unique_key": "56426260",
+     "resolution_description": "Service Request status for this request is available on the Department of Transportation\u00e2\u0080\u0099s website. Please click the \u00e2\u0080\u009cLearn More\u00e2\u0080\u009d link below."
+    },
+    {
+     "unique_key": "56426281",
+     "resolution_description": "Service Request status for this request is available on the Department of Transportation\u00e2\u0080\u0099s website. Please click the \u00e2\u0080\u009cLearn More\u00e2\u0080\u009d link below."
+    }
+   ]
+  },
+  {
+   "issue": "resolution_updated_before_created",
+   "issue_type": "temporal",
+   "definition": "resolution_action_updated_date < created_date",
+   "affected_rows": 7399,
+   "pct_of_sample": 0.02252160387667451,
+   "projected_full_year_rows": 72626,
+   "examples": [
+    {
+     "unique_key": "56426211",
+     "agency": "DOT",
+     "complaint_type": "Street Light Condition"
+    },
+    {
+     "unique_key": "56426324",
+     "agency": "DOT",
+     "complaint_type": "Street Light Condition"
+    },
+    {
+     "unique_key": "56426462",
+     "agency": "DSNY",
+     "complaint_type": "Derelict Vehicles"
+    },
+    {
+     "unique_key": "56426485",
+     "agency": "DOT",
+     "complaint_type": "Street Light Condition"
+    },
+    {
+     "unique_key": "56426486",
+     "agency": "DOT",
+     "complaint_type": "Street Light Condition"
+    }
+   ]
+  },
+  {
+   "issue": "closed_equals_created",
+   "issue_type": "temporal",
+   "definition": "closed_date == created_date to the second (auto-closed or placeholder)",
+   "affected_rows": 6440,
+   "pct_of_sample": 0.019602531283387462,
+   "projected_full_year_rows": 63213,
+   "examples": [
+    {
+     "unique_key": "56419835",
+     "created_date": "2023-01-03T00:05:03.000",
+     "closed_date": "2023-01-03T00:05:03.000",
+     "agency": "DOHMH",
+     "complaint_type": "Rodent"
+    },
+    {
+     "unique_key": "56421944",
+     "created_date": "2023-01-03T01:00:56.000",
+     "closed_date": "2023-01-03T01:00:56.000",
+     "agency": "DOHMH",
+     "complaint_type": "Rodent"
+    },
+    {
+     "unique_key": "56423635",
+     "created_date": "2023-01-03T01:28:22.000",
+     "closed_date": "2023-01-03T01:28:22.000",
+     "agency": "DOHMH",
+     "complaint_type": "Rodent"
+    },
+    {
+     "unique_key": "56424001",
+     "created_date": "2023-01-03T01:33:47.000",
+     "closed_date": "2023-01-03T01:33:47.000",
+     "agency": "DOHMH",
+     "complaint_type": "Rodent"
+    },
+    {
+     "unique_key": "56426211",
+     "created_date": "2023-01-03T11:46:00.000",
+     "closed_date": "2023-01-03T11:46:00.000",
+     "agency": "DOT",
+     "complaint_type": "Street Light Condition"
+    }
+   ]
+  },
+  {
+   "issue": "closed_more_than_365_days_after_created",
+   "issue_type": "temporal",
+   "definition": "resolution took over a year",
+   "affected_rows": 5439,
+   "pct_of_sample": 0.01655561609477398,
+   "projected_full_year_rows": 53387,
+   "examples": [
+    {
+     "unique_key": "56420678",
+     "agency": "DOHMH",
+     "complaint_type": "Mobile Food Vendor"
+    },
+    {
+     "unique_key": "56421059",
+     "agency": "DOHMH",
+     "complaint_type": "Mobile Food Vendor"
+    },
+    {
+     "unique_key": "56422577",
+     "agency": "DOHMH",
+     "complaint_type": "Food Establishment"
+    },
+    {
+     "unique_key": "56423515",
+     "agency": "DOHMH",
+     "complaint_type": "Food Establishment"
+    },
+    {
+     "unique_key": "56424304",
+     "agency": "DOHMH",
+     "complaint_type": "Mobile Food Vendor"
+    }
+   ]
+  },
+  {
+   "issue": "missing_coordinates",
+   "issue_type": "completeness",
+   "definition": "latitude or longitude null",
+   "affected_rows": 4916,
+   "pct_of_sample": 0.01496367139582807,
+   "projected_full_year_rows": 48254,
+   "examples": [
+    {
+     "unique_key": "56420853",
+     "agency": "NYPD",
+     "complaint_type": "Illegal Parking"
+    },
+    {
+     "unique_key": "56422391",
+     "agency": "DSNY",
+     "complaint_type": "Derelict Vehicles"
+    },
+    {
+     "unique_key": "56426091",
+     "agency": "DSNY",
+     "complaint_type": "Dirty Condition"
+    },
+    {
+     "unique_key": "56426185",
+     "agency": "DSNY",
+     "complaint_type": "Graffiti"
+    },
+    {
+     "unique_key": "56426244",
+     "agency": "DSNY",
+     "complaint_type": "Dirty Condition"
+    }
+   ]
+  },
+  {
+   "issue": "missing_resolution_description",
+   "issue_type": "completeness",
+   "definition": "resolution_description null",
+   "affected_rows": 4496,
+   "pct_of_sample": 0.01368524544256367,
+   "projected_full_year_rows": 44131,
+   "examples": [
+    {
+     "unique_key": "56420575",
+     "agency": "DOHMH",
+     "complaint_type": "Rodent"
+    },
+    {
+     "unique_key": "56423965",
+     "agency": "DOHMH",
+     "complaint_type": "Rodent"
+    },
+    {
+     "unique_key": "56424591",
+     "agency": "DSNY",
+     "complaint_type": "Graffiti"
+    },
+    {
+     "unique_key": "56426058",
+     "agency": "DSNY",
+     "complaint_type": "Graffiti"
+    },
+    {
+     "unique_key": "56426185",
+     "agency": "DSNY",
+     "complaint_type": "Graffiti"
+    }
+   ]
+  },
+  {
+   "issue": "missing_descriptor",
+   "issue_type": "completeness",
+   "definition": "descriptor null",
+   "affected_rows": 3979,
+   "pct_of_sample": 0.012111563971521539,
+   "projected_full_year_rows": 39056,
+   "examples": [
+    {
+     "unique_key": "56419817",
+     "agency": "DHS",
+     "complaint_type": "Homeless Person Assistance"
+    },
+    {
+     "unique_key": "56420336",
+     "agency": "DHS",
+     "complaint_type": "Homeless Person Assistance"
+    },
+    {
+     "unique_key": "56420948",
+     "agency": "DHS",
+     "complaint_type": "Homeless Person Assistance"
+    },
+    {
+     "unique_key": "56422575",
+     "agency": "DHS",
+     "complaint_type": "Homeless Person Assistance"
+    },
+    {
+     "unique_key": "56423452",
+     "agency": "DHS",
+     "complaint_type": "Homeless Person Assistance"
+    }
+   ]
+  },
+  {
+   "issue": "missing_or_invalid_zip",
+   "issue_type": "validity",
+   "definition": "incident_zip null or not 5 digits",
+   "affected_rows": 3775,
+   "pct_of_sample": 0.011490614222793117,
+   "projected_full_year_rows": 37054,
+   "examples": [
+    {
+     "unique_key": "56420948",
+     "agency": "DHS",
+     "complaint_type": "Homeless Person Assistance"
+    },
+    {
+     "unique_key": "56422391",
+     "agency": "DSNY",
+     "complaint_type": "Derelict Vehicles"
+    },
+    {
+     "unique_key": "56423901",
+     "agency": "DHS",
+     "complaint_type": "Homeless Person Assistance"
+    },
+    {
+     "unique_key": "56425133",
+     "agency": "NYPD",
+     "complaint_type": "Encampment"
+    },
+    {
+     "unique_key": "56426029",
+     "agency": "NYPD",
+     "complaint_type": "Encampment"
+    }
+   ]
+  },
+  {
+   "issue": "status_closed_without_closed_date",
+   "issue_type": "consistency",
+   "definition": "status == 'Closed' but closed_date is null",
+   "affected_rows": 2152,
+   "pct_of_sample": 0.006550411074821401,
+   "projected_full_year_rows": 21123,
+   "examples": [
+    {
+     "unique_key": "57041474",
+     "status": "Closed",
+     "closed_date": "<NA>"
+    },
+    {
+     "unique_key": "57301902",
+     "status": "Closed",
+     "closed_date": "<NA>"
+    },
+    {
+     "unique_key": "57306872",
+     "status": "Closed",
+     "closed_date": "<NA>"
+    },
+    {
+     "unique_key": "61759317",
+     "status": "Closed",
+     "closed_date": "<NA>"
+    },
+    {
+     "unique_key": "61760608",
+     "status": "Closed",
+     "closed_date": "<NA>"
+    }
+   ]
+  },
+  {
+   "issue": "not_closed_but_has_closed_date",
+   "issue_type": "consistency",
+   "definition": "status != 'Closed' but closed_date is set",
+   "affected_rows": 601,
+   "pct_of_sample": 0.0018293666616950102,
+   "projected_full_year_rows": 5899,
+   "examples": [
+    {
+     "unique_key": "56426495",
+     "status": "Pending",
+     "closed_date": "2022-12-30T09:34:00.000"
+    },
+    {
+     "unique_key": "56426498",
+     "status": "Pending",
+     "closed_date": "2022-12-30T09:37:00.000"
+    },
+    {
+     "unique_key": "56426894",
+     "status": "Pending",
+     "closed_date": "2022-12-30T09:42:00.000"
+    },
+    {
+     "unique_key": "56426901",
+     "status": "Pending",
+     "closed_date": "2022-12-30T09:39:00.000"
+    },
+    {
+     "unique_key": "56427332",
+     "status": "Pending",
+     "closed_date": "2022-12-30T09:58:00.000"
+    }
+   ]
+  },
+  {
+   "issue": "borough_unspecified",
+   "issue_type": "completeness",
+   "definition": "borough == 'Unspecified' or null",
+   "affected_rows": 328,
+   "pct_of_sample": 0.0009983897920731503,
+   "projected_full_year_rows": 3220,
+   "examples": [
+    {
+     "unique_key": "56426763",
+     "agency": "DOT",
+     "complaint_type": "Ferry Inquiry"
+    },
+    {
+     "unique_key": "56428654",
+     "agency": "DOT",
+     "complaint_type": "Municipal Parking Facility"
+    },
+    {
+     "unique_key": "56431165",
+     "agency": "TLC",
+     "complaint_type": "For Hire Vehicle Complaint"
+    },
+    {
+     "unique_key": "56432499",
+     "agency": "DOT",
+     "complaint_type": "Street Light Condition"
+    },
+    {
+     "unique_key": "56433166",
+     "agency": "TLC",
+     "complaint_type": "Taxi Complaint"
+    }
+   ]
+  },
+  {
+   "issue": "community_board_unspecified",
+   "issue_type": "completeness",
+   "definition": "community_board starts with '0 Unspecified'",
+   "affected_rows": 328,
+   "pct_of_sample": 0.0009983897920731503,
+   "projected_full_year_rows": 3220,
+   "examples": [
+    {
+     "unique_key": "56426763",
+     "agency": "DOT",
+     "complaint_type": "Ferry Inquiry"
+    },
+    {
+     "unique_key": "56428654",
+     "agency": "DOT",
+     "complaint_type": "Municipal Parking Facility"
+    },
+    {
+     "unique_key": "56431165",
+     "agency": "TLC",
+     "complaint_type": "For Hire Vehicle Complaint"
+    },
+    {
+     "unique_key": "56432499",
+     "agency": "DOT",
+     "complaint_type": "Street Light Condition"
+    },
+    {
+     "unique_key": "56433166",
+     "agency": "TLC",
+     "complaint_type": "Taxi Complaint"
+    }
+   ]
+  },
+  {
+   "issue": "closed_before_created",
+   "issue_type": "temporal",
+   "definition": "closed_date < created_date",
+   "affected_rows": 312,
+   "pct_of_sample": 0.0009496878509964113,
+   "projected_full_year_rows": 3062,
+   "examples": [
+    {
+     "unique_key": "56426495",
+     "created_date": "2023-01-03T09:34:00.000",
+     "closed_date": "2022-12-30T09:34:00.000",
+     "agency": "DOT"
+    },
+    {
+     "unique_key": "56426498",
+     "created_date": "2023-01-03T09:37:00.000",
+     "closed_date": "2022-12-30T09:37:00.000",
+     "agency": "DOT"
+    },
+    {
+     "unique_key": "56426894",
+     "created_date": "2023-01-03T09:42:00.000",
+     "closed_date": "2022-12-30T09:42:00.000",
+     "agency": "DOT"
+    },
+    {
+     "unique_key": "56426901",
+     "created_date": "2023-01-03T09:40:00.000",
+     "closed_date": "2022-12-30T09:39:00.000",
+     "agency": "DOT"
+    },
+    {
+     "unique_key": "56427332",
+     "created_date": "2023-01-03T09:58:00.000",
+     "closed_date": "2022-12-30T09:58:00.000",
+     "agency": "DOT"
+    }
+   ]
+  },
+  {
+   "issue": "created_at_exact_midnight",
+   "issue_type": "temporal",
+   "definition": "created_date exactly 00:00:00 (date-only timestamps)",
+   "affected_rows": 224,
+   "pct_of_sample": 0.0006818271750743466,
+   "projected_full_year_rows": 2199,
+   "examples": [
+    {
+     "unique_key": "56422754",
+     "agency": "DSNY",
+     "complaint_type": "Derelict Vehicles"
+    },
+    {
+     "unique_key": "56426360",
+     "agency": "DOHMH",
+     "complaint_type": "Food Poisoning"
+    },
+    {
+     "unique_key": "56426375",
+     "agency": "DOHMH",
+     "complaint_type": "Food Poisoning"
+    },
+    {
+     "unique_key": "56426376",
+     "agency": "DOHMH",
+     "complaint_type": "Food Poisoning"
+    },
+    {
+     "unique_key": "56429917",
+     "agency": "DOHMH",
+     "complaint_type": "Food Poisoning"
+    }
+   ]
+  },
+  {
+   "issue": "possible_pii_in_resolution_text",
+   "issue_type": "privacy",
+   "definition": "non-agency phone/e-mail or out-of-vocabulary proper-noun pair in resolution text",
+   "affected_rows": 94,
+   "pct_of_sample": 0.00028612390382584186,
+   "projected_full_year_rows": 923,
+   "examples": [
+    {
+     "unique_key": "56430477",
+     "resolution_description": "The Department of Housing Preservation and Development was not able to gain access to inspect the conditions. If the conditions still exist and an inspection is"
+    },
+    {
+     "unique_key": "56431000",
+     "resolution_description": "The Department of Health and Mental Hygiene has investigated your complaint. You can get the status by calling <PHONE> on weekdays between 9 AM and 5 PM. This s"
+    },
+    {
+     "unique_key": "56431717",
+     "resolution_description": "The Department of Housing Preservation and Development was not able to gain access to inspect the conditions. If the conditions still exist and an inspection is"
+    },
+    {
+     "unique_key": "56515881",
+     "resolution_description": "The Department of Housing Preservation and Development was not able to gain access to inspect the conditions. If the conditions still exist and an inspection is"
+    },
+    {
+     "unique_key": "56606922",
+     "resolution_description": "The Department of Consumer Affairs has determined that this issue is not within its jurisdiction and should be referred to the New York State Liquor Authority. "
+    }
+   ]
+  },
+  {
+   "issue": "city_case_or_spelling_variants",
+   "issue_type": "consistency",
+   "definition": "city values that differ only by case/whitespace from another value",
+   "affected_rows": 11,
+   "pct_of_sample": 3.348258449025809e-05,
+   "projected_full_year_rows": 108,
+   "examples": [
+    {
+     "unique_key": "56786951",
+     "city": "Brooklyn"
+    },
+    {
+     "unique_key": "56873975",
+     "city": "Brooklyn"
+    },
+    {
+     "unique_key": "57214867",
+     "city": "staten island"
+    },
+    {
+     "unique_key": "57217886",
+     "city": "staten island"
+    },
+    {
+     "unique_key": "57402505",
+     "city": "New York"
+    }
+   ]
+  },
+  {
+   "issue": "zip_borough_mismatch",
+   "issue_type": "consistency",
+   "definition": "incident_zip's majority borough (>=95% of >=20 rows) differs from borough",
+   "affected_rows": 2,
+   "pct_of_sample": 6.08774263459238e-06,
+   "projected_full_year_rows": 20,
+   "examples": [
+    {
+     "unique_key": "59686952",
+     "incident_zip": "11416",
+     "borough": "BROOKLYN"
+    },
+    {
+     "unique_key": "59872206",
+     "incident_zip": "11237",
+     "borough": "QUEENS"
+    }
+   ]
+  },
+  {
+   "issue": "coordinates_outside_nyc",
+   "issue_type": "validity",
+   "definition": "lat/lon outside the NYC bounding box",
+   "affected_rows": 0,
+   "pct_of_sample": 0.0,
+   "projected_full_year_rows": 0,
+   "examples": []
+  },
+  {
+   "issue": "exact_duplicate_rows",
+   "issue_type": "uniqueness",
+   "definition": "row identical to another row in every column",
+   "affected_rows": 0,
+   "pct_of_sample": 0.0,
+   "projected_full_year_rows": 0,
+   "examples": []
+  },
+  {
+   "issue": "duplicate_unique_key",
+   "issue_type": "uniqueness",
+   "definition": "unique_key appears more than once",
+   "affected_rows": 0,
+   "pct_of_sample": 0.0,
+   "projected_full_year_rows": 0,
+   "examples": []
+  },
+  {
+   "issue": "latlon_inconsistent_with_xy",
+   "issue_type": "consistency",
+   "definition": "lat/lon more than 0.01 deg from the value implied by x/y state plane",
+   "affected_rows": 0,
+   "pct_of_sample": 0.0,
+   "projected_full_year_rows": 0,
+   "examples": []
+  }
+ ],
+ "full_year_aggregates": {
+  "total_rows": {
+   "status": "ok",
+   "count": 3224723,
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-01-01T00:00:00' AND created_date < '2024-01-01T00:00:00'"
+   },
+   "fetched_at": "2026-11-08T16:14:42"
+  },
+  "closed_before_created": {
+   "status": "ok",
+   "count": 4313,
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-01-01T00:00:00' AND created_date < '2024-01-01T00:00:00' AND closed_date < created_date"
+   },
+   "fetched_at": "2026-11-08T16:24:24"
+  },
+  "status_closed_without_closed_date": {
+   "status": "ok",
+   "count": 20251,
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-01-01T00:00:00' AND created_date < '2024-01-01T00:00:00' AND status = 'Closed' AND closed_date IS NULL"
+   },
+   "fetched_at": "2026-11-08T16:18:33"
+  },
+  "missing_incident_zip": {
+   "status": "ok",
+   "count": 38520,
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-01-01T00:00:00' AND created_date < '2024-01-01T00:00:00' AND incident_zip IS NULL"
+   },
+   "fetched_at": "2026-11-08T16:19:54"
+  },
+  "missing_latitude": {
+   "status": "unavailable",
+   "error": "request failed after 2 attempts: HTTPSConnectionPool(host='data.cityofnewyork.us', port=443): Read timed out. (read timeout=90)",
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-01-01T00:00:00' AND created_date < '2024-01-01T00:00:00' AND latitude IS NULL"
+   },
+   "partial_monthly": {
+    "2023-01": 4357,
+    "2023-02": 3801,
+    "2023-03": 4409,
+    "2023-04": 3920,
+    "2023-05": 4578,
+    "2023-06": 4353,
+    "2023-08": 4087,
+    "2023-09": 4466,
+    "2023-10": 3789,
+    "2023-11": 3231,
+    "2023-12": 3159
+   },
+   "months_failed": [
+    "2023-07"
+   ]
+  },
+  "borough_unspecified": {
+   "status": "ok",
+   "count": 5994,
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-01-01T00:00:00' AND created_date < '2024-01-01T00:00:00' AND borough = 'Unspecified'"
+   },
+   "fetched_at": "2026-11-08T16:20:38"
+  }
+ },
+ "closed_before_created_by_agency": {
+  "DOT": 295,
+  "HPD": 16,
+  "DEP": 1
+ },
+ "column_null_rates": {
+  "unique_key": 0.0,
+  "created_date": 0.0,
+  "closed_date": 0.018637624075804573,
+  "agency": 0.0,
+  "agency_name": 0.0,
+  "complaint_type": 0.0,
+  "descriptor": 0.012111563971521539,
+  "location_type": 0.12002288991230607,
+  "incident_zip": 0.011487570351475821,
+  "incident_address": 0.03829190117158607,
+  "street_name": 0.03832842762739362,
+  "city": 0.04999558638658992,
+  "status": 0.0,
+  "due_date": 0.9959851337324863,
+  "resolution_description": 0.01368524544256367,
+  "resolution_action_updated_date": 0.005975119395852421,
+  "community_board": 0.0,
+  "borough": 0.0,
+  "x_coordinate_state_plane": 0.01496367139582807,
+  "y_coordinate_state_plane": 0.01490888171211674,
+  "open_data_channel_type": 0.0,
+  "latitude": 0.01496367139582807,
+  "longitude": 0.01496367139582807
+ }
+}

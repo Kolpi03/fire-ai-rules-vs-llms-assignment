@@ -1,0 +1,342 @@
+[
+ {
+  "ok": true,
+  "check": "file present: README.md"
+ },
+ {
+  "ok": true,
+  "check": "file present: requirements.txt"
+ },
+ {
+  "ok": true,
+  "check": "file present: pyproject.toml"
+ },
+ {
+  "ok": true,
+  "check": "file present: .env.example"
+ },
+ {
+  "ok": true,
+  "check": "file present: .gitignore"
+ },
+ {
+  "ok": true,
+  "check": "file present: Makefile"
+ },
+ {
+  "ok": true,
+  "check": "file present: run_all.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: config/settings.yaml"
+ },
+ {
+  "ok": true,
+  "check": "file present: config/tax_rules_fy2024_25.yaml"
+ },
+ {
+  "ok": true,
+  "check": "file present: config/tax_rules_fy2025_26.yaml"
+ },
+ {
+  "ok": true,
+  "check": "file present: config/benchmark_config.yaml"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/models.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/rules_engine.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/llm_query_engine.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/llm_compiled_engine.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/natural_language_parser.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/tax_explainer.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/rule_registry.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/tax_sources.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/test_case_generator.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/benchmark.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/law_change_migration.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/cli.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/tests/test_rules_engine.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/tests/test_tax_boundaries.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/tests/test_nlp_parser.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/tests/test_llm_engines.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/tests/test_regression.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/data/tax_test_cases.json"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/data/natural_language_cases.json"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_b/data_loader.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_b/profiler.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_b/corruption_injector.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_b/schema_detector.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_b/statistical_detector.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_b/ml_detector.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_b/llm_detector.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_b/hybrid_pipeline.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_b/evaluation.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_b/benchmark.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_b/pii_detector.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_b/cli.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_b/tests/test_injector.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_b/tests/test_schema_detector.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_b/tests/test_statistical_detector.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_b/tests/test_llm_detector.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_b/tests/test_hybrid_pipeline.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: reports/RESULTS_A.md"
+ },
+ {
+  "ok": true,
+  "check": "file present: reports/RESULTS_B.md"
+ },
+ {
+  "ok": true,
+  "check": "file present: reports/DECISION_MATRIX.md"
+ },
+ {
+  "ok": true,
+  "check": "file present: reports/AI_USAGE.md"
+ },
+ {
+  "ok": true,
+  "check": "file present: reports/FINAL_DESIGN_A.md"
+ },
+ {
+  "ok": true,
+  "check": "file present: reports/FINAL_DESIGN_B.md"
+ },
+ {
+  "ok": true,
+  "check": "file present: scripts/download_data.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: scripts/generate_tax_tests.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: scripts/run_benchmarks.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: scripts/validate_submission.py"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/compiled_rules/fy2024_25.compiled.json"
+ },
+ {
+  "ok": true,
+  "check": "file present: project_a/compiled_rules/fy2025_26.compiled.json"
+ },
+ {
+  "ok": true,
+  "check": "tax test cases >= 200 (found 307)"
+ },
+ {
+  "ok": true,
+  "check": "test cases cover FY 2024-25 and FY 2025-26"
+ },
+ {
+  "ok": true,
+  "check": "50 natural-language cases (found 50)"
+ },
+ {
+  "ok": true,
+  "check": "NL styles include Hinglish/incomplete/contradictory/ambiguous"
+ },
+ {
+  "ok": true,
+  "check": "official-calculator worksheet has 30 rows (30 verified, 0 not verified)"
+ },
+ {
+  "ok": true,
+  "check": "official calculator: 30/30 cases checked on the portal (30 exact matches), screenshots missing for []"
+ },
+ {
+  "ok": true,
+  "check": "compiled artifact fy2024_25 approved"
+ },
+ {
+  "ok": true,
+  "check": "compiled artifact fy2025_26 approved"
+ },
+ {
+  "ok": true,
+  "check": "rules engine 100% rupee-exact FY 2024-25"
+ },
+ {
+  "ok": true,
+  "check": "FY 2024-25: query-time LLM measured with real calls (gemini-3.5-flash-lite, n=40, exact=0.25)"
+ },
+ {
+  "ok": true,
+  "check": "rules engine 100% rupee-exact FY 2025-26"
+ },
+ {
+  "ok": true,
+  "check": "FY 2025-26: query-time LLM measured with real calls (gemini-3.5-flash-lite, n=40, exact=0.3)"
+ },
+ {
+  "ok": true,
+  "check": "Task A5 migration report exists"
+ },
+ {
+  "ok": true,
+  "check": "36 detector/problem results (found 36)"
+ },
+ {
+  "ok": true,
+  "check": "detector results use the Jan-Sep reference / Oct-Dec evaluation split (found [1, 2, 3, 4, 5, 6, 7, 8, 9] / [10, 11, 12])"
+ },
+ {
+  "ok": true,
+  "check": "LLM detector rows measured with real calls: 12/12 (unmeasured: [])"
+ },
+ {
+  "ok": true,
+  "check": "hybrid results exist"
+ },
+ {
+  "ok": true,
+  "check": "real-data profile exists"
+ },
+ {
+  "ok": true,
+  "check": "NYC chunks verified: 37/37, problems=[]"
+ },
+ {
+  "ok": true,
+  "check": "temporal split verified: reference months [1, 2, 3, 4, 5, 6, 7, 8, 9], evaluation months [10, 11, 12]"
+ },
+ {
+  "ok": true,
+  "check": "FINAL_DESIGN_A.md within two pages (~1144 words, limit 1,150)"
+ },
+ {
+  "ok": true,
+  "check": "FINAL_DESIGN_B.md within two pages (~1149 words, limit 1,150)"
+ },
+ {
+  "ok": true,
+  "check": "no API keys in files []"
+ },
+ {
+  "ok": true,
+  "check": "no TODO/FIXME in code []"
+ },
+ {
+  "ok": true,
+  "check": ".env is not tracked by git"
+ },
+ {
+  "ok": true,
+  "check": ".env listed in .gitignore"
+ }
+]

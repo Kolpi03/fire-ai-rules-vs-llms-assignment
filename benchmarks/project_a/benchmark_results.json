@@ -1,0 +1,169 @@
+{
+ "generated_at": "2026-11-09 22:34:47",
+ "llm": {
+  "gemini_api_key_present": true,
+  "sdk_installed": true,
+  "model": "gemini-3.5-flash-lite",
+  "mode": "real"
+ },
+ "by_fy": {
+  "2024-25": {
+   "rules_engine": {
+    "engine": "rules_engine",
+    "fy": "2024-25",
+    "status": "measured",
+    "n_cases": 179,
+    "rupee_exact_accuracy": 1.0,
+    "component_accuracy": 1.0,
+    "failed_cases": [],
+    "traceability": 1.0,
+    "determinism": {
+     "cases": 10,
+     "repeats": 10,
+     "deterministic_cases": 10
+    },
+    "latency": {
+     "avg_ms": 0.0404153072780582,
+     "median_ms": 0.03798200032179011,
+     "p95_ms": 0.05344099918147549,
+     "n": 537
+    },
+    "cost_per_1000_usd": 5.625367008069609e-07,
+    "cost_basis": "measured CPU 0.041 ms/request x $0.05/CPU-hour"
+   },
+   "llm_compiled_engine": {
+    "engine": "llm_compiled_engine",
+    "fy": "2024-25",
+    "status": "measured",
+    "n_cases": 179,
+    "rupee_exact_accuracy": 1.0,
+    "component_accuracy": 1.0,
+    "failed_cases": [],
+    "traceability": 1.0,
+    "determinism": {
+     "cases": 10,
+     "repeats": 10,
+     "deterministic_cases": 10
+    },
+    "latency": {
+     "avg_ms": 0.7761991936836349,
+     "median_ms": 0.7552810002380284,
+     "p95_ms": 0.8838939993438544,
+     "n": 537
+    },
+    "cost_per_1000_usd": 1.0782456160769703e-05,
+    "cost_basis": "measured CPU 0.776 ms/request x $0.05/CPU-hour"
+   },
+   "llm_query_engine": {
+    "engine": "llm_query_engine",
+    "fy": "2024-25",
+    "model": "gemini-3.5-flash-lite",
+    "projected_cost_per_1000_usd": 2.7337860335195527,
+    "projection_basis": "avg prompt 1613 tokens (chars/4 estimate of the real prompts) + 900 output tokens (assumed, thinking tokens excluded) at $0.3/$2.5 per M tokens",
+    "status": "measured (real Gemini calls; cached replays excluded from latency)",
+    "n_cases": 40,
+    "rupee_exact_accuracy_raw_llm": 0.25,
+    "rupee_exact_accuracy": 0.25,
+    "validation_outcomes": {
+     "rejected": 30,
+     "ok": 10
+    },
+    "traceability": 1.0,
+    "determinism": {
+     "cases": 3,
+     "repeats": 10,
+     "deterministic_cases": 1
+    },
+    "latency": {
+     "avg_ms": 4263.518934014246,
+     "median_ms": 3903.66267599984,
+     "p95_ms": 7254.465412999707,
+     "n": 70
+    },
+    "cost_per_1000_usd": 3.4999100000000003,
+    "cost_basis": "measured tokens x list price",
+    "reused_from_run": "2026-11-09 20:50:58",
+    "reuse_note": "real Gemini measurement reused (set LLM_REMEASURE=1 to re-measure)"
+   }
+  },
+  "2025-26": {
+   "rules_engine": {
+    "engine": "rules_engine",
+    "fy": "2025-26",
+    "status": "measured",
+    "n_cases": 128,
+    "rupee_exact_accuracy": 1.0,
+    "component_accuracy": 1.0,
+    "failed_cases": [],
+    "traceability": 1.0,
+    "determinism": {
+     "cases": 10,
+     "repeats": 10,
+     "deterministic_cases": 10
+    },
+    "latency": {
+     "avg_ms": 0.04267211978733106,
+     "median_ms": 0.04149349979343242,
+     "p95_ms": 0.055604999943170696,
+     "n": 384
+    },
+    "cost_per_1000_usd": 5.941140769675993e-07,
+    "cost_basis": "measured CPU 0.043 ms/request x $0.05/CPU-hour"
+   },
+   "llm_compiled_engine": {
+    "engine": "llm_compiled_engine",
+    "fy": "2025-26",
+    "status": "measured",
+    "n_cases": 128,
+    "rupee_exact_accuracy": 1.0,
+    "component_accuracy": 1.0,
+    "failed_cases": [],
+    "traceability": 1.0,
+    "determinism": {
+     "cases": 10,
+     "repeats": 10,
+     "deterministic_cases": 10
+    },
+    "latency": {
+     "avg_ms": 0.8026242083379506,
+     "median_ms": 0.7528665000791079,
+     "p95_ms": 1.1138099998788675,
+     "n": 384
+    },
+    "cost_per_1000_usd": 1.114606394675926e-05,
+    "cost_basis": "measured CPU 0.803 ms/request x $0.05/CPU-hour"
+   },
+   "llm_query_engine": {
+    "engine": "llm_query_engine",
+    "fy": "2025-26",
+    "model": "gemini-3.5-flash-lite",
+    "projected_cost_per_1000_usd": 2.75020078125,
+    "projection_basis": "avg prompt 1667 tokens (chars/4 estimate of the real prompts) + 900 output tokens (assumed, thinking tokens excluded) at $0.3/$2.5 per M tokens",
+    "status": "measured (real Gemini calls; cached replays excluded from latency)",
+    "n_cases": 40,
+    "rupee_exact_accuracy_raw_llm": 0.3,
+    "rupee_exact_accuracy": 0.3,
+    "validation_outcomes": {
+     "rejected": 28,
+     "ok": 12
+    },
+    "traceability": 1.0,
+    "determinism": {
+     "cases": 3,
+     "repeats": 10,
+     "deterministic_cases": 0
+    },
+    "latency": {
+     "avg_ms": 4487.640136485723,
+     "median_ms": 3859.966661500266,
+     "p95_ms": 5443.117991000236,
+     "n": 70
+    },
+    "cost_per_1000_usd": 3.657644285714285,
+    "cost_basis": "measured tokens x list price",
+    "reused_from_run": "2026-11-09 20:50:58",
+    "reuse_note": "real Gemini measurement reused (set LLM_REMEASURE=1 to re-measure)"
+   }
+  }
+ }
+}

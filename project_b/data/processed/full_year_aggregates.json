@@ -1,0 +1,71 @@
+{
+  "total_rows": {
+    "status": "ok",
+    "count": 3224723,
+    "query": {
+      "$select": "count(*) AS n",
+      "$where": "created_date >= '2023-01-01T00:00:00' AND created_date < '2024-01-01T00:00:00'"
+    },
+    "fetched_at": "2026-11-08T16:14:42"
+  },
+  "closed_before_created": {
+    "status": "ok",
+    "count": 4313,
+    "query": {
+      "$select": "count(*) AS n",
+      "$where": "created_date >= '2023-01-01T00:00:00' AND created_date < '2024-01-01T00:00:00' AND closed_date < created_date"
+    },
+    "fetched_at": "2026-11-08T16:24:24"
+  },
+  "status_closed_without_closed_date": {
+    "status": "ok",
+    "count": 20251,
+    "query": {
+      "$select": "count(*) AS n",
+      "$where": "created_date >= '2023-01-01T00:00:00' AND created_date < '2024-01-01T00:00:00' AND status = 'Closed' AND closed_date IS NULL"
+    },
+    "fetched_at": "2026-11-08T16:18:33"
+  },
+  "missing_incident_zip": {
+    "status": "ok",
+    "count": 38520,
+    "query": {
+      "$select": "count(*) AS n",
+      "$where": "created_date >= '2023-01-01T00:00:00' AND created_date < '2024-01-01T00:00:00' AND incident_zip IS NULL"
+    },
+    "fetched_at": "2026-11-08T16:19:54"
+  },
+  "missing_latitude": {
+    "status": "unavailable",
+    "error": "request failed after 2 attempts: HTTPSConnectionPool(host='data.cityofnewyork.us', port=443): Read timed out. (read timeout=90)",
+    "query": {
+      "$select": "count(*) AS n",
+      "$where": "created_date >= '2023-01-01T00:00:00' AND created_date < '2024-01-01T00:00:00' AND latitude IS NULL"
+    },
+    "partial_monthly": {
+      "2023-01": 4357,
+      "2023-02": 3801,
+      "2023-03": 4409,
+      "2023-04": 3920,
+      "2023-05": 4578,
+      "2023-06": 4353,
+      "2023-08": 4087,
+      "2023-09": 4466,
+      "2023-10": 3789,
+      "2023-11": 3231,
+      "2023-12": 3159
+    },
+    "months_failed": [
+      "2023-07"
+    ]
+  },
+  "borough_unspecified": {
+    "status": "ok",
+    "count": 5994,
+    "query": {
+      "$select": "count(*) AS n",
+      "$where": "created_date >= '2023-01-01T00:00:00' AND created_date < '2024-01-01T00:00:00' AND borough = 'Unspecified'"
+    },
+    "fetched_at": "2026-11-08T16:20:38"
+  }
+}

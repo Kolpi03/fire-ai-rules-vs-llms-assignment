@@ -1,0 +1,2808 @@
+{
+ "source": "https://eportal.incometax.gov.in/iec/foservices/#/TaxCalc/calculator",
+ "calculator": "Income & Tax Calculator > Advance Calculator; Applicable Act: Income Tax Act 1961; Type of ITR: Other than Updated return; Assessment Year 2025-26 (FY 2024-25); Taxpayer Category: Individual; Residential Status: RES (Resident); due date 31-Jul-2025, actual date 31-Dec-2025 (portal defaults; affect only interest/fee lines, which are not compared)",
+ "captured_on": "2026-11-09",
+ "method": "Claude in Chrome on the user's Chrome; fields set with standard DOM input events; values read from the portal's rendered result lines. No login, no CAPTCHA.",
+ "cases_attempted": 30,
+ "cases_compared": 30,
+ "verified_match": 30,
+ "mismatch": 0,
+ "blocked": 0,
+ "regime_comparisons": 60,
+ "pre_rounding_differences": 15,
+ "results": [
+  {
+   "case_no": 1,
+   "case_id": "HW-01",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 30,
+    "financial_year": "2024-25",
+    "gross_salary": 775000
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 725000.0,
+      "tax_at_normal_rates": 57500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 2300.0,
+      "total_tax_before_288B": 59800.0,
+      "tax_payable_288B": 59800.0
+     },
+     "ours": {
+      "taxable_income": 725000.0,
+      "tax_at_normal_rates": 57500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 2300.0,
+      "total_tax_before_288B": 59800.0,
+      "tax_payable_288B": 59800.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 775000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_01_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 700000.0,
+      "tax_at_normal_rates": 20000.0,
+      "rebate_87a": 20000.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "ours": {
+      "taxable_income": 700000.0,
+      "tax_at_normal_rates": 20000.0,
+      "rebate_87a": 20000.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 775000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_01_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 2,
+   "case_id": "HW-02",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 30,
+    "financial_year": "2024-25",
+    "gross_salary": 785000
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 735000.0,
+      "tax_at_normal_rates": 59500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 2380.0,
+      "total_tax_before_288B": 61880.0,
+      "tax_payable_288B": 61880.0
+     },
+     "ours": {
+      "taxable_income": 735000.0,
+      "tax_at_normal_rates": 59500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 2380.0,
+      "total_tax_before_288B": 61880.0,
+      "tax_payable_288B": 61880.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 785000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_02_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 710000.0,
+      "tax_at_normal_rates": 21000.0,
+      "rebate_87a": 11000.0,
+      "surcharge": 0.0,
+      "cess": 400.0,
+      "total_tax_before_288B": 10400.0,
+      "tax_payable_288B": 10400.0
+     },
+     "ours": {
+      "taxable_income": 710000.0,
+      "tax_at_normal_rates": 21000.0,
+      "rebate_87a": 11000.0,
+      "surcharge": 0.0,
+      "cess": 400.0,
+      "total_tax_before_288B": 10400.0,
+      "tax_payable_288B": 10400.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 785000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_02_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 3,
+   "case_id": "HW-03",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 30,
+    "financial_year": "2024-25",
+    "gross_salary": 797230
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 747230.0,
+      "tax_at_normal_rates": 61946.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 2477.0,
+      "total_tax_before_288B": 64423.0,
+      "tax_payable_288B": 64420.0
+     },
+     "ours": {
+      "taxable_income": 747230.0,
+      "tax_at_normal_rates": 61946.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 2477.84,
+      "total_tax_before_288B": 64423.84,
+      "tax_payable_288B": 64420.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": -0.84,
+      "total_tax_before_288B": -0.84,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 797230,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_03_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 722230.0,
+      "tax_at_normal_rates": 22223.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 888.0,
+      "total_tax_before_288B": 23111.0,
+      "tax_payable_288B": 23110.0
+     },
+     "ours": {
+      "taxable_income": 722230.0,
+      "tax_at_normal_rates": 22223.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 888.92,
+      "total_tax_before_288B": 23111.92,
+      "tax_payable_288B": 23110.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": -0.92,
+      "total_tax_before_288B": -0.92,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 797230,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_03_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 4,
+   "case_id": "HW-04",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 30,
+    "financial_year": "2024-25",
+    "gross_salary": 550000
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 500000.0,
+      "tax_at_normal_rates": 12500.0,
+      "rebate_87a": 12500.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "ours": {
+      "taxable_income": 500000.0,
+      "tax_at_normal_rates": 12500.0,
+      "rebate_87a": 12500.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 550000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_04_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 475000.0,
+      "tax_at_normal_rates": 8750.0,
+      "rebate_87a": 8750.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "ours": {
+      "taxable_income": 475000.0,
+      "tax_at_normal_rates": 8750.0,
+      "rebate_87a": 8750.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 550000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_04_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 5,
+   "case_id": "HW-05",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 30,
+    "financial_year": "2024-25",
+    "gross_salary": 550010
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 500010.0,
+      "tax_at_normal_rates": 12502.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 500.0,
+      "total_tax_before_288B": 13002.0,
+      "tax_payable_288B": 13000.0
+     },
+     "ours": {
+      "taxable_income": 500010.0,
+      "tax_at_normal_rates": 12502.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 500.08,
+      "total_tax_before_288B": 13002.08,
+      "tax_payable_288B": 13000.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": -0.08,
+      "total_tax_before_288B": -0.08,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 550010,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_05_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 475010.0,
+      "tax_at_normal_rates": 8750.0,
+      "rebate_87a": 8750.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "ours": {
+      "taxable_income": 475010.0,
+      "tax_at_normal_rates": 8750.5,
+      "rebate_87a": 8750.5,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": -0.5,
+      "rebate_87a": -0.5,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 550010,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_05_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 6,
+   "case_id": "HW-06",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 65,
+    "financial_year": "2024-25",
+    "gross_salary": 1050000,
+    "section_80c": 150000
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 850000.0,
+      "tax_at_normal_rates": 80000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 3200.0,
+      "total_tax_before_288B": 83200.0,
+      "tax_payable_288B": 83200.0
+     },
+     "ours": {
+      "taxable_income": 850000.0,
+      "tax_at_normal_rates": 80000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 3200.0,
+      "total_tax_before_288B": 83200.0,
+      "tax_payable_288B": 83200.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Between",
+      "net_salary": 1050000,
+      "80C": 150000,
+      "80D": 0,
+      "portal_deductions_line": "150000"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_06_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 975000.0,
+      "tax_at_normal_rates": 47500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 1900.0,
+      "total_tax_before_288B": 49400.0,
+      "tax_payable_288B": 49400.0
+     },
+     "ours": {
+      "taxable_income": 975000.0,
+      "tax_at_normal_rates": 47500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 1900.0,
+      "total_tax_before_288B": 49400.0,
+      "tax_payable_288B": 49400.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Between",
+      "net_salary": 1050000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_06_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 7,
+   "case_id": "BND-202425-87A-OLD-10",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 30,
+    "financial_year": "2024-25",
+    "gross_salary": 549990
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 499990.0,
+      "tax_at_normal_rates": 12499.0,
+      "rebate_87a": 12499.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "ours": {
+      "taxable_income": 499990.0,
+      "tax_at_normal_rates": 12499.5,
+      "rebate_87a": 12499.5,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": -0.5,
+      "rebate_87a": -0.5,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 549990,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_07_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 474990.0,
+      "tax_at_normal_rates": 8749.0,
+      "rebate_87a": 8749.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "ours": {
+      "taxable_income": 474990.0,
+      "tax_at_normal_rates": 8749.5,
+      "rebate_87a": 8749.5,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": -0.5,
+      "rebate_87a": -0.5,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 549990,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_07_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 8,
+   "case_id": "BND-202425-87A-OLD+0",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 30,
+    "financial_year": "2024-25",
+    "gross_salary": 550000
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 500000.0,
+      "tax_at_normal_rates": 12500.0,
+      "rebate_87a": 12500.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "ours": {
+      "taxable_income": 500000.0,
+      "tax_at_normal_rates": 12500.0,
+      "rebate_87a": 12500.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 550000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_08_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 475000.0,
+      "tax_at_normal_rates": 8750.0,
+      "rebate_87a": 8750.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "ours": {
+      "taxable_income": 475000.0,
+      "tax_at_normal_rates": 8750.0,
+      "rebate_87a": 8750.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 550000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_08_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 9,
+   "case_id": "BND-202425-87A-OLD+10",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 30,
+    "financial_year": "2024-25",
+    "gross_salary": 550010
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 500010.0,
+      "tax_at_normal_rates": 12502.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 500.0,
+      "total_tax_before_288B": 13002.0,
+      "tax_payable_288B": 13000.0
+     },
+     "ours": {
+      "taxable_income": 500010.0,
+      "tax_at_normal_rates": 12502.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 500.08,
+      "total_tax_before_288B": 13002.08,
+      "tax_payable_288B": 13000.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": -0.08,
+      "total_tax_before_288B": -0.08,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 550010,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_09_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 475010.0,
+      "tax_at_normal_rates": 8750.0,
+      "rebate_87a": 8750.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "ours": {
+      "taxable_income": 475010.0,
+      "tax_at_normal_rates": 8750.5,
+      "rebate_87a": 8750.5,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": -0.5,
+      "rebate_87a": -0.5,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 550010,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_09_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 10,
+   "case_id": "BND-202425-87A-OLD+20",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 30,
+    "financial_year": "2024-25",
+    "gross_salary": 550020
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 500020.0,
+      "tax_at_normal_rates": 12504.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 500.0,
+      "total_tax_before_288B": 13004.0,
+      "tax_payable_288B": 13000.0
+     },
+     "ours": {
+      "taxable_income": 500020.0,
+      "tax_at_normal_rates": 12504.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 500.16,
+      "total_tax_before_288B": 13004.16,
+      "tax_payable_288B": 13000.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": -0.16,
+      "total_tax_before_288B": -0.16,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 550020,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_10_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 475020.0,
+      "tax_at_normal_rates": 8751.0,
+      "rebate_87a": 8751.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "ours": {
+      "taxable_income": 475020.0,
+      "tax_at_normal_rates": 8751.0,
+      "rebate_87a": 8751.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 550020,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_10_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 11,
+   "case_id": "BND-202425-87A-NEW-699990",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 30,
+    "financial_year": "2024-25",
+    "gross_salary": 774990
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 724990.0,
+      "tax_at_normal_rates": 57498.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 2299.0,
+      "total_tax_before_288B": 59797.0,
+      "tax_payable_288B": 59800.0
+     },
+     "ours": {
+      "taxable_income": 724990.0,
+      "tax_at_normal_rates": 57498.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 2299.92,
+      "total_tax_before_288B": 59797.92,
+      "tax_payable_288B": 59800.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": -0.92,
+      "total_tax_before_288B": -0.92,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 774990,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_11_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 699990.0,
+      "tax_at_normal_rates": 19999.0,
+      "rebate_87a": 19999.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "ours": {
+      "taxable_income": 699990.0,
+      "tax_at_normal_rates": 19999.5,
+      "rebate_87a": 19999.5,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": -0.5,
+      "rebate_87a": -0.5,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 774990,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_11_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 12,
+   "case_id": "BND-202425-87A-NEW-700000",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 30,
+    "financial_year": "2024-25",
+    "gross_salary": 775000
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 725000.0,
+      "tax_at_normal_rates": 57500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 2300.0,
+      "total_tax_before_288B": 59800.0,
+      "tax_payable_288B": 59800.0
+     },
+     "ours": {
+      "taxable_income": 725000.0,
+      "tax_at_normal_rates": 57500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 2300.0,
+      "total_tax_before_288B": 59800.0,
+      "tax_payable_288B": 59800.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 775000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_12_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 700000.0,
+      "tax_at_normal_rates": 20000.0,
+      "rebate_87a": 20000.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "ours": {
+      "taxable_income": 700000.0,
+      "tax_at_normal_rates": 20000.0,
+      "rebate_87a": 20000.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 775000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_12_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 13,
+   "case_id": "BND-HRA-A-min",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 32,
+    "annual_rent_paid": 500000,
+    "basic_plus_da": 600000,
+    "financial_year": "2024-25",
+    "gross_salary": 1400000,
+    "hra_received": 200000,
+    "metro_city": true
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 1150000.0,
+      "tax_at_normal_rates": 157500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 6300.0,
+      "total_tax_before_288B": 163800.0,
+      "tax_payable_288B": 163800.0
+     },
+     "ours": {
+      "taxable_income": 1150000.0,
+      "tax_at_normal_rates": 157500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 6300.0,
+      "total_tax_before_288B": 163800.0,
+      "tax_payable_288B": 163800.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 1200000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_13_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 1325000.0,
+      "tax_at_normal_rates": 105000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 4200.0,
+      "total_tax_before_288B": 109200.0,
+      "tax_payable_288B": 109200.0
+     },
+     "ours": {
+      "taxable_income": 1325000.0,
+      "tax_at_normal_rates": 105000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 4200.0,
+      "total_tax_before_288B": 109200.0,
+      "tax_payable_288B": 109200.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 1400000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_13_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 14,
+   "case_id": "BND-HRA-B-min",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 32,
+    "annual_rent_paid": 150000,
+    "basic_plus_da": 600000,
+    "financial_year": "2024-25",
+    "gross_salary": 1400000,
+    "hra_received": 300000,
+    "metro_city": true
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 1260000.0,
+      "tax_at_normal_rates": 190500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 7620.0,
+      "total_tax_before_288B": 198120.0,
+      "tax_payable_288B": 198120.0
+     },
+     "ours": {
+      "taxable_income": 1260000.0,
+      "tax_at_normal_rates": 190500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 7620.0,
+      "total_tax_before_288B": 198120.0,
+      "tax_payable_288B": 198120.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 1310000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_14_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 1325000.0,
+      "tax_at_normal_rates": 105000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 4200.0,
+      "total_tax_before_288B": 109200.0,
+      "tax_payable_288B": 109200.0
+     },
+     "ours": {
+      "taxable_income": 1325000.0,
+      "tax_at_normal_rates": 105000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 4200.0,
+      "total_tax_before_288B": 109200.0,
+      "tax_payable_288B": 109200.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 1400000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_14_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 15,
+   "case_id": "BND-HRA-C-min-metro",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 32,
+    "annual_rent_paid": 500000,
+    "basic_plus_da": 400000,
+    "financial_year": "2024-25",
+    "gross_salary": 1400000,
+    "hra_received": 300000,
+    "metro_city": true
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 1150000.0,
+      "tax_at_normal_rates": 157500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 6300.0,
+      "total_tax_before_288B": 163800.0,
+      "tax_payable_288B": 163800.0
+     },
+     "ours": {
+      "taxable_income": 1150000.0,
+      "tax_at_normal_rates": 157500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 6300.0,
+      "total_tax_before_288B": 163800.0,
+      "tax_payable_288B": 163800.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 1200000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_15_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 1325000.0,
+      "tax_at_normal_rates": 105000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 4200.0,
+      "total_tax_before_288B": 109200.0,
+      "tax_payable_288B": 109200.0
+     },
+     "ours": {
+      "taxable_income": 1325000.0,
+      "tax_at_normal_rates": 105000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 4200.0,
+      "total_tax_before_288B": 109200.0,
+      "tax_payable_288B": 109200.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 1400000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_15_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 16,
+   "case_id": "BND-HRA-C-min-nonmetro",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 32,
+    "annual_rent_paid": 500000,
+    "basic_plus_da": 400000,
+    "financial_year": "2024-25",
+    "gross_salary": 1400000,
+    "hra_received": 300000,
+    "metro_city": false
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 1190000.0,
+      "tax_at_normal_rates": 169500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 6780.0,
+      "total_tax_before_288B": 176280.0,
+      "tax_payable_288B": 176280.0
+     },
+     "ours": {
+      "taxable_income": 1190000.0,
+      "tax_at_normal_rates": 169500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 6780.0,
+      "total_tax_before_288B": 176280.0,
+      "tax_payable_288B": 176280.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 1240000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_16_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 1325000.0,
+      "tax_at_normal_rates": 105000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 4200.0,
+      "total_tax_before_288B": 109200.0,
+      "tax_payable_288B": 109200.0
+     },
+     "ours": {
+      "taxable_income": 1325000.0,
+      "tax_at_normal_rates": 105000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 4200.0,
+      "total_tax_before_288B": 109200.0,
+      "tax_payable_288B": 109200.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 1400000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_16_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 17,
+   "case_id": "BND-HRA-rent-below-10pct",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 32,
+    "annual_rent_paid": 50000,
+    "basic_plus_da": 600000,
+    "financial_year": "2024-25",
+    "gross_salary": 1400000,
+    "hra_received": 200000
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 1350000.0,
+      "tax_at_normal_rates": 217500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 8700.0,
+      "total_tax_before_288B": 226200.0,
+      "tax_payable_288B": 226200.0
+     },
+     "ours": {
+      "taxable_income": 1350000.0,
+      "tax_at_normal_rates": 217500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 8700.0,
+      "total_tax_before_288B": 226200.0,
+      "tax_payable_288B": 226200.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 1400000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_17_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 1325000.0,
+      "tax_at_normal_rates": 105000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 4200.0,
+      "total_tax_before_288B": 109200.0,
+      "tax_payable_288B": 109200.0
+     },
+     "ours": {
+      "taxable_income": 1325000.0,
+      "tax_at_normal_rates": 105000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 4200.0,
+      "total_tax_before_288B": 109200.0,
+      "tax_payable_288B": 109200.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 1400000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_17_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 18,
+   "case_id": "BND-HRA-no-rent",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 32,
+    "annual_rent_paid": 0,
+    "basic_plus_da": 600000,
+    "financial_year": "2024-25",
+    "gross_salary": 1400000,
+    "hra_received": 200000
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 1350000.0,
+      "tax_at_normal_rates": 217500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 8700.0,
+      "total_tax_before_288B": 226200.0,
+      "tax_payable_288B": 226200.0
+     },
+     "ours": {
+      "taxable_income": 1350000.0,
+      "tax_at_normal_rates": 217500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 8700.0,
+      "total_tax_before_288B": 226200.0,
+      "tax_payable_288B": 226200.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 1400000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_18_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 1325000.0,
+      "tax_at_normal_rates": 105000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 4200.0,
+      "total_tax_before_288B": 109200.0,
+      "tax_payable_288B": 109200.0
+     },
+     "ours": {
+      "taxable_income": 1325000.0,
+      "tax_at_normal_rates": 105000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 4200.0,
+      "total_tax_before_288B": 109200.0,
+      "tax_payable_288B": 109200.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 1400000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_18_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 19,
+   "case_id": "BND-CAP-80D-PARENTS-SENIOR-10",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 35,
+    "financial_year": "2024-25",
+    "gross_salary": 1800000,
+    "health_insurance_parents": 49990,
+    "parents_are_senior": true
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 1700010.0,
+      "tax_at_normal_rates": 322503.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 12900.0,
+      "total_tax_before_288B": 335403.0,
+      "tax_payable_288B": 335400.0
+     },
+     "ours": {
+      "taxable_income": 1700010.0,
+      "tax_at_normal_rates": 322503.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 12900.12,
+      "total_tax_before_288B": 335403.12,
+      "tax_payable_288B": 335400.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": -0.12,
+      "total_tax_before_288B": -0.12,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 1800000,
+      "80C": 0,
+      "80D": 49990,
+      "portal_deductions_line": "49990"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_19_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 1725000.0,
+      "tax_at_normal_rates": 207500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 8300.0,
+      "total_tax_before_288B": 215800.0,
+      "tax_payable_288B": 215800.0
+     },
+     "ours": {
+      "taxable_income": 1725000.0,
+      "tax_at_normal_rates": 207500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 8300.0,
+      "total_tax_before_288B": 215800.0,
+      "tax_payable_288B": 215800.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 1800000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_19_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 20,
+   "case_id": "BND-CAP-80D-SELF-SENIOR-10",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 62,
+    "financial_year": "2024-25",
+    "gross_salary": 1800000,
+    "health_insurance_self_family": 49990
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 1700010.0,
+      "tax_at_normal_rates": 320003.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 12800.0,
+      "total_tax_before_288B": 332803.0,
+      "tax_payable_288B": 332800.0
+     },
+     "ours": {
+      "taxable_income": 1700010.0,
+      "tax_at_normal_rates": 320003.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 12800.12,
+      "total_tax_before_288B": 332803.12,
+      "tax_payable_288B": 332800.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": -0.12,
+      "total_tax_before_288B": -0.12,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Between",
+      "net_salary": 1800000,
+      "80C": 0,
+      "80D": 49990,
+      "portal_deductions_line": "49990"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_20_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 1725000.0,
+      "tax_at_normal_rates": 207500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 8300.0,
+      "total_tax_before_288B": 215800.0,
+      "tax_payable_288B": 215800.0
+     },
+     "ours": {
+      "taxable_income": 1725000.0,
+      "tax_at_normal_rates": 207500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 8300.0,
+      "total_tax_before_288B": 215800.0,
+      "tax_payable_288B": 215800.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Between",
+      "net_salary": 1800000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_20_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 21,
+   "case_id": "BND-CAP-80D-PREVENTIVE-10",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 35,
+    "financial_year": "2024-25",
+    "gross_salary": 1800000,
+    "preventive_checkup_parents": 1990,
+    "preventive_checkup_self_family": 3000
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 1745010.0,
+      "tax_at_normal_rates": 336003.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 13440.0,
+      "total_tax_before_288B": 349443.0,
+      "tax_payable_288B": 349440.0
+     },
+     "ours": {
+      "taxable_income": 1745010.0,
+      "tax_at_normal_rates": 336003.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 13440.12,
+      "total_tax_before_288B": 349443.12,
+      "tax_payable_288B": 349440.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": -0.12,
+      "total_tax_before_288B": -0.12,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 1800000,
+      "80C": 0,
+      "80D": 4990,
+      "portal_deductions_line": "4990"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_21_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 1725000.0,
+      "tax_at_normal_rates": 207500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 8300.0,
+      "total_tax_before_288B": 215800.0,
+      "tax_payable_288B": 215800.0
+     },
+     "ours": {
+      "taxable_income": 1725000.0,
+      "tax_at_normal_rates": 207500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 8300.0,
+      "total_tax_before_288B": 215800.0,
+      "tax_payable_288B": 215800.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 1800000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_21_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 22,
+   "case_id": "BND-CAP-80D-PARENTS-SENIOR+0",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 35,
+    "financial_year": "2024-25",
+    "gross_salary": 1800000,
+    "health_insurance_parents": 50000,
+    "parents_are_senior": true
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 1700000.0,
+      "tax_at_normal_rates": 322500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 12900.0,
+      "total_tax_before_288B": 335400.0,
+      "tax_payable_288B": 335400.0
+     },
+     "ours": {
+      "taxable_income": 1700000.0,
+      "tax_at_normal_rates": 322500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 12900.0,
+      "total_tax_before_288B": 335400.0,
+      "tax_payable_288B": 335400.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 1800000,
+      "80C": 0,
+      "80D": 50000,
+      "portal_deductions_line": "50000"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_22_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 1725000.0,
+      "tax_at_normal_rates": 207500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 8300.0,
+      "total_tax_before_288B": 215800.0,
+      "tax_payable_288B": 215800.0
+     },
+     "ours": {
+      "taxable_income": 1725000.0,
+      "tax_at_normal_rates": 207500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 8300.0,
+      "total_tax_before_288B": 215800.0,
+      "tax_payable_288B": 215800.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 1800000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_22_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 23,
+   "case_id": "BND-CAP-80D-SELF-SENIOR+0",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 62,
+    "financial_year": "2024-25",
+    "gross_salary": 1800000,
+    "health_insurance_self_family": 50000
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 1700000.0,
+      "tax_at_normal_rates": 320000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 12800.0,
+      "total_tax_before_288B": 332800.0,
+      "tax_payable_288B": 332800.0
+     },
+     "ours": {
+      "taxable_income": 1700000.0,
+      "tax_at_normal_rates": 320000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 12800.0,
+      "total_tax_before_288B": 332800.0,
+      "tax_payable_288B": 332800.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Between",
+      "net_salary": 1800000,
+      "80C": 0,
+      "80D": 50000,
+      "portal_deductions_line": "50000"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_23_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 1725000.0,
+      "tax_at_normal_rates": 207500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 8300.0,
+      "total_tax_before_288B": 215800.0,
+      "tax_payable_288B": 215800.0
+     },
+     "ours": {
+      "taxable_income": 1725000.0,
+      "tax_at_normal_rates": 207500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 8300.0,
+      "total_tax_before_288B": 215800.0,
+      "tax_payable_288B": 215800.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Between",
+      "net_salary": 1800000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_23_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 24,
+   "case_id": "BND-CAP-80D-PREVENTIVE+0",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 35,
+    "financial_year": "2024-25",
+    "gross_salary": 1800000,
+    "preventive_checkup_parents": 2000,
+    "preventive_checkup_self_family": 3000
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 1745000.0,
+      "tax_at_normal_rates": 336000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 13440.0,
+      "total_tax_before_288B": 349440.0,
+      "tax_payable_288B": 349440.0
+     },
+     "ours": {
+      "taxable_income": 1745000.0,
+      "tax_at_normal_rates": 336000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 13440.0,
+      "total_tax_before_288B": 349440.0,
+      "tax_payable_288B": 349440.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 1800000,
+      "80C": 0,
+      "80D": 5000,
+      "portal_deductions_line": "5000"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_24_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 1725000.0,
+      "tax_at_normal_rates": 207500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 8300.0,
+      "total_tax_before_288B": 215800.0,
+      "tax_payable_288B": 215800.0
+     },
+     "ours": {
+      "taxable_income": 1725000.0,
+      "tax_at_normal_rates": 207500.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 8300.0,
+      "total_tax_before_288B": 215800.0,
+      "tax_payable_288B": 215800.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 1800000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_24_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 25,
+   "case_id": "BND-202425-SC-NEW-5000000-10",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 30,
+    "financial_year": "2024-25",
+    "gross_salary": 5074990
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 5024990.0,
+      "tax_at_normal_rates": 1319997.0,
+      "rebate_87a": 0.0,
+      "surcharge": 17493.0,
+      "cess": 53499.0,
+      "total_tax_before_288B": 1390989.0,
+      "tax_payable_288B": 1390990.0
+     },
+     "ours": {
+      "taxable_income": 5024990.0,
+      "tax_at_normal_rates": 1319997.0,
+      "rebate_87a": 0.0,
+      "surcharge": 17493.0,
+      "cess": 53499.6,
+      "total_tax_before_288B": 1390989.6,
+      "tax_payable_288B": 1390990.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": -0.6,
+      "total_tax_before_288B": -0.6,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 5074990,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_25_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 4999990.0,
+      "tax_at_normal_rates": 1189997.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 47599.0,
+      "total_tax_before_288B": 1237596.0,
+      "tax_payable_288B": 1237600.0
+     },
+     "ours": {
+      "taxable_income": 4999990.0,
+      "tax_at_normal_rates": 1189997.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 47599.88,
+      "total_tax_before_288B": 1237596.88,
+      "tax_payable_288B": 1237600.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": -0.88,
+      "total_tax_before_288B": -0.88,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 5074990,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_25_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 26,
+   "case_id": "BND-202425-SC-NEW-5000000+0",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 30,
+    "financial_year": "2024-25",
+    "gross_salary": 5075000
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 5025000.0,
+      "tax_at_normal_rates": 1320000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 17500.0,
+      "cess": 53500.0,
+      "total_tax_before_288B": 1391000.0,
+      "tax_payable_288B": 1391000.0
+     },
+     "ours": {
+      "taxable_income": 5025000.0,
+      "tax_at_normal_rates": 1320000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 17500.0,
+      "cess": 53500.0,
+      "total_tax_before_288B": 1391000.0,
+      "tax_payable_288B": 1391000.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 5075000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_26_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 5000000.0,
+      "tax_at_normal_rates": 1190000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 47600.0,
+      "total_tax_before_288B": 1237600.0,
+      "tax_payable_288B": 1237600.0
+     },
+     "ours": {
+      "taxable_income": 5000000.0,
+      "tax_at_normal_rates": 1190000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 47600.0,
+      "total_tax_before_288B": 1237600.0,
+      "tax_payable_288B": 1237600.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 5075000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_26_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 27,
+   "case_id": "BND-202425-SC-NEW-5000000+10",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 30,
+    "financial_year": "2024-25",
+    "gross_salary": 5075010
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 5025010.0,
+      "tax_at_normal_rates": 1320003.0,
+      "rebate_87a": 0.0,
+      "surcharge": 17507.0,
+      "cess": 53500.0,
+      "total_tax_before_288B": 1391010.0,
+      "tax_payable_288B": 1391010.0
+     },
+     "ours": {
+      "taxable_income": 5025010.0,
+      "tax_at_normal_rates": 1320003.0,
+      "rebate_87a": 0.0,
+      "surcharge": 17507.0,
+      "cess": 53500.4,
+      "total_tax_before_288B": 1391010.4,
+      "tax_payable_288B": 1391010.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": -0.4,
+      "total_tax_before_288B": -0.4,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 5075010,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_27_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 5000010.0,
+      "tax_at_normal_rates": 1190003.0,
+      "rebate_87a": 0.0,
+      "surcharge": 7.0,
+      "cess": 47600.0,
+      "total_tax_before_288B": 1237610.0,
+      "tax_payable_288B": 1237610.0
+     },
+     "ours": {
+      "taxable_income": 5000010.0,
+      "tax_at_normal_rates": 1190003.0,
+      "rebate_87a": 0.0,
+      "surcharge": 7.0,
+      "cess": 47600.4,
+      "total_tax_before_288B": 1237610.4,
+      "tax_payable_288B": 1237610.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": -0.4,
+      "total_tax_before_288B": -0.4,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 5075010,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_27_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 28,
+   "case_id": "BND-202425-SC-NEW-5000000+100000",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 30,
+    "financial_year": "2024-25",
+    "gross_salary": 5175000
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 5125000.0,
+      "tax_at_normal_rates": 1350000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 87500.0,
+      "cess": 57500.0,
+      "total_tax_before_288B": 1495000.0,
+      "tax_payable_288B": 1495000.0
+     },
+     "ours": {
+      "taxable_income": 5125000.0,
+      "tax_at_normal_rates": 1350000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 87500.0,
+      "cess": 57500.0,
+      "total_tax_before_288B": 1495000.0,
+      "tax_payable_288B": 1495000.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 5175000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_28_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 5100000.0,
+      "tax_at_normal_rates": 1220000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 70000.0,
+      "cess": 51600.0,
+      "total_tax_before_288B": 1341600.0,
+      "tax_payable_288B": 1341600.0
+     },
+     "ours": {
+      "taxable_income": 5100000.0,
+      "tax_at_normal_rates": 1220000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 70000.0,
+      "cess": 51600.0,
+      "total_tax_before_288B": 1341600.0,
+      "tax_payable_288B": 1341600.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 5175000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_28_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 29,
+   "case_id": "BND-202425-SC-NEW-5000000+300000",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 30,
+    "financial_year": "2024-25",
+    "gross_salary": 5375000
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 5325000.0,
+      "tax_at_normal_rates": 1410000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 141000.0,
+      "cess": 62040.0,
+      "total_tax_before_288B": 1613040.0,
+      "tax_payable_288B": 1613040.0
+     },
+     "ours": {
+      "taxable_income": 5325000.0,
+      "tax_at_normal_rates": 1410000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 141000.0,
+      "cess": 62040.0,
+      "total_tax_before_288B": 1613040.0,
+      "tax_payable_288B": 1613040.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 5375000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_29_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 5300000.0,
+      "tax_at_normal_rates": 1280000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 128000.0,
+      "cess": 56320.0,
+      "total_tax_before_288B": 1464320.0,
+      "tax_payable_288B": 1464320.0
+     },
+     "ours": {
+      "taxable_income": 5300000.0,
+      "tax_at_normal_rates": 1280000.0,
+      "rebate_87a": 0.0,
+      "surcharge": 128000.0,
+      "cess": 56320.0,
+      "total_tax_before_288B": 1464320.0,
+      "tax_payable_288B": 1464320.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": 0.0,
+      "cess": 0.0,
+      "total_tax_before_288B": 0.0,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 5375000,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_29_new.png"
+    }
+   }
+  },
+  {
+   "case_no": 30,
+   "case_id": "BND-202425-SC-NEW-50000000-10",
+   "financial_year": "2024-25",
+   "assessment_year": "2025-26",
+   "inputs": {
+    "age": 30,
+    "financial_year": "2024-25",
+    "gross_salary": 50074990
+   },
+   "status": "VERIFIED_MATCH",
+   "regimes": {
+    "old": {
+     "official": {
+      "taxable_income": 50024990.0,
+      "tax_at_normal_rates": 14819997.0,
+      "rebate_87a": 0.0,
+      "surcharge": 3720617.0,
+      "cess": 741624.0,
+      "total_tax_before_288B": 19282239.0,
+      "tax_payable_288B": 19282240.0
+     },
+     "ours": {
+      "taxable_income": 50024990.0,
+      "tax_at_normal_rates": 14819997.0,
+      "rebate_87a": 0.0,
+      "surcharge": 3720618.0,
+      "cess": 741624.6,
+      "total_tax_before_288B": 19282239.6,
+      "tax_payable_288B": 19282240.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": -1.0,
+      "cess": -0.6,
+      "total_tax_before_288B": -0.6,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "Old/Below",
+      "net_salary": 50074990,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_30_old.png"
+    },
+    "new": {
+     "official": {
+      "taxable_income": 49999990.0,
+      "tax_at_normal_rates": 14689997.0,
+      "rebate_87a": 0.0,
+      "surcharge": 3672499.0,
+      "cess": 734499.0,
+      "total_tax_before_288B": 19096995.25,
+      "tax_payable_288B": 19097000.0
+     },
+     "ours": {
+      "taxable_income": 49999990.0,
+      "tax_at_normal_rates": 14689997.0,
+      "rebate_87a": 0.0,
+      "surcharge": 3672499.25,
+      "cess": 734499.85,
+      "total_tax_before_288B": 19096996.1,
+      "tax_payable_288B": 19097000.0
+     },
+     "difference_official_minus_ours": {
+      "taxable_income": 0.0,
+      "tax_at_normal_rates": 0.0,
+      "rebate_87a": 0.0,
+      "surcharge": -0.25,
+      "cess": -0.85,
+      "total_tax_before_288B": -0.85,
+      "tax_payable_288B": 0.0
+     },
+     "portal_inputs": {
+      "regime/age toggles": "New/Below",
+      "net_salary": 50074990,
+      "80C": 0,
+      "80D": 0,
+      "portal_deductions_line": "0"
+     },
+     "toggles_match_case": true,
+     "status": "MATCH",
+     "evidence": "evidence/official_calculator/case_30_new.png"
+    }
+   }
+  }
+ ]
+}

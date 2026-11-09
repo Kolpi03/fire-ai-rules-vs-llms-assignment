@@ -1,0 +1,199 @@
+# Official rule text for FY 2025-26 (AY 2026-27), salary-only scope, Finance Act 2025 applied.
+# Same conventions as fy2024_25.yaml. Changed passages: P25-NEW-SLABS, P25-87A (sources: ITD-COMPUTATION-INDIVIDUAL, ITD-87A-FA2025, ITD-BRIEF-ON-BUDGET-2025).
+financial_year: 2025-26
+assessment_year: 2026-27
+passages:
+- passage_id: P25-OLD-SLABS
+  clause: First Schedule, Part III, Para A (old regime rates)
+  source_id: ITD-COMPUTATION-INDIVIDUAL
+  topics:
+  - slab
+  - old_regime
+  - senior
+  - super_senior
+  - age
+  kind: summary_table
+  text: 'Normal Tax Rates (Old tax regime). Net income range | Resident Super Senior Citizen | Resident Senior Citizen | Any other Individual.
+    Up to Rs. 2,50,000: Nil | Nil | Nil. Rs. 2,50,001- Rs. 3,00,000: Nil | Nil | 5%. Rs. 3,00,001- Rs. 5,00,000: Nil | 5% | 5%. Rs.
+    5,00,001- Rs. 10,00,000: 20% | 20% | 20%. Above Rs. 10,00,000: 30% | 30% | 30%. ''Super senior citizen'' means an individual whose
+    age is 80 years or more at any time during the relevant previous year. ''Senior citizen'' means an individual whose age is 60 years
+    or more at any time during the relevant previous year but less than 80 years on the last day of the previous year.'
+- passage_id: P25-NEW-SLABS
+  clause: Section 115BAC(1A) (new regime rates, AY 2026-27, as amended by Finance Act 2025)
+  source_id: ITD-COMPUTATION-INDIVIDUAL
+  topics:
+  - slab
+  - new_regime
+  kind: summary_table
+  text: For the assessment year 2026-27 Total Income (Rs) Rate Upto 4,00,000 Nil From 4,00,001 to 8,00,000 5% From 8,00,001 to 12,00,000
+    10% From 12,00,001 to 16,00,000 15% From 16,00,001 to 20,00,000 20% From 20,00,001 to 24,00,000 25% Above 24,00,000 30%
+- passage_id: P25-NEW-EXCLUSIONS
+  clause: Section 115BAC(2)
+  source_id: ITD-COMPUTATION-INDIVIDUAL
+  topics:
+  - new_regime
+  - hra
+  - 80c
+  - 80d
+  - 80ccd
+  - home_loan
+  - deduction
+  kind: verbatim
+  text: Total income of the assessee has to be computed without claiming the following specified exemptions and deductions; House Rent
+    Allowance [ Section 10(13A) ]; Professional Tax [ Section 16(iii) ]; Interest on housing loan (In case of property referred under
+    section 23(2) i.e. self-occupied house property) [ Section 24(b) ]; Deduction under Sections 80C to 80U other than specified under
+    Section 80JJAA , Section 80CCD(2) , Section 80CCH(2) , and Section 80LA(1A) [Chapter VI-A]. Total income of the assessee has to
+    be computed without set-off of any loss under the head "Income from house property" with any other head of income.
+- passage_id: P25-STD-DED
+  clause: Section 16(ia); Section 115BAC(1A)(ii)
+  source_id: ITD-DEDUCTIONS-ALLOWABLE
+  topics:
+  - standard_deduction
+  - salary
+  - old_regime
+  - new_regime
+  kind: verbatim
+  text: 16(ia) Standard Deduction (a) In case of normal tax regime - Rs. 50,000 or the amount of salary, whichever is lower; (b) In
+    case of new tax regime under section 115BAC (1A)(ii) - Up to Rs. 75,000 or the amount of salary, whichever is lower.
+- passage_id: P25-HRA
+  clause: Section 10(13A) read with Rule 2A
+  source_id: ITD-HRA-FAQ
+  topics:
+  - hra
+  - rent
+  - metro
+  - salary
+  - old_regime
+  kind: verbatim
+  text: 'Least/minimum of the following is exempt (Not taxable/deducted from total HRA received) (a) Actual amount of HRA received (b)
+    Rent paid Less 10% of salary (c) 50% of salary if rented accomandation is situated at Kolkata, Chennai, Mumbai and Delhi or 40 %
+    of salary if the rented accomadation is situated at other than Kolkata, Chennai, Mumbai and Delhi. In case of no rent is paid then
+    exemption will be zero. [Rule 2A: "salary" for this purpose means basic salary plus dearness allowance forming part of retirement
+    benefits.]'
+- passage_id: P25-24B
+  clause: Section 24(b) read with Section 71(3A)
+  source_id: ITD-DEDUCTIONS-ALLOWABLE
+  topics:
+  - home_loan
+  - interest
+  - house_property
+  - old_regime
+  kind: verbatim_with_note
+  text: '24( b ) Interest on borrowed capital (Rs. 30,000/Rs. 2,00,000, subject to specified conditions). [Self-occupied property: the
+    Rs. 2,00,000 limit applies where the loan was taken on or after 1-4-1999 for acquisition or construction completed within five years;
+    not available under section 115BAC.]'
+- passage_id: P25-80C
+  clause: Section 80C read with Section 80CCE
+  source_id: ITD-DEDUCTIONS-ALLOWABLE
+  topics:
+  - 80c
+  - deduction
+  - old_regime
+  - investment
+  kind: verbatim
+  text: '80C: Life insurance premium ... Contributions by an individual ... [and other specified investments]. Notes: 1. Deduction is
+    limited to whole of the amount paid or deposited subject to a maximum of Rs. 1,50,000. This maximum limit of Rs. 1,50,000 is the
+    aggregate of the deduction that may be claimed under sections 80C, 80CCC and 80CCD. section 80CCE provides that the aggregate amount
+    of deductions under section 80C, section 80CCC and section 80CCD(1) shall not, in any case, exceed Rs. 1,50,000.'
+- passage_id: P25-80CCD1B
+  clause: Section 80CCD(1B)
+  source_id: ITD-80CCD
+  topics:
+  - 80ccd
+  - nps
+  - deduction
+  - old_regime
+  kind: verbatim
+  text: '(1B) An assessee referred to in sub-section (1), shall be allowed a deduction in computation of his total income, whether or
+    not any deductions is allowed under sub-section (1), of the whole of the amount paid or deposited in the previous year in his account
+    under a pension scheme notified or as may be notified by the Central Government, which shall not exceed fifty thousand rupees: Provided
+    that no deduction under this sub-section shall be allowed in respect of the amount on which a deduction has been claimed and allowed
+    under sub-section (1).'
+- passage_id: P25-80D
+  clause: Section 80D(2), (2A), (2B), (4)
+  source_id: ITD-80D
+  topics:
+  - 80d
+  - health_insurance
+  - medical
+  - parents
+  - senior
+  - preventive
+  - old_regime
+  kind: verbatim
+  text: '(2) Where the assessee is an individual, the sum referred to in sub-section (1) shall be the aggregate of the following, namely:—
+    (a) the whole of the amount paid to effect or to keep in force an insurance on the health of the assessee or his family ... or any
+    payment made on account of preventive health check-up of the assessee or his family as does not exceed in the aggregate twenty-five
+    thousand rupees; and (b) the whole of the amount paid to effect or to keep in force an insurance on the health of the parent or
+    parents of the assessee or any payment made on account of preventive health check-up of the parent or parents of the assessee as
+    does not exceed in the aggregate twenty-five thousand rupees; (c) the whole of the amount paid on account of medical expenditure
+    incurred on the health of the assessee or any member of his family as does not exceed in the aggregate fifty thousand rupees; and
+    (d) the whole of the amount paid on account of medical expenditure incurred on the health of any parent of the assessee, as does
+    not exceed in the aggregate fifty thousand rupees: Provided that the amount referred to in clause (c) or clause (d) is paid in respect
+    of a senior citizen and no amount has been paid to effect or to keep in force an insurance on the health of such person: Provided
+    further that the aggregate of the sum specified under clause (a) and clause (c) or the aggregate of the sum specified under clause
+    (b) and clause (d) shall not exceed fifty thousand rupees. Explanation.—For the purposes of clause (a), "family" means the spouse
+    and dependant children of the assessee. (2A) Where the amounts referred to in clauses (a) and (b) of sub-section (2) are paid on
+    account of preventive health check-up, the deduction for such amounts shall be allowed to the extent it does not exceed in the aggregate
+    five thousand rupees. (4) Where the sum specified in clause (a) or clause (b) of sub-section (2) ... is paid to effect or keep in
+    force an insurance on the health of any person specified therein, and who is a senior citizen, the provisions of this section shall
+    have effect as if for the words "twenty-five thousand rupees", the words "fifty thousand rupees" had been substituted.'
+- passage_id: P25-87A
+  clause: Section 87A and provisos as amended by Finance Act 2025 (w.e.f. 1-4-2026)
+  source_id: ITD-87A-FA2025
+  topics:
+  - rebate
+  - 87a
+  - old_regime
+  - new_regime
+  - marginal_relief
+  - resident
+  kind: verbatim_with_amendments_applied
+  text: '87A. An assessee, being an individual resident in India, whose total income does not exceed five hundred thousand rupees, shall
+    be entitled to a deduction, from the amount of income-tax (as computed before allowing the deductions under this Chapter) on his
+    total income with which he is chargeable for any assessment year, of an amount equal to hundred per cent of such income-tax or an
+    amount of twelve thousand and five hundred rupees, whichever is less: Provided that where the total income of the assessee is chargeable
+    to tax under sub-section (1A) of section 115BAC, and the total income— (a) does not exceed [twelve] hundred thousand rupees, the
+    assessee shall be entitled to a deduction from the amount of income-tax ... of an amount equal to one hundred per cent of such income-tax
+    or an amount of [sixty] thousand rupees, whichever is less; (b) exceeds [twelve] hundred thousand rupees and the income-tax payable
+    on such total income exceeds the amount by which the total income is in excess of [twelve] hundred thousand rupees, the assessee
+    shall be entitled to a deduction ... of an amount equal to the amount by which the income-tax payable on such total income is in
+    excess of the amount by which the total income exceeds [twelve] hundred thousand rupees. Provided further that the deduction under
+    the first proviso, shall not exceed the amount of income-tax payable as per the rates provided in sub-section (1A) of section 115BAC.
+    [Footnotes: Word "twelve" substituted for "seven" and "sixty" for "twenty-five" by Act No. 07 of 2025, w.e.f. 1-4-2026.]'
+- passage_id: P25-SURCHARGE
+  clause: Finance Act 2025, First Schedule Part I (surcharge) and marginal relief proviso
+  source_id: ITD-COMPUTATION-INDIVIDUAL
+  topics:
+  - surcharge
+  - marginal_relief
+  - high_income
+  - old_regime
+  - new_regime
+  kind: summary_table
+  text: 'Rate of Surcharge. Range of Total Income: Up to Rs. 50 lakhs | More than Rs. 50 lakhs but up to Rs. 1 crore | More than Rs.
+    1 crore but up to Rs. 2 crores | More than Rs. 2 crores but up to Rs. 5 crores | More than Rs. 5 crores. Any other income (if opted
+    for the old tax regime): Nil | 10% | 15% | 25% | 37%. Any other income (if opted for the new tax regime of Section 115BAC): Nil
+    | 10% | 15% | 25% | 25%. [Marginal relief (proviso to the surcharge paragraph): the total of income-tax and surcharge on income
+    exceeding a threshold shall not exceed the total of income-tax and surcharge payable on a total income equal to the threshold by
+    more than the amount of income that exceeds the threshold.]'
+- passage_id: P25-CESS
+  clause: Finance Act 2025 (Health and Education Cess)
+  source_id: ITD-COMPUTATION-INDIVIDUAL
+  topics:
+  - cess
+  - old_regime
+  - new_regime
+  kind: verbatim
+  text: Every person is liable to pay health and education cess at the rate of 4% on the amount of income tax plus surcharge.
+- passage_id: P25-ROUNDING
+  clause: Sections 288A and 288B
+  source_id: ITD-COMPUTATION-INDIVIDUAL
+  topics:
+  - rounding
+  kind: statutory_paraphrase
+  text: '288A: total income is rounded off to the nearest multiple of ten rupees (paise ignored; last figure five or more rounds up).
+    288B: any amount payable is rounded off to the nearest multiple of ten rupees in the same manner.'
+changes_from_previous_year:
+- 'P25-NEW-SLABS: new-regime slabs replaced (Finance Act 2025)'
+- 'P25-87A: limit 7L->12L, max rebate 25,000->60,000, second proviso added (Finance Act 2025)'

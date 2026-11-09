@@ -1,0 +1,197 @@
+{
+ "months": {
+  "2023-01": {
+   "status": "ok",
+   "count": 4357,
+   "raw_response": [
+    {
+     "n": "4357"
+    }
+   ],
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-01-01T00:00:00' AND created_date < '2023-02-01T00:00:00' AND latitude IS NULL"
+   },
+   "attempts": 1,
+   "fetched_at": "2026-11-09T21:19:02"
+  },
+  "2023-02": {
+   "status": "ok",
+   "count": 3801,
+   "raw_response": [
+    {
+     "n": "3801"
+    }
+   ],
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-02-01T00:00:00' AND created_date < '2023-03-01T00:00:00' AND latitude IS NULL"
+   },
+   "attempts": 2,
+   "fetched_at": "2026-11-09T21:32:32"
+  },
+  "2023-03": {
+   "status": "ok",
+   "count": 4409,
+   "raw_response": [
+    {
+     "n": "4409"
+    }
+   ],
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-03-01T00:00:00' AND created_date < '2023-04-01T00:00:00' AND latitude IS NULL"
+   },
+   "attempts": 3,
+   "fetched_at": "2026-11-09T21:44:11"
+  },
+  "2023-04": {
+   "status": "ok",
+   "count": 3920,
+   "raw_response": [
+    {
+     "n": "3920"
+    }
+   ],
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-04-01T00:00:00' AND created_date < '2023-05-01T00:00:00' AND latitude IS NULL"
+   },
+   "attempts": 1,
+   "fetched_at": "2026-11-09T21:22:52"
+  },
+  "2023-05": {
+   "status": "ok",
+   "count": 4578,
+   "raw_response": [
+    {
+     "n": "4578"
+    }
+   ],
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-05-01T00:00:00' AND created_date < '2023-06-01T00:00:00' AND latitude IS NULL"
+   },
+   "attempts": 1,
+   "fetched_at": "2026-11-09T21:23:17"
+  },
+  "2023-06": {
+   "status": "ok",
+   "count": 4353,
+   "raw_response": [
+    {
+     "n": "4353"
+    }
+   ],
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-06-01T00:00:00' AND created_date < '2023-07-01T00:00:00' AND latitude IS NULL"
+   },
+   "attempts": 1,
+   "fetched_at": "2026-11-09T21:23:46"
+  },
+  "2023-07": {
+   "status": "failed",
+   "error": "request failed after 2 attempts: HTTP 503: {\"message\":\"Service unavailable\",\"errorCode\":\"service-unavailable\",\"data\":{}}",
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-07-01T00:00:00' AND created_date < '2023-08-01T00:00:00' AND latitude IS NULL"
+   },
+   "attempts": 4,
+   "last_try": "2026-11-09T21:54:38"
+  },
+  "2023-08": {
+   "status": "ok",
+   "count": 4087,
+   "raw_response": [
+    {
+     "n": "4087"
+    }
+   ],
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-08-01T00:00:00' AND created_date < '2023-09-01T00:00:00' AND latitude IS NULL"
+   },
+   "attempts": 1,
+   "fetched_at": "2026-11-09T21:27:07"
+  },
+  "2023-09": {
+   "status": "ok",
+   "count": 4466,
+   "raw_response": [
+    {
+     "n": "4466"
+    }
+   ],
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-09-01T00:00:00' AND created_date < '2023-10-01T00:00:00' AND latitude IS NULL"
+   },
+   "attempts": 2,
+   "fetched_at": "2026-11-09T21:41:50"
+  },
+  "2023-10": {
+   "status": "ok",
+   "count": 3789,
+   "raw_response": [
+    {
+     "n": "3789"
+    }
+   ],
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-10-01T00:00:00' AND created_date < '2023-11-01T00:00:00' AND latitude IS NULL"
+   },
+   "attempts": 2,
+   "fetched_at": "2026-11-09T21:42:43"
+  },
+  "2023-11": {
+   "status": "ok",
+   "count": 3231,
+   "raw_response": [
+    {
+     "n": "3231"
+    }
+   ],
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-11-01T00:00:00' AND created_date < '2023-12-01T00:00:00' AND latitude IS NULL"
+   },
+   "attempts": 1,
+   "fetched_at": "2026-11-09T21:28:16"
+  },
+  "2023-12": {
+   "status": "ok",
+   "count": 3159,
+   "raw_response": [
+    {
+     "n": "3159"
+    }
+   ],
+   "query": {
+    "$select": "count(*) AS n",
+    "$where": "created_date >= '2023-12-01T00:00:00' AND created_date < '2024-01-01T00:00:00' AND latitude IS NULL"
+   },
+   "attempts": 1,
+   "fetched_at": "2026-11-09T21:31:21"
+  }
+ },
+ "months_ok": [
+  "2023-01",
+  "2023-02",
+  "2023-03",
+  "2023-04",
+  "2023-05",
+  "2023-06",
+  "2023-08",
+  "2023-09",
+  "2023-10",
+  "2023-11",
+  "2023-12"
+ ],
+ "months_failed": [
+  "2023-07"
+ ],
+ "full_year_count": null,
+ "note": "incomplete: full-year count NOT computed; partial months only (not an estimate)"
+}

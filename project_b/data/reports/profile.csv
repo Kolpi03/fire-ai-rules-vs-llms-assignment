@@ -1,0 +1,24 @@
+issue,issue_type,definition,affected_rows,pct_of_sample,projected_full_year_rows
+due_date_mostly_null,completeness,due_date null (column effectively deprecated),327210,0.9959851337324863,3211776
+near_duplicate_requests,uniqueness,same complaint_type + incident_address within 60 minutes of an earlier request,40413,0.12301197154589093,396680
+mojibake_in_text,encoding,UTF-8 bytes decoded as Latin-1 in resolution text (e.g. 'Transportationâs'),7878,0.023979618237659386,77328
+resolution_updated_before_created,temporal,resolution_action_updated_date < created_date,7399,0.02252160387667451,72626
+closed_equals_created,temporal,closed_date == created_date to the second (auto-closed or placeholder),6440,0.019602531283387462,63213
+closed_more_than_365_days_after_created,temporal,resolution took over a year,5439,0.01655561609477398,53387
+missing_coordinates,completeness,latitude or longitude null,4916,0.01496367139582807,48254
+missing_resolution_description,completeness,resolution_description null,4496,0.01368524544256367,44131
+missing_descriptor,completeness,descriptor null,3979,0.012111563971521539,39056
+missing_or_invalid_zip,validity,incident_zip null or not 5 digits,3775,0.011490614222793117,37054
+status_closed_without_closed_date,consistency,status == 'Closed' but closed_date is null,2152,0.006550411074821401,21123
+not_closed_but_has_closed_date,consistency,status != 'Closed' but closed_date is set,601,0.0018293666616950102,5899
+borough_unspecified,completeness,borough == 'Unspecified' or null,328,0.0009983897920731503,3220
+community_board_unspecified,completeness,community_board starts with '0 Unspecified',328,0.0009983897920731503,3220
+closed_before_created,temporal,closed_date < created_date,312,0.0009496878509964113,3062
+created_at_exact_midnight,temporal,created_date exactly 00:00:00 (date-only timestamps),224,0.0006818271750743466,2199
+possible_pii_in_resolution_text,privacy,non-agency phone/e-mail or out-of-vocabulary proper-noun pair in resolution text,94,0.00028612390382584186,923
+city_case_or_spelling_variants,consistency,city values that differ only by case/whitespace from another value,11,3.348258449025809e-05,108
+zip_borough_mismatch,consistency,incident_zip's majority borough (>=95% of >=20 rows) differs from borough,2,6.08774263459238e-06,20
+coordinates_outside_nyc,validity,lat/lon outside the NYC bounding box,0,0.0,0
+exact_duplicate_rows,uniqueness,row identical to another row in every column,0,0.0,0
+duplicate_unique_key,uniqueness,unique_key appears more than once,0,0.0,0
+latlon_inconsistent_with_xy,consistency,lat/lon more than 0.01 deg from the value implied by x/y state plane,0,0.0,0

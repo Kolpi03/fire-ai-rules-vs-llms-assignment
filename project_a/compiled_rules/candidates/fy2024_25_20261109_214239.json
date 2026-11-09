@@ -1,0 +1,367 @@
+{
+ "financial_year": "2024-25",
+ "tables": {
+  "old_super_senior": [
+   [
+    0.0,
+    250000.0,
+    "0.0"
+   ],
+   [
+    250001.0,
+    500000.0,
+    "0.0"
+   ],
+   [
+    500001.0,
+    1000000.0,
+    "0.20"
+   ],
+   [
+    1000001.0,
+    null,
+    "0.30"
+   ]
+  ],
+  "old_senior": [
+   [
+    0.0,
+    300000.0,
+    "0.0"
+   ],
+   [
+    300001.0,
+    500000.0,
+    "0.05"
+   ],
+   [
+    500001.0,
+    1000000.0,
+    "0.20"
+   ],
+   [
+    1000001.0,
+    null,
+    "0.30"
+   ]
+  ],
+  "old_other": [
+   [
+    0.0,
+    250000.0,
+    "0.0"
+   ],
+   [
+    250001.0,
+    500000.0,
+    "0.05"
+   ],
+   [
+    500001.0,
+    1000000.0,
+    "0.20"
+   ],
+   [
+    1000001.0,
+    null,
+    "0.30"
+   ]
+  ],
+  "new_regime": [
+   [
+    0.0,
+    300000.0,
+    "0.0"
+   ],
+   [
+    300001.0,
+    700000.0,
+    "0.05"
+   ],
+   [
+    700001.0,
+    1000000.0,
+    "0.10"
+   ],
+   [
+    1000001.0,
+    1200000.0,
+    "0.15"
+   ],
+   [
+    1200001.0,
+    1500000.0,
+    "0.20"
+   ],
+   [
+    1500001.0,
+    null,
+    "0.30"
+   ]
+  ]
+ },
+ "regimes": {
+  "old": {
+   "steps": [
+    {
+     "id": "old.standard_deduction",
+     "output": "standard_deduction",
+     "expr": "min(50000.0, gross_salary)",
+     "clause": "Section 16(ia)",
+     "passage_id": "P24-STD-DED",
+     "line": "Standard Deduction"
+    },
+    {
+     "id": "old.hra_exemption",
+     "output": "hra_exemption",
+     "expr": "min(hra_received, max(0.0, annual_rent_paid - 0.1 * basic_plus_da), (0.5 if metro_city else 0.4) * basic_plus_da) if annual_rent_paid > 0.0 else 0.0",
+     "clause": "Section 10(13A)",
+     "passage_id": "P24-HRA",
+     "line": "HRA Exemption"
+    },
+    {
+     "id": "old.home_loan_interest",
+     "output": "home_loan_interest",
+     "expr": "min(200000.0, max(0.0, home_loan_interest_self_occupied))",
+     "clause": "Section 24(b)",
+     "passage_id": "P24-24B",
+     "line": "Interest on housing loan"
+    },
+    {
+     "id": "old.deduction_80c",
+     "output": "deduction_80c",
+     "expr": "min(150000.0, max(0.0, section_80c))",
+     "clause": "Section 80C",
+     "passage_id": "P24-80C",
+     "line": "Deduction under Section 80C"
+    },
+    {
+     "id": "old.deduction_80ccd_1b",
+     "output": "deduction_80ccd_1b",
+     "expr": "min(50000.0, max(0.0, section_80ccd_1b))",
+     "clause": "Section 80CCD(1B)",
+     "passage_id": "P24-80CCD1B",
+     "line": "Deduction under Section 80CCD(1B)"
+    },
+    {
+     "id": "old.deduction_80d_self",
+     "output": "deduction_80d_self",
+     "expr": "min(50000.0 if spouse_is_senior else 25000.0, health_insurance_self_family + min(5000.0, preventive_checkup_self_family) + medical_expenditure_self_family)",
+     "clause": "Section 80D(2)",
+     "passage_id": "P24-80D",
+     "line": null
+    },
+    {
+     "id": "old.deduction_80d_parents",
+     "output": "deduction_80d_parents",
+     "expr": "min(50000.0 if parents_are_senior else 25000.0, health_insurance_parents + min(5000.0, preventive_checkup_parents) + medical_expenditure_parents)",
+     "clause": "Section 80D(2)",
+     "passage_id": "P24-80D",
+     "line": null
+    },
+    {
+     "id": "old.deduction_80d_total",
+     "output": "deduction_80d",
+     "expr": "deduction_80d_self + deduction_80d_parents",
+     "clause": "Section 80D(2)",
+     "passage_id": "P24-80D",
+     "line": "Deduction under Section 80D"
+    },
+    {
+     "id": "old.net_taxable_income",
+     "output": "total_income",
+     "expr": "round10(max(0.0, gross_salary - standard_deduction - hra_exemption - home_loan_interest - deduction_80c - deduction_80ccd_1b - deduction_80d))",
+     "clause": "Section 288A",
+     "passage_id": "P24-ROUNDING",
+     "line": "Total Income"
+    },
+    {
+     "id": "old.tax_on_income",
+     "output": "tax_on_income",
+     "expr": "slab_tax(total_income, 'old_super_senior') if age >= 80 else (slab_tax(total_income, 'old_senior') if age >= 60 else slab_tax(total_income, 'old_other'))",
+     "clause": "First Schedule, Part III, Para A",
+     "passage_id": "P24-OLD-SLABS",
+     "line": "Tax on Total Income"
+    },
+    {
+     "id": "old.rebate_87a",
+     "output": "rebate_87a",
+     "expr": "min(tax_on_income, 12500.0) if is_resident and total_income <= 500000.0 else 0.0",
+     "clause": "Section 87A",
+     "passage_id": "P24-87A",
+     "line": "Rebate under Section 87A"
+    },
+    {
+     "id": "old.tax_after_rebate",
+     "output": "tax_after_rebate",
+     "expr": "max(0.0, tax_on_income - rebate_87a)",
+     "clause": "Section 87A",
+     "passage_id": "P24-87A",
+     "line": null
+    },
+    {
+     "id": "old.surcharge",
+     "output": "surcharge",
+     "expr": "0.0 if total_income <= 5000000.0 else (0.10 * tax_after_rebate if total_income <= 10000000.0 else (0.15 * tax_after_rebate if total_income <= 20000000.0 else (0.25 * tax_after_rebate if total_income <= 50000000.0 else 0.37 * tax_after_rebate)))",
+     "clause": "Finance (No.2) Act 2024, First Schedule Part I",
+     "passage_id": "P24-SURCHARGE",
+     "line": "Surcharge"
+    },
+    {
+     "id": "old.cess",
+     "output": "cess",
+     "expr": "0.04 * (tax_after_rebate + surcharge)",
+     "clause": "Section 2(11), Finance (No.2) Act 2024",
+     "passage_id": "P24-CESS",
+     "line": "Health and Education Cess"
+    },
+    {
+     "id": "old.total_tax",
+     "output": "total_tax",
+     "expr": "tax_after_rebate + surcharge + cess",
+     "clause": "Finance (No.2) Act 2024",
+     "passage_id": "P24-COMPUTATION",
+     "line": "Total Tax"
+    },
+    {
+     "id": "old.tax_payable",
+     "output": "tax_payable",
+     "expr": "round10(total_tax)",
+     "clause": "Section 288B",
+     "passage_id": "P24-ROUNDING",
+     "line": "Tax Payable"
+    }
+   ]
+  },
+  "new": {
+   "steps": [
+    {
+     "id": "new.standard_deduction",
+     "output": "standard_deduction",
+     "expr": "min(75000.0, gross_salary)",
+     "clause": "Section 115BAC(1A)(ii)",
+     "passage_id": "P24-STD-DED",
+     "line": "Standard Deduction"
+    },
+    {
+     "id": "new.hra_exemption",
+     "output": "hra_exemption",
+     "expr": "0.0",
+     "clause": "Section 115BAC(2)",
+     "passage_id": "P24-NEW-EXCLUSIONS",
+     "line": null
+    },
+    {
+     "id": "new.home_loan_interest",
+     "output": "home_loan_interest",
+     "expr": "0.0",
+     "clause": "Section 115BAC(2)",
+     "passage_id": "P24-NEW-EXCLUSIONS",
+     "line": null
+    },
+    {
+     "id": "new.deduction_80c",
+     "output": "deduction_80c",
+     "expr": "0.0",
+     "clause": "Section 115BAC(2)",
+     "passage_id": "P24-NEW-EXCLUSIONS",
+     "line": null
+    },
+    {
+     "id": "new.deduction_80ccd_1b",
+     "output": "deduction_80ccd_1b",
+     "expr": "min(50000.0, max(0.0, section_80ccd_1b))",
+     "clause": "Section 80CCD(1B)",
+     "passage_id": "P24-80CCD1B",
+     "line": "Deduction under Section 80CCD(1B)"
+    },
+    {
+     "id": "new.deduction_80d",
+     "output": "deduction_80d",
+     "expr": "0.0",
+     "clause": "Section 115BAC(2)",
+     "passage_id": "P24-NEW-EXCLUSIONS",
+     "line": null
+    },
+    {
+     "id": "new.net_taxable_income",
+     "output": "total_income",
+     "expr": "round10(max(0.0, gross_salary - standard_deduction - deduction_80ccd_1b))",
+     "clause": "Section 288A",
+     "passage_id": "P24-ROUNDING",
+     "line": "Total Income"
+    },
+    {
+     "id": "new.tax_on_income",
+     "output": "tax_on_income",
+     "expr": "slab_tax(total_income, 'new_regime')",
+     "clause": "Section 115BAC(1A)",
+     "passage_id": "P24-NEW-SLABS",
+     "line": "Tax on Total Income"
+    },
+    {
+     "id": "new.rebate_87a",
+     "output": "rebate_87a",
+     "expr": "min(tax_on_income, 25000.0) if is_resident and total_income <= 700000.0 else (min(tax_on_income, max(0.0, total_income - 700000.0)) if is_resident and total_income > 700000.0 and total_income <= 727770.0 and tax_on_income > (total_income - 700000.0) else 0.0)",
+     "clause": "Section 87A proviso",
+     "passage_id": "P24-87A",
+     "line": "Rebate under Section 87A"
+    },
+    {
+     "id": "new.tax_after_rebate",
+     "output": "tax_after_rebate",
+     "expr": "max(0.0, tax_on_income - rebate_87a)",
+     "clause": "Section 87A",
+     "passage_id": "P24-87A",
+     "line": null
+    },
+    {
+     "id": "new.surcharge",
+     "output": "surcharge",
+     "expr": "0.0 if total_income <= 5000000.0 else (0.10 * tax_after_rebate if total_income <= 10000000.0 else (0.15 * tax_after_rebate if total_income <= 20000000.0 else (0.25 * tax_after_rebate)))",
+     "clause": "Finance (No.2) Act 2024, First Schedule Part I",
+     "passage_id": "P24-SURCHARGE",
+     "line": "Surcharge"
+    },
+    {
+     "id": "new.cess",
+     "output": "cess",
+     "expr": "0.04 * (tax_after_rebate + surcharge)",
+     "clause": "Section 2(11), Finance (No.2) Act 2024",
+     "passage_id": "P24-CESS",
+     "line": "Health and Education Cess"
+    },
+    {
+     "id": "new.total_tax",
+     "output": "total_tax",
+     "expr": "tax_after_rebate + surcharge + cess",
+     "clause": "Finance (No.2) Act 2024",
+     "passage_id": "P24-COMPUTATION",
+     "line": "Total Tax"
+    },
+    {
+     "id": "new.tax_payable",
+     "output": "tax_payable",
+     "expr": "round10(total_tax)",
+     "clause": "Section 288B",
+     "passage_id": "P24-ROUNDING",
+     "line": "Tax Payable"
+    }
+   ]
+  }
+ },
+ "regime_choice": {
+  "tie_breaker": "new",
+  "clause": "Section 115BAC",
+  "passage_id": "P24-NEW-SLABS"
+ },
+ "compiler": {
+  "model": "gemini-3.5-flash-lite",
+  "mode": "real",
+  "input_tokens": 3471,
+  "output_tokens": 4011,
+  "cost_usd": 0.011068799999999998,
+  "prompt_sha256": "f947fa4590f0a5a92d77a056104708fe25dc916e97f92bf899975e3ba0f70986",
+  "generated_at": "2026-11-09T21:42:39"
+ }
+}

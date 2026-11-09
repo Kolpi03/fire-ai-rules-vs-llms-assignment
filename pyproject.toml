@@ -1,0 +1,14 @@
+[project]
+name = "rules-vs-llms-assignment"
+version = "1.0.0"
+description = "Fire AI take-home: Indian income-tax engine (rules vs LLM vs LLM-compiled) and NYC 311 data-quality layer"
+requires-python = ">=3.10"
+readme = "README.md"
+
+[tool.pytest.ini_options]
+testpaths = ["project_a/tests", "project_b/tests"]
+addopts = "-p no:cacheprovider"
+filterwarnings = ["ignore::FutureWarning", "ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 120

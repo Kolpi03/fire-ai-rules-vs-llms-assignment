@@ -1,0 +1,154 @@
+[
+  {
+    "source_id": "ITD-COMPUTATION-INDIVIDUAL",
+    "url": "https://wm.incometaxindia.gov.in/w/computation-of-tax-for-individual-1",
+    "title": "Computation of Tax for Individual (Income Tax Department)",
+    "provisions": [
+      "First Schedule rates",
+      "115BAC(1A)",
+      "87A",
+      "Surcharge",
+      "Health and Education Cess"
+    ],
+    "used_for": "Old/new regime slabs (AY 2025-26 and AY 2026-27), surcharge table, cess rate, 87A summary",
+    "fetched_at": "2026-11-09",
+    "status": "ok",
+    "http_status": 200,
+    "chars": 28549,
+    "sha256": "f19646450789e130f81d4f749ff255da1b98e59e310d158ea0956c40eeeec082"
+  },
+  {
+    "source_id": "ITD-87A-FA2024-NO2",
+    "url": "https://wm.incometaxindia.gov.in/w/section-87a-25",
+    "title": "Section 87A, Income-tax Act 1961, as amended up to Finance (No.2) Act 2024",
+    "provisions": [
+      "87A",
+      "87A first proviso (a),(b)"
+    ],
+    "used_for": "87A rebate Rs 12,500 / Rs 5 lakh; new-regime Rs 25,000 / Rs 7 lakh with marginal relief",
+    "fetched_at": "2026-11-09",
+    "status": "ok",
+    "http_status": 200,
+    "chars": 6362,
+    "sha256": "c631ec5253198c2613a498dfdbef2cbe891a9bb88f1c60e62216067964419ec0"
+  },
+  {
+    "source_id": "ITD-87A-FA2025",
+    "url": "https://wm.incometaxindia.gov.in/w/section-87a-26",
+    "title": "Section 87A, Income-tax Act 1961, as amended by Finance Act 2025",
+    "provisions": [
+      "87A"
+    ],
+    "used_for": "FY 2025-26 rebate Rs 60,000 / Rs 12 lakh with marginal relief",
+    "fetched_at": "2026-11-09",
+    "status": "ok",
+    "http_status": 200,
+    "chars": 6847,
+    "sha256": "41521e48f172f676585f250abdae11a18b3f04b73550fa55cebdde891dbe47df"
+  },
+  {
+    "source_id": "ITD-DEDUCTIONS-ALLOWABLE",
+    "url": "https://wm.incometaxindia.gov.in/w/deductions-allowable-to-tax-payer",
+    "title": "Deductions allowable to tax payer (Income Tax Department)",
+    "provisions": [
+      "16(ia)",
+      "24(b)",
+      "80C",
+      "80CCD(1B)",
+      "80D"
+    ],
+    "used_for": "Standard deduction (50,000 old / 75,000 new), 24(b) cap, Chapter VI-A caps",
+    "fetched_at": "2026-11-09",
+    "status": "ok",
+    "http_status": 200,
+    "chars": 71698,
+    "sha256": "11da9ea5c8645d3e6cb0b201631c685af8c1bac6b79b5a5510f6a6a39cf15eb5"
+  },
+  {
+    "source_id": "ITD-BRIEF-ON-BUDGET-2025",
+    "url": "https://wm.incometaxindia.gov.in/w/brief-on-budget",
+    "title": "Brief on Budget 2025-26 (Finance Act 2025 changes)",
+    "provisions": [
+      "115BAC(1A)",
+      "87A"
+    ],
+    "used_for": "FY 2025-26 new-regime slabs and 87A change (Task 5)",
+    "fetched_at": "2026-11-09",
+    "status": "ok",
+    "http_status": 200,
+    "chars": 23590,
+    "sha256": "d9296ae82dc02e126ba20d9553872a36cfea252a071c6294b847359d535bd90b"
+  },
+  {
+    "source_id": "ITD-80D",
+    "url": "https://wm.incometaxindia.gov.in/web/guest/w/section-80d-63",
+    "title": "Section 80D, Income-tax Act 1961",
+    "provisions": [
+      "80D(2)",
+      "80D(3)",
+      "80D(4)",
+      "80D(5)"
+    ],
+    "used_for": "Health insurance premium / preventive check-up / senior-citizen limits",
+    "fetched_at": "2026-11-09",
+    "status": "ok",
+    "http_status": 200,
+    "chars": 9646,
+    "sha256": "4563c80527fe491374f4bf2d62ec40182b2b7ccf349295546e33b434e332ccc5"
+  },
+  {
+    "source_id": "ITD-80CCD",
+    "url": "https://wm.incometaxindia.gov.in/w/section-80ccd-20",
+    "title": "Section 80CCD, Income-tax Act 1961",
+    "provisions": [
+      "80CCD(1B)"
+    ],
+    "used_for": "80CCD(1B) additional NPS deduction up to Rs 50,000",
+    "fetched_at": "2026-11-09",
+    "status": "ok",
+    "http_status": 200,
+    "chars": 9179,
+    "sha256": "cf17fc678e065e4bf68ccc38125bfdc19d60566f1e2e57e4ffcaec686cf3642c"
+  },
+  {
+    "source_id": "ITD-HRA-FAQ",
+    "url": "https://wm.incometaxindia.gov.in/w/what-is-the-taxability-of-house-rent-allowance-hra-",
+    "title": "What is the taxability of House Rent Allowance (HRA)? (Income Tax Department)",
+    "provisions": [
+      "10(13A)",
+      "Rule 2A"
+    ],
+    "used_for": "HRA exemption = least of three amounts; 50% metro / 40% other",
+    "fetched_at": "2026-11-09",
+    "status": "ok",
+    "http_status": 200,
+    "chars": 4530,
+    "sha256": "51c423e18a9735136dd4cf8843074840de6e3ddd7b06370933345074c4205a80"
+  },
+  {
+    "source_id": "ITD-REGIME-FAQ",
+    "url": "https://www.incometax.gov.in/iec/foportal/help/new-tax-vs-old-tax-regime-faqs",
+    "title": "FAQs on New Tax vs Old Tax Regime (e-filing portal)",
+    "provisions": [
+      "115BAC",
+      "10(13A)",
+      "24(b)",
+      "Chapter VI-A"
+    ],
+    "used_for": "Which exemptions/deductions are unavailable under the new regime",
+    "fetched_at": "2026-11-09",
+    "status": "ok",
+    "http_status": 200,
+    "chars": 14636,
+    "sha256": "c4b2babc88f6e6ed49149b460294e2ded53ea07889266c3185af570671688894"
+  },
+  {
+    "source_id": "ITD-CALCULATOR",
+    "url": "https://eportal.incometax.gov.in/iec/foservices/#/TaxCalc/calculator",
+    "title": "Official Income Tax Calculator (e-filing portal)",
+    "provisions": [],
+    "used_for": "Reference calculator for the manual 30-case verification worksheet",
+    "fetched_at": "2026-11-09",
+    "status": "not_snapshottable_spa"
+  }
+]

@@ -1,0 +1,12 @@
+project_a:
+  determinism_repeats: 10          # each sampled case is executed this many times per engine
+  determinism_sample: 10           # number of cases used for the determinism test (deterministic engines)
+  latency_repeats: 3               # full-suite passes used for latency statistics (deterministic engines)
+  llm_accuracy_sample: 40          # cases sent to the query-time LLM (free-tier budget); stratified, seeded
+  llm_determinism_sample: 3        # cases x determinism_repeats real LLM calls (cache disabled)
+  seed: 7
+  # Projection assumptions used ONLY when no real LLM call could be made (labelled "projected").
+  projected_llm_output_tokens: 900   # JSON with ~20 lines per regime; thinking tokens NOT included
+project_b:
+  seed: 11
+  latency_repeats: 3

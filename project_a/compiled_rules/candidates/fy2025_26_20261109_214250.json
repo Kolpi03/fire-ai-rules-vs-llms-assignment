@@ -1,0 +1,484 @@
+{
+ "financial_year": "2025-26",
+ "tables": {
+  "old_slab_super_senior": [
+   [
+    0.0,
+    250000.0,
+    "0.0"
+   ],
+   [
+    250001.0,
+    500000.0,
+    "0.0"
+   ],
+   [
+    500001.0,
+    1000000.0,
+    "0.20"
+   ],
+   [
+    1000001.0,
+    null,
+    "0.30"
+   ]
+  ],
+  "old_slab_senior": [
+   [
+    0.0,
+    300000.0,
+    "0.0"
+   ],
+   [
+    300001.0,
+    500000.0,
+    "0.05"
+   ],
+   [
+    500001.0,
+    1000000.0,
+    "0.20"
+   ],
+   [
+    1000001.0,
+    null,
+    "0.30"
+   ]
+  ],
+  "old_slab_regular": [
+   [
+    0.0,
+    250000.0,
+    "0.0"
+   ],
+   [
+    250001.0,
+    500000.0,
+    "0.05"
+   ],
+   [
+    500001.0,
+    1000000.0,
+    "0.20"
+   ],
+   [
+    1000001.0,
+    null,
+    "0.30"
+   ]
+  ],
+  "new_slab": [
+   [
+    0.0,
+    400000.0,
+    "0.0"
+   ],
+   [
+    400001.0,
+    800000.0,
+    "0.05"
+   ],
+   [
+    800001.0,
+    1200000.0,
+    "0.10"
+   ],
+   [
+    1200001.0,
+    1600000.0,
+    "0.15"
+   ],
+   [
+    1600001.0,
+    2000000.0,
+    "0.20"
+   ],
+   [
+    2000001.0,
+    2400000.0,
+    "0.25"
+   ],
+   [
+    2400001.0,
+    null,
+    "0.30"
+   ]
+  ]
+ },
+ "regimes": {
+  "old": {
+   "steps": [
+    {
+     "id": "old.standard_deduction",
+     "output": "standard_deduction",
+     "expr": "min(50000.0, gross_salary)",
+     "clause": "Section 16(ia)",
+     "passage_id": "P25-STD-DED",
+     "line": "Standard Deduction"
+    },
+    {
+     "id": "old.salary_for_hra",
+     "output": "salary_for_hra",
+     "expr": "basic_plus_da",
+     "clause": "Rule 2A",
+     "passage_id": "P25-HRA",
+     "line": null
+    },
+    {
+     "id": "old.hra_condition_a",
+     "output": "hra_cond_a",
+     "expr": "hra_received",
+     "clause": "Section 10(13A)",
+     "passage_id": "P25-HRA",
+     "line": null
+    },
+    {
+     "id": "old.hra_condition_b",
+     "output": "hra_cond_b",
+     "expr": "max(0.0, annual_rent_paid - 0.1 * salary_for_hra)",
+     "clause": "Section 10(13A)",
+     "passage_id": "P25-HRA",
+     "line": null
+    },
+    {
+     "id": "old.hra_condition_c",
+     "output": "hra_cond_c",
+     "expr": "(0.5 if metro_city else 0.4) * salary_for_hra",
+     "clause": "Section 10(13A)",
+     "passage_id": "P25-HRA",
+     "line": null
+    },
+    {
+     "id": "old.hra_exemption",
+     "output": "hra_exemption",
+     "expr": "min(hra_cond_a, hra_cond_b, hra_cond_c)",
+     "clause": "Section 10(13A)",
+     "passage_id": "P25-HRA",
+     "line": "HRA Exemption"
+    },
+    {
+     "id": "old.net_salary_after_exemptions",
+     "output": "net_salary_after_exemptions",
+     "expr": "max(0.0, gross_salary - standard_deduction - hra_exemption)",
+     "clause": "Section 16",
+     "passage_id": "P25-STD-DED",
+     "line": null
+    },
+    {
+     "id": "old.interest_24b",
+     "output": "interest_24b",
+     "expr": "min(200000.0, max(0.0, home_loan_interest_self_occupied))",
+     "clause": "Section 24(b)",
+     "passage_id": "P25-24B",
+     "line": "Interest on House Property"
+    },
+    {
+     "id": "old.income_from_house_property",
+     "output": "income_from_house_property",
+     "expr": "-interest_24b",
+     "clause": "Section 24(b)",
+     "passage_id": "P25-24B",
+     "line": null
+    },
+    {
+     "id": "old.ded_80c",
+     "output": "ded_80c",
+     "expr": "min(150000.0, max(0.0, section_80c))",
+     "clause": "Section 80C",
+     "passage_id": "P25-80C",
+     "line": "Deduction under Section 80C"
+    },
+    {
+     "id": "old.ded_80ccd_1b",
+     "output": "ded_80ccd_1b",
+     "expr": "min(50000.0, max(0.0, section_80ccd_1b))",
+     "clause": "Section 80CCD(1B)",
+     "passage_id": "P25-80CCD1B",
+     "line": "Deduction under Section 80CCD(1B)"
+    },
+    {
+     "id": "old.self_health_cap",
+     "output": "self_health_cap",
+     "expr": "50000.0 if spouse_is_senior or (age >= 60) else 25000.0",
+     "clause": "Section 80D(2), (4)",
+     "passage_id": "P25-80D",
+     "line": null
+    },
+    {
+     "id": "old.self_health_total",
+     "output": "self_health_total",
+     "expr": "min(self_health_cap, health_insurance_self_family + preventive_checkup_self_family + medical_expenditure_self_family)",
+     "clause": "Section 80D(2)",
+     "passage_id": "P25-80D",
+     "line": null
+    },
+    {
+     "id": "old.parents_health_cap",
+     "output": "parents_health_cap",
+     "expr": "50000.0 if parents_are_senior else 25000.0",
+     "clause": "Section 80D(2), (4)",
+     "passage_id": "P25-80D",
+     "line": null
+    },
+    {
+     "id": "old.parents_health_total",
+     "output": "parents_health_total",
+     "expr": "min(parents_health_cap, health_insurance_parents + preventive_checkup_parents + medical_expenditure_parents)",
+     "clause": "Section 80D(2)",
+     "passage_id": "P25-80D",
+     "line": null
+    },
+    {
+     "id": "old.ded_80d",
+     "output": "ded_80d",
+     "expr": "self_health_total + parents_health_total",
+     "clause": "Section 80D",
+     "passage_id": "P25-80D",
+     "line": "Deduction under Section 80D"
+    },
+    {
+     "id": "old.total_income_raw",
+     "output": "total_income_raw",
+     "expr": "max(0.0, net_salary_after_exemptions + income_from_house_property - ded_80c - ded_80ccd_1b - ded_80d)",
+     "clause": "Chapter VI-A",
+     "passage_id": "P25-80C",
+     "line": null
+    },
+    {
+     "id": "old.total_income",
+     "output": "total_income",
+     "expr": "round10(total_income_raw)",
+     "clause": "Section 288A",
+     "passage_id": "P25-ROUNDING",
+     "line": "Total Income"
+    },
+    {
+     "id": "old.tax_on_income",
+     "output": "tax_on_income",
+     "expr": "slab_tax(total_income, 'old_slab_super_senior') if age >= 80 else (slab_tax(total_income, 'old_slab_senior') if age >= 60 else slab_tax(total_income, 'old_slab_regular'))",
+     "clause": "First Schedule, Part III, Para A",
+     "passage_id": "P25-OLD-SLABS",
+     "line": "Tax on Total Income"
+    },
+    {
+     "id": "old.rebate_87a",
+     "output": "rebate_87a",
+     "expr": "min(tax_on_income, 12500.0) if is_resident and (total_income <= 500000.0) else 0.0",
+     "clause": "Section 87A",
+     "passage_id": "P25-87A",
+     "line": "Rebate under Section 87A"
+    },
+    {
+     "id": "old.tax_after_rebate",
+     "output": "tax_after_rebate",
+     "expr": "max(0.0, tax_on_income - rebate_87a)",
+     "clause": "Section 87A",
+     "passage_id": "P25-87A",
+     "line": null
+    },
+    {
+     "id": "old.surcharge_rate",
+     "output": "surcharge_rate",
+     "expr": "0.37 if total_income > 50000000.0 else (0.25 if total_income > 20000000.0 else (0.15 if total_income > 10000000.0 else (0.10 if total_income > 5000000.0 else 0.0)))",
+     "clause": "Finance Act 2025, First Schedule Part I",
+     "passage_id": "P25-SURCHARGE",
+     "line": null
+    },
+    {
+     "id": "old.surcharge_base",
+     "output": "surcharge_base",
+     "expr": "tax_after_rebate * surcharge_rate",
+     "clause": "Finance Act 2025, First Schedule Part I",
+     "passage_id": "P25-SURCHARGE",
+     "line": null
+    },
+    {
+     "id": "old.marginal_relief_surcharge",
+     "output": "marginal_relief_surcharge",
+     "expr": "surcharge_base",
+     "clause": "Finance Act 2025, Surcharge Proviso",
+     "passage_id": "P25-SURCHARGE",
+     "line": null
+    },
+    {
+     "id": "old.surcharge",
+     "output": "surcharge",
+     "expr": "marginal_relief_surcharge",
+     "clause": "Finance Act 2025, First Schedule Part I",
+     "passage_id": "P25-SURCHARGE",
+     "line": "Surcharge"
+    },
+    {
+     "id": "old.tax_plus_surcharge",
+     "output": "tax_plus_surcharge",
+     "expr": "tax_after_rebate + surcharge",
+     "clause": "Finance Act 2025",
+     "passage_id": "P25-CESS",
+     "line": null
+    },
+    {
+     "id": "old.cess",
+     "output": "cess",
+     "expr": "0.04 * tax_plus_surcharge",
+     "clause": "Finance Act 2025",
+     "passage_id": "P25-CESS",
+     "line": "Health and Education Cess (4% )"
+    },
+    {
+     "id": "old.total_tax",
+     "output": "total_tax",
+     "expr": "tax_plus_surcharge + cess",
+     "clause": "Finance Act 2025",
+     "passage_id": "P25-CESS",
+     "line": "Total Tax Liability"
+    },
+    {
+     "id": "old.tax_payable",
+     "output": "tax_payable",
+     "expr": "round10(total_tax)",
+     "clause": "Section 288B",
+     "passage_id": "P25-ROUNDING",
+     "line": "Tax Payable"
+    }
+   ]
+  },
+  "new": {
+   "steps": [
+    {
+     "id": "new.standard_deduction",
+     "output": "standard_deduction",
+     "expr": "min(75000.0, gross_salary)",
+     "clause": "Section 115BAC(1A)(ii)",
+     "passage_id": "P25-STD-DED",
+     "line": "Standard Deduction"
+    },
+    {
+     "id": "new.net_salary_after_deduction",
+     "output": "net_salary_after_deduction",
+     "expr": "max(0.0, gross_salary - standard_deduction)",
+     "clause": "Section 115BAC(1A)",
+     "passage_id": "P25-STD-DED",
+     "line": null
+    },
+    {
+     "id": "new.total_income_raw",
+     "output": "total_income_raw",
+     "expr": "net_salary_after_deduction",
+     "clause": "Section 115BAC(2)",
+     "passage_id": "P25-NEW-EXCLUSIONS",
+     "line": null
+    },
+    {
+     "id": "new.total_income",
+     "output": "total_income",
+     "expr": "round10(total_income_raw)",
+     "clause": "Section 288A",
+     "passage_id": "P25-ROUNDING",
+     "line": "Total Income"
+    },
+    {
+     "id": "new.tax_on_income",
+     "output": "tax_on_income",
+     "expr": "slab_tax(total_income, 'new_slab')",
+     "clause": "Section 115BAC(1A)",
+     "passage_id": "P25-NEW-SLABS",
+     "line": "Tax on Total Income"
+    },
+    {
+     "id": "new.rebate_87a",
+     "output": "rebate_87a",
+     "expr": "min(tax_on_income, 60000.0) if is_resident and (total_income <= 1200000.0) else (min(tax_on_income, max(0.0, total_income - 1200000.0)) if is_resident and (total_income > 1200000.0 and total_income <= 1250000.0 and tax_on_income > (total_income - 1200000.0)) else 0.0)",
+     "clause": "Section 87A",
+     "passage_id": "P25-87A",
+     "line": "Rebate under Section 87A"
+    },
+    {
+     "id": "new.tax_after_rebate",
+     "output": "tax_after_rebate",
+     "expr": "max(0.0, tax_on_income - rebate_87a)",
+     "clause": "Section 87A",
+     "passage_id": "P25-87A",
+     "line": null
+    },
+    {
+     "id": "new.surcharge_rate",
+     "output": "surcharge_rate",
+     "expr": "0.25 if total_income > 20000000.0 else (0.15 if total_income > 10000000.0 else (0.10 if total_income > 5000000.0 else 0.0))",
+     "clause": "Finance Act 2025, First Schedule Part I",
+     "passage_id": "P25-SURCHARGE",
+     "line": null
+    },
+    {
+     "id": "new.surcharge_base",
+     "output": "surcharge_base",
+     "expr": "tax_after_rebate * surcharge_rate",
+     "clause": "Finance Act 2025, First Schedule Part I",
+     "passage_id": "P25-SURCHARGE",
+     "line": null
+    },
+    {
+     "id": "new.marginal_relief_surcharge",
+     "output": "marginal_relief_surcharge",
+     "expr": "surcharge_base",
+     "clause": "Finance Act 2025, Surcharge Proviso",
+     "passage_id": "P25-SURCHARGE",
+     "line": null
+    },
+    {
+     "id": "new.surcharge",
+     "output": "surcharge",
+     "expr": "marginal_relief_surcharge",
+     "clause": "Finance Act 2025, First Schedule Part I",
+     "passage_id": "P25-SURCHARGE",
+     "line": "Surcharge"
+    },
+    {
+     "id": "new.tax_plus_surcharge",
+     "output": "tax_plus_surcharge",
+     "expr": "tax_after_rebate + surcharge",
+     "clause": "Finance Act 2025",
+     "passage_id": "P25-CESS",
+     "line": null
+    },
+    {
+     "id": "new.cess",
+     "output": "cess",
+     "expr": "0.04 * tax_plus_surcharge",
+     "clause": "Finance Act 2025",
+     "passage_id": "P25-CESS",
+     "line": "Health and Education Cess (4% )"
+    },
+    {
+     "id": "new.total_tax",
+     "output": "total_tax",
+     "expr": "tax_plus_surcharge + cess",
+     "clause": "Finance Act 2025",
+     "passage_id": "P25-CESS",
+     "line": "Total Tax Liability"
+    },
+    {
+     "id": "new.tax_payable",
+     "output": "tax_payable",
+     "expr": "round10(total_tax)",
+     "clause": "Section 288B",
+     "passage_id": "P25-ROUNDING",
+     "line": "Tax Payable"
+    }
+   ]
+  }
+ },
+ "regime_choice": {
+  "tie_breaker": "old",
+  "clause": "Section 115BAC",
+  "passage_id": "P25-NEW-EXCLUSIONS"
+ },
+ "compiler": {
+  "model": "gemini-3.5-flash-lite",
+  "mode": "real",
+  "input_tokens": 3589,
+  "output_tokens": 5032,
+  "cost_usd": 0.0136567,
+  "prompt_sha256": "d267de4670503f845d3f754b3fb60b37473713b1d56fa9983c7011014675ed20",
+  "generated_at": "2026-11-09T21:42:50"
+ }
+}

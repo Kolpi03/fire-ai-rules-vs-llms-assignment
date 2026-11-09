@@ -1,0 +1,32 @@
+[
+ {
+  "variant": "rules_only",
+  "any_precision": 0.725752508361204,
+  "any_recall": 0.9025214452820379,
+  "any_f1": 0.8045417680454177,
+  "macro_f1_row_problems": 0.7255177229486842,
+  "clean_row_false_alarm_rate": 0.07915,
+  "throughput_rows_per_s": 29662.086260765034,
+  "cost_per_million_rows_usd": 0.000468237087802558
+ },
+ {
+  "variant": "stat_ml_only",
+  "any_precision": 0.9957916885849553,
+  "any_recall": 0.9841434884325448,
+  "any_f1": 0.9899333246175972,
+  "macro_f1_row_problems": 0.9364853269205475,
+  "clean_row_false_alarm_rate": 0.00125,
+  "throughput_rows_per_s": 14487.980047889656,
+  "cost_per_million_rows_usd": 0.0009586490900028517
+ },
+ {
+  "variant": "hybrid_winners",
+  "any_precision": 0.9965780468544354,
+  "any_recall": 0.9841434884325448,
+  "any_f1": 0.9903217368558724,
+  "macro_f1_row_problems": 0.9709279225944243,
+  "clean_row_false_alarm_rate": 0.0012,
+  "throughput_rows_per_s": 17558.658461310162,
+  "cost_per_million_rows_usd": 0.0007909994330997741
+ }
+]

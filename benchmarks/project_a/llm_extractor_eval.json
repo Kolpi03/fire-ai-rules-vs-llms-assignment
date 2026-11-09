@@ -1,0 +1,354 @@
+{
+ "status": "measured (real Gemini calls; raw extractor, no validation layer)",
+ "model": "gemini-3.5-flash-lite",
+ "measured_at": "2026-11-09 21:38:09",
+ "n": 50,
+ "counts": {
+  "guessed": 9,
+  "correct": 24,
+  "flagged": 12,
+  "wrong": 5
+ },
+ "complete_cases_correct": "24/29",
+ "incomplete_cases_flagged": "12/21",
+ "cases_with_fields_outside_schema": 3,
+ "errors": 0,
+ "median_latency_ms_real_calls": 4572.447911999916,
+ "rows": [
+  {
+   "id": "NL-01",
+   "style": "assignment_example",
+   "outcome": "guessed",
+   "detail": "supplied values for must-ask fields ['annual_rent_paid']"
+  },
+  {
+   "id": "NL-02",
+   "style": "english_complete",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-03",
+   "style": "hinglish_complete",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-04",
+   "style": "english_monthly_amounts",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-05",
+   "style": "contradictory",
+   "outcome": "guessed",
+   "detail": "supplied values for must-ask fields ['gross_salary']"
+  },
+  {
+   "id": "NL-06",
+   "style": "contradictory",
+   "outcome": "flagged",
+   "detail": ""
+  },
+  {
+   "id": "NL-07",
+   "style": "ambiguous_ctc",
+   "outcome": "guessed",
+   "detail": "supplied values for must-ask fields ['gross_salary']"
+  },
+  {
+   "id": "NL-08",
+   "style": "ambiguous_net_pay",
+   "outcome": "flagged",
+   "detail": ""
+  },
+  {
+   "id": "NL-09",
+   "style": "senior_citizen",
+   "outcome": "wrong",
+   "detail": "(got, want): {'age': (None, 60)}",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-10",
+   "style": "super_senior",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-11",
+   "style": "english_parents",
+   "outcome": "wrong",
+   "detail": "(got, want): {'section_80c': (1, 150000)}",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-12",
+   "style": "incomplete_parents_age",
+   "outcome": "flagged",
+   "detail": ""
+  },
+  {
+   "id": "NL-13",
+   "style": "ambiguous_emi",
+   "outcome": "flagged",
+   "detail": ""
+  },
+  {
+   "id": "NL-14",
+   "style": "english_home_loan",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-15",
+   "style": "non_resident",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-16",
+   "style": "terse_unlabelled",
+   "outcome": "guessed",
+   "detail": "supplied values for must-ask fields ['gross_salary']"
+  },
+  {
+   "id": "NL-17",
+   "style": "ambiguous_rent_period",
+   "outcome": "guessed",
+   "detail": "supplied values for must-ask fields ['annual_rent_paid']"
+  },
+  {
+   "id": "NL-18",
+   "style": "english_hra_complete",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-19",
+   "style": "hinglish_hra_complete",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-20",
+   "style": "hinglish_incomplete",
+   "outcome": "flagged",
+   "detail": ""
+  },
+  {
+   "id": "NL-21",
+   "style": "ambiguous_salary_period",
+   "outcome": "flagged",
+   "detail": ""
+  },
+  {
+   "id": "NL-22",
+   "style": "incomplete_amounts",
+   "outcome": "flagged",
+   "detail": ""
+  },
+  {
+   "id": "NL-23",
+   "style": "english_high_income",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-24",
+   "style": "english_crore",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-25",
+   "style": "incomplete_hra",
+   "outcome": "flagged",
+   "detail": ""
+  },
+  {
+   "id": "NL-26",
+   "style": "english_no_hra",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-27",
+   "style": "english_preventive",
+   "outcome": "wrong",
+   "detail": "(got, want): {'health_insurance_self_family': (26000, 22000)}",
+   "fields_outside_extractor_schema_not_scored": [
+    "preventive_checkup_self_family"
+   ]
+  },
+  {
+   "id": "NL-28",
+   "style": "english_parent_medical",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": [
+    "medical_expenditure_parents"
+   ]
+  },
+  {
+   "id": "NL-29",
+   "style": "ambiguous_periods",
+   "outcome": "guessed",
+   "detail": "supplied values for must-ask fields ['annual_rent_paid']"
+  },
+  {
+   "id": "NL-30",
+   "style": "english_gurgaon",
+   "outcome": "wrong",
+   "detail": "(got, want): {'metro_city': (True, False)}",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-31",
+   "style": "contradictory",
+   "outcome": "flagged",
+   "detail": ""
+  },
+  {
+   "id": "NL-32",
+   "style": "contradictory",
+   "outcome": "flagged",
+   "detail": ""
+  },
+  {
+   "id": "NL-33",
+   "style": "typos",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-34",
+   "style": "english_verbose",
+   "outcome": "wrong",
+   "detail": "(got, want): {'metro_city': (True, False)}",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-35",
+   "style": "hinglish_parents",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-36",
+   "style": "english_lic",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-37",
+   "style": "english_life_vs_health",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-38",
+   "style": "incomplete_everything",
+   "outcome": "flagged",
+   "detail": ""
+  },
+  {
+   "id": "NL-39",
+   "style": "english_fy2025_26",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-40",
+   "style": "hinglish_monthly",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-41",
+   "style": "english_senior_spouse",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": [
+    "spouse_is_senior"
+   ]
+  },
+  {
+   "id": "NL-42",
+   "style": "ambiguous_loan_principal",
+   "outcome": "flagged",
+   "detail": ""
+  },
+  {
+   "id": "NL-43",
+   "style": "implausible",
+   "outcome": "guessed",
+   "detail": "supplied values for must-ask fields ['gross_salary']"
+  },
+  {
+   "id": "NL-44",
+   "style": "invalid_age",
+   "outcome": "guessed",
+   "detail": "supplied values for must-ask fields ['age']"
+  },
+  {
+   "id": "NL-45",
+   "style": "english_small_rent",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-46",
+   "style": "english_senior_self_80d",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-47",
+   "style": "hinglish_ambiguous_rent",
+   "outcome": "guessed",
+   "detail": "supplied values for must-ask fields ['annual_rent_paid']"
+  },
+  {
+   "id": "NL-48",
+   "style": "form_like",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-49",
+   "style": "english_rent_to_parents",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  },
+  {
+   "id": "NL-50",
+   "style": "english_over_cap",
+   "outcome": "correct",
+   "detail": "",
+   "fields_outside_extractor_schema_not_scored": []
+  }
+ ]
+}

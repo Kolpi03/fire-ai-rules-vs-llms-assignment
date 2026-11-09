@@ -1,0 +1,57 @@
+{
+ "fy2025_26_probe": {
+  "fy": "2025-26",
+  "n_cases": 128,
+  "engines": {
+   "rules_engine": {
+    "outcome": "loud_error",
+    "error_type": "RuleSetNotFound",
+    "error": "\"No rule set for FY 2025-26. Available: ['2024-25']\""
+   },
+   "llm_compiled_engine": {
+    "outcome": "loud_error",
+    "error_type": "RuleSetNotFound",
+    "error": "'No compiled rule artifact for FY 2025-26 (fy2025_26.compiled.json)'"
+   },
+   "llm_query_engine": {
+    "outcome": "loud_error",
+    "error_type": "RuleSetNotFound",
+    "error": "'No rule text corpus for FY 2025-26'"
+   }
+  }
+ },
+ "silent_failure_probe": {
+  "n_cases": 128,
+  "silently_wrong": 101,
+  "silently_wrong_share": 0.7890625,
+  "wrong_regime_recommendation": 7,
+  "errors_raised": 0,
+  "examples": [
+   {
+    "case_id": "HW-14",
+    "expected_new": 0,
+    "fy2024_25_law_new": 83200
+   },
+   {
+    "case_id": "HW-15",
+    "expected_new": 52000,
+    "fy2024_25_law_new": 93600
+   },
+   {
+    "case_id": "HW-16",
+    "expected_new": 343200,
+    "fy2024_25_law_new": 457600
+   },
+   {
+    "case_id": "BND-202526-OLD-below_60-1000000-10",
+    "expected_new": 0,
+    "fy2024_25_law_new": 49400
+   },
+   {
+    "case_id": "BND-202526-OLD-below_60-1000000+0",
+    "expected_new": 0,
+    "fy2024_25_law_new": 49400
+   }
+  ]
+ }
+}

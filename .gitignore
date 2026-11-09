@@ -1,0 +1,17 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+logs/*.jsonl
+logs/*.out
+logs/llm_cache/
+logs/pytest_*.txt
+# large / regenerable data (re-created by `python run_all.py`; raw files are re-downloaded and cached)
+project_b/data/raw/*.csv
+project_b/data/raw/*.part
+project_b/data/processed/clean_*.parquet
+# nyc311_2023_sample.parquet IS committed: frozen snapshot of the downloaded sample (NYC can edit old records)
+project_b/data/corrupted/
+logs/run_all.checkpoint.json
+logs/run_all.exitcode
