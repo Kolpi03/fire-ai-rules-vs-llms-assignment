@@ -487,10 +487,11 @@
  },
  "review": {
   "status": "approved",
-  "reviewer": "Kolpi03",
-  "reviewed_on": "2026-11-09",
+  "reviewer": "Kalpita Saha",
+  "reviewed_on": "2026-11-10",
   "notes": [
-   "Human review 2026-11-09: Section 80D first proviso per person and s.80D(4) Rs 50,000 limit only for an insured senior; candidate fingerprint verified against 80d_per_person_manifest.json"
+   "Human review 2026-11-09: Section 80D first proviso per person and s.80D(4) Rs 50,000 limit only for an insured senior; candidate fingerprint verified against 80d_per_person_manifest.json",
+   "Reviewer name recorded as Kalpita Saha (previously recorded under GitHub handle Kolpi03); rules unchanged"
   ],
   "verification": {
    "cases": 293,

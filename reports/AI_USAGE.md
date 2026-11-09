@@ -102,7 +102,7 @@ and real-data inspection. The submitter is responsible for understanding and def
     shared the same reading, every test agreed with the bug. **Caught by** a person reading the compiled rules against
     the statute. **Fixed** with per-person inputs (validated: ambiguous or double-counted inputs are rejected), new
     hand-derived tests, 6 mutation tests and 80,000 random profiles; the corrected compiled rules were approved by
-    the submitter (Kolpi03) after review.
+    the submitter (Kalpita Saha) after review.
     The same review then flagged that the Rs 50,000 limit of s.80D(4) was also raised by *any* senior in the group,
     including an uninsured one; it now requires an insured senior (5 more mutation tests, 48 more cases).
 

@@ -216,7 +216,7 @@ def test_approved_artifacts_are_the_human_approved_candidates():
     manifest = json.loads((CANDIDATE_DIR / "80d_per_person_manifest.json").read_text())
     for fy, info in manifest["candidates"].items():
         art = llm_compiled_engine.load_artifact(fy)
-        assert art["review"]["status"] == "approved" and art["review"]["reviewer"] == "Kolpi03"
+        assert art["review"]["status"] == "approved" and art["review"]["reviewer"] == "Kalpita Saha"
         assert art["review"]["artifact_sha256"] == info["fingerprint_sha256"]
         assert sha256_of({k: v for k, v in art.items() if k != "review"}) == info["fingerprint_sha256"]
 

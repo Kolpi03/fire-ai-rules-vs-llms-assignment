@@ -30,7 +30,7 @@ real command-line application recorded in a browser terminal with Playwright (`s
 
 | | Result | Source |
 |---|---|---|
-| Engine A (rules) / C (LLM-compiled) | A: 100% rupee-exact on 293 + 242 cases. C: 100% on 293 + 242 cases (80D fixes approved by Kolpi03 on 2026-11-09). Deterministic, ~0.04 / 0.8 ms | `benchmarks/project_a/benchmark_results.json`, `project_a/compiled_rules/candidates/80d_per_person_manifest.json` |
+| Engine A (rules) / C (LLM-compiled) | A: 100% rupee-exact on 293 + 242 cases. C: 100% on 293 + 242 cases (80D fixes approved by Kalpita Saha on 2026-11-09). Deterministic, ~0.04 / 0.8 ms | `benchmarks/project_a/benchmark_results.json`, `project_a/compiled_rules/candidates/80d_per_person_manifest.json` |
 | Engine B (LLM at query time) | 25% / 30% rupee-exact (40 cases/year), deterministic on 1/6 cases, median 3.9 s, ~$3.5 per 1k | same |
 | Official calculator | 30/30 cases match in both regimes | `project_a/data/official_calculator_results.json` |
 | Law change (FY 2025-26) | year-blind answers silently wrong on 203/242 cases; 8/9 rule and 4/4 compiled mutants caught | `benchmarks/project_a/migration_report.json` |

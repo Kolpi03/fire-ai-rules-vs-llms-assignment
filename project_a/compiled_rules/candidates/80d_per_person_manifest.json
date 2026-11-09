@@ -1,6 +1,6 @@
 {
  "purpose": "Section 80D: first proviso per person and s.80D(4) limit per insured senior (human reviews 2026-11-09)",
- "status": "APPROVED by Kolpi03 on 2026-11-09 (python -m project_a.cli compile approve); approved artifacts are byte-for-byte the candidates below",
+ "status": "APPROVED by Kalpita Saha (python -m project_a.cli compile approve; first approved 2026-11-09 under GitHub handle Kolpi03, reviewer name corrected 2026-11-10); approved artifacts are byte-for-byte the candidates below",
  "candidates": {
   "2024-25": {
    "path": "project_a/compiled_rules/candidates/fy2024_25_80d_per_person.candidate.json",
@@ -31,8 +31,8 @@
    ],
    "approval": {
     "approved_artifact": "project_a/compiled_rules/fy2024_25.compiled.json",
-    "reviewer": "Kolpi03",
-    "reviewed_on": "2026-11-09",
+    "reviewer": "Kalpita Saha",
+    "reviewed_on": "2026-11-10",
     "artifact_sha256": "1d4f44a21c91d409ae653ba8f99d40434c782b5f06f82b679f64fed49d1ac4ee",
     "verification": {
      "cases": 293,
@@ -70,8 +70,8 @@
    ],
    "approval": {
     "approved_artifact": "project_a/compiled_rules/fy2025_26.compiled.json",
-    "reviewer": "Kolpi03",
-    "reviewed_on": "2026-11-09",
+    "reviewer": "Kalpita Saha",
+    "reviewed_on": "2026-11-10",
     "artifact_sha256": "6547bf863960b7ff0bdab3f4777a8bd8e49f6721a8c5437e78f65c59dbd9d4dd",
     "verification": {
      "cases": 242,
